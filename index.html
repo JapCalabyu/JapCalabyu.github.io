@@ -1,79 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Official Website</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Jasper Calabio | Data Analyst</title>
+  <link rel="stylesheet" href="assets/css/main.css">
+  <link rel="stylesheet" href="assets/css/animations.css">
+  <link rel="stylesheet" href="assets/css/themes.css">
+  <script defer src="assets/js/theme.js"></script>
+  <script defer src="assets/js/animations.js"></script>
 </head>
+
 <body>
-  <!-- Header / Navigation -->
-  <header>
+  <header class="nav">
+    <h1 class="logo">Jasper</h1>
     <nav>
-      <div class="logo">MyWebsite</div>
-      <ul class="nav-links">
-        <li><a href="#hero">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#services">Services</a></li>
-        <li><a href="#contact">Contact</a></li>
-      </ul>
-      <div class="burger">
-        <div></div>
-        <div></div>
-        <div></div>
-      </div>
+      <a href="about.html">About</a>
+      <a href="experience.html">Experience</a>
+      <a href="projects.html">Projects</a>
+      <a href="skills.html">Skills</a>
+      <a href="contact.html">Contact</a>
+      <button id="theme-toggle">🌙</button>
     </nav>
   </header>
 
-  <!-- Hero Section -->
-  <section id="hero">
-    <h1>Welcome to My Official Website</h1>
-    <p>Your tagline goes here.</p>
-    <a href="#contact" class="btn">Get in Touch</a>
+  <section class="hero fade-in">
+    <h2>Data Analyst & Systems Thinker</h2>
+    <p>
+      Turning operational data into actionable insights using
+      Excel, SQL, Power BI, and automation.
+    </p>
+    <a class="cta" href="projects.html">View My Work</a>
   </section>
-
-  <!-- About Section -->
-  <section id="about">
-    <h2>About Us</h2>
-    <p>Write something about your company or yourself here. Keep it short and professional.</p>
-  </section>
-
-  <!-- Services Section -->
-  <section id="services">
-    <h2>Our Services</h2>
-    <div class="service-cards">
-      <div class="card">
-        <h3>Service 1</h3>
-        <p>Description of service 1.</p>
-      </div>
-      <div class="card">
-        <h3>Service 2</h3>
-        <p>Description of service 2.</p>
-      </div>
-      <div class="card">
-        <h3>Service 3</h3>
-        <p>Description of service 3.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- Contact Section -->
-  <section id="contact">
-    <h2>Contact Us</h2>
-    <form id="contactForm">
-      <input type="text" id="name" placeholder="Your Name" required>
-      <input type="email" id="email" placeholder="Your Email" required>
-      <textarea id="message" placeholder="Your Message" required></textarea>
-      <button type="submit">Send</button>
-    </form>
-    <p id="formMessage"></p>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 MyWebsite. All rights reserved.</p>
-  </footer>
-
-  <script src="script.js"></script>
 </body>
 </html>
