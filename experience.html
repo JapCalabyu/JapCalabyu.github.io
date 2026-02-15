@@ -1,17 +1,16 @@
 <section class="timeline fade-in">
   <h2>Experience</h2>
-
-  <div class="job">
+  <div class="job-card">
     <h3>Netsolar Incorporated</h3>
     <span>Data & Systems Analyst | June 2025 – Present</span>
     <ul>
-      <li>Built cash flow dashboards reducing manual tracking by 50%</li>
+      <li>Built cash flow dashboard reducing manual tracking by 50%</li>
       <li>Improved profitability by 10% using expense analytics</li>
-      <li>Developed inventory dashboards reducing data issues by 24%</li>
+      <li>Created inventory dashboards reducing data inconsistencies by 24%</li>
     </ul>
   </div>
 
-  <div class="job">
+  <div class="job-card">
     <h3>Straive</h3>
     <span>Data Analyst | June 2024 – June 2025</span>
     <ul>
@@ -21,3 +20,17 @@
     </ul>
   </div>
 </section>
+
+/* Job Cards */
+.job-card {
+  background: rgba(38, 99, 235, 0.05);
+  border-left: 5px solid var(--accent);
+  padding: 20px;
+  margin: 20px 0;
+  border-radius: 8px;
+  transition: transform 0.3s;
+}
+
+.job-card:hover {
+  transform: translateY(-5px);
+}
