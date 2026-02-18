@@ -1,13 +1,42 @@
 :root {
   --bg: #ffffff;
+  --bg-soft: #f8fafc;
+  --bg-elevated: rgba(255, 255, 255, 0.8);
+
   --text: #1a1a1a;
+  --text-muted: #6b7280;
+
   --accent: #2563eb;
+  --accent-hover: #1d4ed8;
+
+  --border: #e5e7eb;
 }
 
+/* Dark Theme */
 [data-theme="dark"] {
   --bg: #0f172a;
+  --bg-soft: #020617;
+  --bg-elevated: rgba(15, 23, 42, 0.75);
+
   --text: #e5e7eb;
+  --text-muted: #94a3b8;
+
   --accent: #38bdf8;
+  --accent-hover: #0ea5e9;
+
+  --border: #1e293b;
+}
+a {
+  color: var(--accent);
+  text-decoration: none;
+  transition: color 0.25s ease, text-decoration-color 0.25s ease;
 }
 
-a { color: var(--accent); }
+a:hover {
+  color: var(--accent-hover);
+}
+
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
