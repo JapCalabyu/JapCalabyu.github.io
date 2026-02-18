@@ -1,49 +1,104 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Jasper Calabio | Data Analyst</title>
-
-  <!-- CSS -->
-  <link rel="stylesheet" href="assets/css/main.css">
-  <link rel="stylesheet" href="assets/css/themes.css">
-  <link rel="stylesheet" href="assets/css/animations.css">
-
-  <!-- JS -->
-  <script defer src="assets/js/theme.js"></script>
-  <script defer src="assets/js/script.js"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio | Creative Developer</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
 </head>
+<body>
 
-<body data-theme="light">
-  <!-- Navigation -->
-  <header class="nav">
-    <div class="logo">Jasper Calabio</div>
     <nav>
-      <a href="index.html">Home</a>
-      <a href="about.html">About</a>
-      <a href="experience.html">Experience</a>
-      <a href="projects.html">Projects</a>
-      <a href="contact.html">Contact</a>
-      <button id="theme-toggle">🌙</button>
+        <div class="logo">PORTFOLIO<span>.</span></div>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
     </nav>
-  </header>
 
-  <!-- Hero Section -->
-  <section class="hero fade-in">
-    <div class="hero-content">
-      <h1>Hi, I'm Jasper John G. Calabio</h1>
-      <p>Data Analyst & Systems Thinker | Turning raw data into actionable insights</p>
-      <a class="cta" href="projects.html">View My Work</a>
-    </div>
-    <img src="assets/images/profile.jpg" alt="Jasper Calabio" class="profile-pic">
-  </section>
+    <header id="home" class="hero">
+        <div class="hero-content">
+            <span class="badge">Available for Hire</span>
+            <h1>Turning Ideas into <span class="highlight">Digital Reality</span></h1>
+            <p>I specialize in building clean, fast, and responsive web applications with modern technologies.</p>
+            <div class="hero-btns">
+                <a href="#projects" class="btn-primary">View My Work</a>
+                <a href="#contact" class="btn-secondary">Let's Talk</a>
+            </div>
+        </div>
+    </header>
 
-  <!-- Footer -->
-  <footer>
-    <p>&copy; 2026 Jasper Calabio | <a href="https://github.com/yourusername">GitHub</a> | <a href="https://linkedin.com/in/yourlinkedin">LinkedIn</a></p>
-  </footer>
+    <section id="about">
+        <div class="section-header">
+            <h2>About Me</h2>
+            <div class="underline"></div>
+        </div>
+        <div class="about-container">
+            <p>I am a developer who believes in the power of simplicity. Over the last few years, I've honed my skills in frontend and backend development, ensuring that every project I touch is both functional and aesthetically pleasing.</p>
+        </div>
+    </section>
+
+    <section id="skills" class="dark-bg">
+        <div class="section-header">
+            <h2>My Toolbox</h2>
+        </div>
+        <div class="skills-grid">
+            <div class="skill-card"><h3>Frontend</h3><p>React, Vue, Tailwind CSS</p></div>
+            <div class="skill-card"><h3>Backend</h3><p>Node.js, Python, PostgreSQL</p></div>
+            <div class="skill-card"><h3>Tools</h3><p>Git, Docker, Figma</p></div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="section-header">
+            <h2>Featured Projects</h2>
+        </div>
+        <div class="project-grid">
+            <div class="project-card">
+                <div class="project-img"></div>
+                <div class="project-info">
+                    <h3>E-Commerce Platform</h3>
+                    <p>A full-stack shop built with React and Stripe.</p>
+                    <a href="#" class="link">View Project →</a>
+                </div>
+            </div>
+            <div class="project-card">
+                <div class="project-img"></div>
+                <div class="project-info">
+                    <h3>AI Dashboard</h3>
+                    <p>Real-time data visualization using Python and D3.js.</p>
+                    <a href="#" class="link">View Project →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="section-header">
+            <h2>What People Say</h2>
+        </div>
+        <div class="testimonial-card">
+            <p>"An absolute pleasure to work with. The attention to detail is unmatched!"</p>
+            <strong>— Sarah Johnson, CEO of TechFlow</strong>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="contact-card">
+            <h2>Ready to start a project?</h2>
+            <p>Shoot me an email and let's make something amazing.</p>
+            <a href="mailto:your@email.com" class="btn-primary">Email Me Now</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 | Built with ✨ and Code</p>
+    </footer>
+
 </body>
 </html>
