@@ -3,102 +3,326 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio | Creative Developer</title>
-    <link rel="stylesheet" href="style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
+    <title>Jasper John G. Calabio | Data Analyst</title>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --orange: #ff6a00;
+            --teal: #00f2ff;
+            --dark-bg: #050505;
+            --glass: rgba(15, 15, 15, 0.85);
+            --border: rgba(255, 106, 0, 0.3);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: var(--dark-bg);
+            color: #e0e0e0;
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+
+        /* Scanline Effect Overlay */
+        body::before {
+            content: " ";
+            display: block;
+            position: fixed;
+            top: 0; left: 0; bottom: 0; right: 0;
+            background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), 
+                        linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+            z-index: 9999;
+            background-size: 100% 2px, 3px 100%;
+            pointer-events: none;
+        }
+
+        /* Glitch Animation */
+        @keyframes glitch {
+            0% { text-shadow: 2px 0 var(--teal), -2px 0 var(--orange); }
+            25% { text-shadow: -2px 0 var(--teal), 2px 0 var(--orange); }
+            50% { text-shadow: 2px -1px var(--teal), -1px 2px var(--orange); }
+            100% { text-shadow: 2px 0 var(--teal), -2px 0 var(--orange); }
+        }
+
+        header {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(circle at center, #1a100a 0%, #050505 100%);
+            text-align: center;
+            position: relative;
+        }
+
+        .hero-title {
+            font-family: 'Orbitron', sans-serif;
+            font-size: clamp(2rem, 8vw, 5rem);
+            letter-spacing: 10px;
+            text-transform: uppercase;
+            color: var(--orange);
+            animation: glitch 3s infinite linear alternate-reverse;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            letter-spacing: 5px;
+            color: var(--teal);
+            margin-top: 10px;
+            text-transform: uppercase;
+        }
+
+        .nav-fixed {
+            position: fixed;
+            top: 20px;
+            right: 40px;
+            z-index: 1000;
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-fixed a {
+            color: var(--teal);
+            text-decoration: none;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.8rem;
+            border: 1px solid var(--teal);
+            padding: 5px 15px;
+            transition: 0.3s;
+        }
+
+        .nav-fixed a:hover {
+            background: var(--teal);
+            color: var(--dark-bg);
+            box-shadow: 0 0 15px var(--teal);
+        }
+
+        section {
+            padding: 100px 10%;
+            max-width: 1200px;
+            margin: auto;
+        }
+
+        h2 {
+            font-family: 'Orbitron', sans-serif;
+            color: var(--orange);
+            margin-bottom: 40px;
+            border-left: 4px solid var(--teal);
+            padding-left: 20px;
+            text-transform: uppercase;
+        }
+
+        /* Cards and Glassmorphism */
+        .card {
+            background: var(--glass);
+            border: 1px solid var(--border);
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            transition: 0.4s;
+            backdrop-filter: blur(5px);
+        }
+
+        .card:hover {
+            border-color: var(--teal);
+            box-shadow: 0 0 20px rgba(0, 242, 255, 0.1);
+            transform: translateX(10px);
+        }
+
+        .card h3 {
+            color: var(--teal);
+            font-family: 'Orbitron', sans-serif;
+            font-size: 1.1rem;
+            margin-bottom: 10px;
+        }
+
+        .card .date {
+            font-size: 0.8rem;
+            color: var(--orange);
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .skill-item {
+            background: rgba(255, 255, 255, 0.05);
+            padding: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 4px;
+        }
+
+        .skill-item strong {
+            color: var(--orange);
+            display: block;
+            margin-bottom: 5px;
+        }
+
+        /* Contact Section */
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            text-align: center;
+        }
+
+        .contact-link {
+            color: var(--teal);
+            text-decoration: none;
+            padding: 20px;
+            border: 1px solid var(--border);
+            transition: 0.3s;
+        }
+
+        .contact-link:hover {
+            background: var(--orange);
+            color: white;
+            border-color: var(--orange);
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        li::before {
+            content: ">> ";
+            color: var(--teal);
+        }
+
+        footer {
+            text-align: center;
+            padding: 50px;
+            font-family: 'Orbitron', sans-serif;
+            font-size: 0.7rem;
+            color: #444;
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 768px) {
+            .nav-fixed { display: none; }
+            .hero-title { font-size: 2.5rem; }
+        }
+    </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">PORTFOLIO<span>.</span></div>
-        <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
+    <nav class="nav-fixed">
+        <a href="#about">ABOUT</a>
+        <a href="#experience">EXPERIENCE</a>
+        <a href="#skills">SKILLS</a>
+        <a href="#contact">CONTACT</a>
     </nav>
 
-    <header id="home" class="hero">
-        <div class="hero-content">
-            <span class="badge">Available for Hire</span>
-            <h1>Turning Ideas into <span class="highlight">Digital Reality</span></h1>
-            <p>I specialize in building clean, fast, and responsive web applications with modern technologies.</p>
-            <div class="hero-btns">
-                <a href="#projects" class="btn-primary">View My Work</a>
-                <a href="#contact" class="btn-secondary">Let's Talk</a>
-            </div>
-        </div>
+    <header id="home">
+        <div class="hero-subtitle">DATA & SYSTEMS ANALYST</div>
+        <h1 class="hero-title">JASPER JOHN</h1>
+        <div class="hero-subtitle">CALABIO</div>
     </header>
 
     <section id="about">
-        <div class="section-header">
-            <h2>About Me</h2>
-            <div class="underline"></div>
-        </div>
-        <div class="about-container">
-            <p>I am a developer who believes in the power of simplicity. Over the last few years, I've honed my skills in frontend and backend development, ensuring that every project I touch is both functional and aesthetically pleasing.</p>
+        <h2>Baseline // Education</h2>
+        <div class="card">
+            <h3>BS Medical Technology</h3>
+            <span class="date">Far Eastern University-Manila | Graduated Dec 2023</span>
+            <p>Transitioned from medical technology to high-level data analytics, leveraging precision and scientific methodology in business intelligence.</p>
         </div>
     </section>
 
-    <section id="skills" class="dark-bg">
-        <div class="section-header">
-            <h2>My Toolbox</h2>
+    <section id="experience">
+        <h2>Sector // Experience</h2>
+        
+        <div class="card">
+            <h3>Netsolar Incorporated</h3>
+            <span class="date">Data & Systems Analyst | June 2025 - Present</span>
+            <ul>
+                <li>Developed cash flow monitoring dashboards reducing manual tracking by 50%.</li>
+                <li>Built OpEx dashboards in Power BI, increasing overall profitability by 10%.</li>
+                <li>Reduced project delays by 10% through Sales KPI monitoring.</li>
+                <li>Optimized supply chain audits, reducing dirty data by 24%.</li>
+                <li>Standardized workflows during Odoo ERP implementation.</li>
+            </ul>
         </div>
-        <div class="skills-grid">
-            <div class="skill-card"><h3>Frontend</h3><p>React, Vue, Tailwind CSS</p></div>
-            <div class="skill-card"><h3>Backend</h3><p>Node.js, Python, PostgreSQL</p></div>
-            <div class="skill-card"><h3>Tools</h3><p>Git, Docker, Figma</p></div>
+
+        <div class="card">
+            <h3>Straive</h3>
+            <span class="date">Data Analyst | June 2024 - June 2025</span>
+            <ul>
+                <li>Analyzed Salesforce & EdTech sales data, reducing integration issues by 14%.</li>
+                <li>Achieved 75% improvement in order automation efficiency.</li>
+                <li>Engineered ETL processes using Power Query and VBA macros.</li>
+                <li>Developed interactive dashboards for real-time stakeholder insights.</li>
+            </ul>
         </div>
     </section>
 
     <section id="projects">
-        <div class="section-header">
-            <h2>Featured Projects</h2>
-        </div>
-        <div class="project-grid">
-            <div class="project-card">
-                <div class="project-img"></div>
-                <div class="project-info">
-                    <h3>E-Commerce Platform</h3>
-                    <p>A full-stack shop built with React and Stripe.</p>
-                    <a href="#" class="link">View Project →</a>
-                </div>
-            </div>
-            <div class="project-card">
-                <div class="project-img"></div>
-                <div class="project-info">
-                    <h3>AI Dashboard</h3>
-                    <p>Real-time data visualization using Python and D3.js.</p>
-                    <a href="#" class="link">View Project →</a>
-                </div>
-            </div>
+        <h2>Artifacts // Projects</h2>
+        <div class="card">
+            <h3>Fashion Retail Sales Monthly Analysis</h3>
+            <span class="date">Excel & Power BI</span>
+            <p>Comprehensive analysis of monthly sales trends and performance metrics within the fashion retail sector.</p>
         </div>
     </section>
 
-    <section id="testimonials">
-        <div class="section-header">
-            <h2>What People Say</h2>
-        </div>
-        <div class="testimonial-card">
-            <p>"An absolute pleasure to work with. The attention to detail is unmatched!"</p>
-            <strong>— Sarah Johnson, CEO of TechFlow</strong>
+    <section id="skills">
+        <h2>Modules // Skills</h2>
+        <div class="skills-grid">
+            <div class="skill-item"><strong>Reporting</strong>Excel (Adv), Power BI, Power Query, VBA</div>
+            <div class="skill-item"><strong>Governance</strong>Entity Matching, Data Integrity, ETL</div>
+            <div class="skill-item"><strong>Management</strong>Asana, Stakeholder Communication</div>
+            <div class="skill-item"><strong>Technical</strong>SQL (Basic), MySQL, Database Fundamentals</div>
         </div>
     </section>
 
     <section id="contact">
-        <div class="contact-card">
-            <h2>Ready to start a project?</h2>
-            <p>Shoot me an email and let's make something amazing.</p>
-            <a href="mailto:your@email.com" class="btn-primary">Email Me Now</a>
+        <h2>Signal // Contact</h2>
+        <div class="contact-info">
+            <a href="mailto:2020jaspercalabio@gmail.com" class="contact-link">EMAIL</a>
+            <a href="tel:+639624640511" class="contact-link">PH +63 962 464 0511</a>
+            <a href="#" class="contact-link">LINKEDIN</a>
+            <a href="#" class="contact-link">GITHUB</a>
         </div>
     </section>
 
     <footer>
-        <p>&copy; 2026 | Built with ✨ and Code</p>
+        DESIGNED FOR JASPER CALABIO // REPLICANT SERIAL NO. 2020-JC // SYSTEM STATUS: OPTIMAL
     </footer>
 
+    <script>
+        // Simple interactive parallax effect for the hero
+        document.addEventListener('mousemove', (e) => {
+            const title = document.querySelector('.hero-title');
+            const x = (window.innerWidth / 2 - e.pageX) / 50;
+            const y = (window.innerHeight / 2 - e.pageY) / 50;
+            title.style.transform = `translateX(${x}px) translateY(${y}px)`;
+        });
+
+        // Smooth reveal on scroll
+        const observerOptions = { threshold: 0.1 };
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = "1";
+                    entry.target.style.transform = "translateY(0)";
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.style.opacity = "0";
+            card.style.transform = "translateY(30px)";
+            card.style.transition = "all 0.8s ease-out";
+            observer.observe(card);
+        });
+    </script>
 </body>
 </html>
