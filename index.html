@@ -2,13 +2,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Minimal Data Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"><style>
+<title>Japanese Minimal Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;600&display=swap" rel="stylesheet"><style>
 body {
     margin: 0;
-    font-family: 'Inter', sans-serif;
-    background: #0b0b0b;
-    color: #f5f5f5;
+    font-family: 'Noto Sans JP', sans-serif;
+    background: #fafafa;
+    color: #1a1a1a;
 }
 
 nav {
@@ -18,27 +18,30 @@ nav {
     display: flex;
     justify-content: space-between;
     padding: 20px 40px;
-    background: rgba(0,0,0,0.8);
-    border-bottom: 1px solid #222;
+    background: white;
+    border-bottom: 1px solid #eee;
 }
 
 nav button {
     background: none;
     border: none;
-    color: #aaa;
+    color: #666;
     margin-left: 20px;
     cursor: pointer;
     font-size: 14px;
+    letter-spacing: 1px;
 }
 
 nav button:hover {
-    color: white;
+    color: #000;
 }
 
 section {
     min-height: 100vh;
     padding: 120px 40px;
     display: none;
+    max-width: 900px;
+    margin: auto;
 }
 
 .active { display:block; }
@@ -51,14 +54,14 @@ h1 {
 h2 {
     margin-top:40px;
     font-weight:400;
-    color:#bbb;
+    color:#888;
 }
 
 .card {
-    border: 1px solid #222;
+    border-left: 2px solid #d32f2f;
     padding: 20px;
-    margin-top: 10px;
-    background:#111;
+    margin-top: 20px;
+    background:white;
 }
 
 .skill-bar {
@@ -66,27 +69,35 @@ h2 {
 }
 
 .bar {
-    height:6px;
-    background:#222;
+    height:4px;
+    background:#eee;
 }
 
 .progress {
     height:100%;
-    background:#fff;
+    background:#d32f2f;
     width:0;
+}
+
+.jp {
+    color:#d32f2f;
+    font-size:12px;
+    letter-spacing:2px;
 }
 </style></head>
 <body><nav>
-<div>Portfolio</div>
+<div>私のポートフォリオ</div>
 <div>
-<button onclick="showPage('about')">About</button>
-<button onclick="showPage('projects')">Projects</button>
-<button onclick="showPage('skills')">Skills</button>
+<button onclick="showPage('about')">概要</button>
+<button onclick="showPage('projects')">プロジェクト</button>
+<button onclick="showPage('skills')">スキル</button>
 </div>
 </nav><section id="about" class="active">
+<div class="jp">ABOUT</div>
 <h1>About Me</h1>
 <p>I specialize in Data Analytics, Data Engineering, and Data Science.</p>
 </section><section id="projects">
+<div class="jp">PROJECTS</div>
 <h1>Projects</h1><h2>Data Analytics</h2>
 <div class="card">
 <p><b>BRS:</b></p>
@@ -104,6 +115,7 @@ h2 {
 <p><b>Impact:</b></p>
 </div>
 </section><section id="skills">
+<div class="jp">SKILLS</div>
 <h1>Skills</h1>
 <div class="skill-bar">
 <p>Data Analytics</p>
