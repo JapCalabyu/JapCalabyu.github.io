@@ -2,21 +2,13 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Futuristic Data Portfolio</title>
-<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"><style>
+<title>Minimal Data Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet"><style>
 body {
     margin: 0;
-    font-family: 'Orbitron', sans-serif;
-    background: radial-gradient(circle at top, #0a0f1f, #000);
-    color: #e0f7ff;
-    overflow-x: hidden;
-}
-
-canvas {
-    position: fixed;
-    top:0;
-    left:0;
-    z-index:-1;
+    font-family: 'Inter', sans-serif;
+    background: #0b0b0b;
+    color: #f5f5f5;
 }
 
 nav {
@@ -25,172 +17,104 @@ nav {
     width: 100%;
     display: flex;
     justify-content: space-between;
-    padding: 20px 50px;
-    background: rgba(0,0,0,0.6);
-    backdrop-filter: blur(10px);
-    z-index: 1000;
-    border-bottom: 1px solid #00eaff;
+    padding: 20px 40px;
+    background: rgba(0,0,0,0.8);
+    border-bottom: 1px solid #222;
 }
 
 nav button {
     background: none;
-    border: 1px solid #00eaff;
-    color: #00eaff;
-    padding: 10px 20px;
-    margin-left: 10px;
+    border: none;
+    color: #aaa;
+    margin-left: 20px;
     cursor: pointer;
-    transition: 0.3s;
+    font-size: 14px;
 }
 
 nav button:hover {
-    background: #00eaff;
-    color: #000;
-    box-shadow: 0 0 15px #00eaff;
-}
-
-.mode-toggle {
-    border-color: #ff2a6d !important;
-    color: #ff2a6d !important;
-}
-
-.mode-toggle:hover {
-    background:#ff2a6d !important;
+    color: white;
 }
 
 section {
     min-height: 100vh;
-    padding: 120px 50px;
+    padding: 120px 40px;
     display: none;
-    animation: fadeIn 1s ease forwards;
 }
 
-.active { display: block; }
+.active { display:block; }
 
-h1, h2 { text-shadow: 0 0 10px #00eaff; }
+h1 {
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+h2 {
+    margin-top:40px;
+    font-weight:400;
+    color:#bbb;
+}
 
 .card {
-    border: 1px solid #00eaff;
+    border: 1px solid #222;
     padding: 20px;
-    margin: 20px 0;
-    background: rgba(0,0,0,0.5);
-    transition: 0.3s;
-    position: relative;
-    overflow: hidden;
-}
-
-.card::before {
-    content:"";
-    position:absolute;
-    width:100%;
-    height:2px;
-    background:#00eaff;
-    top:0;
-    left:-100%;
-    transition:0.5s;
-}
-
-.card:hover::before { left:0; }
-
-.card:hover {
-    transform: translateY(-5px) scale(1.02);
-    box-shadow: 0 0 20px #00eaff;
+    margin-top: 10px;
+    background:#111;
 }
 
 .skill-bar {
-    margin:10px 0;
-}
-
-.skill-bar span {
-    display:block;
+    margin:15px 0;
 }
 
 .bar {
-    height:10px;
-    background:#111;
-    border:1px solid #00eaff;
+    height:6px;
+    background:#222;
 }
 
 .progress {
     height:100%;
+    background:#fff;
     width:0;
-    background:#00eaff;
-}
-
-.ironman {
-    background: radial-gradient(circle at top, #2b0000, #000);
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
-}
-
-.typing {
-    border-right: 2px solid #00eaff;
-    white-space: nowrap;
-    overflow: hidden;
-    width: 0;
-    animation: typing 4s steps(40,end) forwards, blink 0.7s infinite;
-}
-
-@keyframes typing { to { width: 100%; } }
-@keyframes blink { 50% { border-color: transparent } }
-
-.counter {
-    font-size: 40px;
-    color:#ff2a6d;
 }
 </style></head>
-<body><canvas id="bg"></canvas>
-
-<nav>
-<div>⚡ DATA ARMOR PORTFOLIO</div>
+<body><nav>
+<div>Portfolio</div>
 <div>
-<button onclick="showPage('about')">About Me</button>
+<button onclick="showPage('about')">About</button>
 <button onclick="showPage('projects')">Projects</button>
 <button onclick="showPage('skills')">Skills</button>
-<button class="mode-toggle" onclick="toggleMode()">Mode</button>
 </div>
 </nav><section id="about" class="active">
-<h1 class="typing">ABOUT ME</h1>
-<p>Data-driven professional specializing in Analytics, Engineering, and Science.</p>
-<h2>PROJECTS BUILT</h2>
-<div class="counter" id="counter">0</div>
+<h1>About Me</h1>
+<p>I specialize in Data Analytics, Data Engineering, and Data Science.</p>
 </section><section id="projects">
-<h1>PROJECTS</h1>
-<h2>DATA ANALYTICS</h2>
+<h1>Projects</h1><h2>Data Analytics</h2>
 <div class="card">
-<h3>Project 1</h3>
 <p><b>BRS:</b></p>
 <p><b>Output:</b></p>
 <p><b>Impact:</b></p>
-</div>
-<h2>DATA ENGINEERING</h2>
+</div><h2>Data Engineering</h2>
 <div class="card">
-<h3>Project 1</h3>
 <p><b>BRS:</b></p>
 <p><b>Output:</b></p>
 <p><b>Impact:</b></p>
-</div>
-<h2>DATA SCIENCE</h2>
+</div><h2>Data Science</h2>
 <div class="card">
-<h3>Project 1</h3>
 <p><b>BRS:</b></p>
 <p><b>Output:</b></p>
 <p><b>Impact:</b></p>
 </div>
 </section><section id="skills">
-<h1>SKILLS HUD</h1>
+<h1>Skills</h1>
 <div class="skill-bar">
-<span>Data Analytics</span>
+<p>Data Analytics</p>
 <div class="bar"><div class="progress" data-skill="90"></div></div>
 </div>
 <div class="skill-bar">
-<span>Data Engineering</span>
+<p>Data Engineering</p>
 <div class="bar"><div class="progress" data-skill="85"></div></div>
 </div>
 <div class="skill-bar">
-<span>Data Science</span>
+<p>Data Science</p>
 <div class="bar"><div class="progress" data-skill="80"></div></div>
 </div>
 </section><script>
@@ -200,50 +124,11 @@ function showPage(page) {
     animateSkills();
 }
 
-function toggleMode() {
-    document.body.classList.toggle('ironman');
-}
-
-let count = 0;
-let target = 12;
-let counter = document.getElementById("counter");
-let interval = setInterval(() => {
-    count++;
-    counter.innerText = count;
-    if(count >= target) clearInterval(interval);
-}, 100);
-
 function animateSkills() {
     document.querySelectorAll('.progress').forEach(bar => {
         let value = bar.getAttribute('data-skill');
         bar.style.width = value + '%';
     });
 }
-
-// PARTICLES
-const canvas = document.getElementById('bg');
-const ctx = canvas.getContext('2d');
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
-let particles = [];
-for(let i=0;i<100;i++){
-    particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
-}
-
-function draw(){
-    ctx.clearRect(0,0,canvas.width,canvas.height);
-    ctx.fillStyle='#00eaff';
-    particles.forEach(p=>{
-        ctx.beginPath();
-        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-        ctx.fill();
-        p.y+=0.3;
-        if(p.y>canvas.height)p.y=0;
-    });
-    requestAnimationFrame(draw);
-}
-
-draw();
 </script></body>
 </html>
