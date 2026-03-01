@@ -6,16 +6,39 @@
 <title>Portfolio</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;transition:0.4s;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
 
 body{
-background:#0b0f1a;
-color:#eaeaea;
+background:linear-gradient(120deg,#ffe4ec,#e6f7ff);
+color:#333;
+overflow-x:hidden;
+position:relative;
+transition:0.4s;
 }
 
-body.morning{
-background:#f4f7fb;
-color:#111;
+/* NIGHT MODE */
+body.night{
+background:linear-gradient(120deg,#1a1f3a,#2c1e3d);
+color:#f5f5f5;
+}
+
+/* FLOATING BLOBS */
+.blob{
+position:fixed;
+border-radius:50%;
+filter:blur(60px);
+opacity:0.4;
+z-index:-1;
+animation:float 20s infinite ease-in-out;
+}
+
+.blob1{width:300px;height:300px;background:#ffb6d9;top:10%;left:10%;}
+.blob2{width:250px;height:250px;background:#a8e6ff;bottom:10%;right:10%;}
+.blob3{width:200px;height:200px;background:#ffd6e0;top:50%;left:50%;}
+
+@keyframes float{
+0%,100%{transform:translateY(0px);}
+50%{transform:translateY(-40px);}
 }
 
 /* NAV */
@@ -27,12 +50,12 @@ padding:15px 40px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(255,255,255,0.05);
+background:rgba(255,255,255,0.3);
 backdrop-filter:blur(10px);
 z-index:100;
 }
 
-.logo{font-weight:600;}
+body.night nav{background:rgba(0,0,0,0.3);}
 
 .nav-links{
 display:flex;
@@ -43,7 +66,7 @@ align-items:center;
 .nav-links a{
 text-decoration:none;
 color:inherit;
-opacity:0.6;
+opacity:0.7;
 cursor:pointer;
 }
 
@@ -51,18 +74,20 @@ cursor:pointer;
 
 .toggle{
 cursor:pointer;
-padding:5px 10px;
-border:1px solid;
+padding:6px 12px;
+border-radius:20px;
+background:linear-gradient(90deg,#ffd6e0,#d6f0ff);
 }
 
 /* HERO */
 .hero{
 display:flex;
 align-items:center;
+justify-content:center;
 gap:40px;
 padding-top:120px;
 flex-wrap:wrap;
-justify-content:center;
+text-align:center;
 }
 
 .profile{
@@ -70,16 +95,14 @@ width:180px;
 height:180px;
 border-radius:50%;
 object-fit:cover;
-border:3px solid rgba(0,0,0,0.2);
+box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
 .hero-text h1{
 font-size:45px;
-}
-
-.subtitle{
-opacity:0.6;
-margin-top:10px;
+background:linear-gradient(90deg,#ff9ecb,#9ed8ff);
+-webkit-background-clip:text;
+-webkit-text-fill-color:transparent;
 }
 
 /* SECTIONS */
@@ -93,41 +116,40 @@ padding:40px;
 
 .section.active{display:flex;}
 
-/* PROJECTS */
-.project-category{
-width:80%;
-max-width:900px;
-margin:30px auto;
-}
-
-.project-category h2{
-margin-bottom:15px;
-}
-
+/* GLASS PROJECTS */
 .project{
-padding:15px;
+padding:20px;
 margin:15px 0;
-border-radius:10px;
+border-radius:15px;
+background:rgba(255,255,255,0.4);
+backdrop-filter:blur(10px);
+box-shadow:0 5px 20px rgba(0,0,0,0.05);
+transform:translateY(30px);
+opacity:0;
+transition:0.6s;
+}
+
+body.night .project{
 background:rgba(255,255,255,0.05);
-transition:0.3s;
+}
+
+.project.show{
+transform:translateY(0);
+opacity:1;
 }
 
 .project:hover{
-transform:translateY(-3px);
+transform:translateY(-5px) scale(1.02);
 }
 
-body.morning .project{
-background:#fff;
-}
-
-/* GITHUB BUTTON */
+/* BUTTON */
 .github{
 display:inline-block;
 margin-top:5px;
 padding:5px 12px;
-border:1px solid;
+border-radius:20px;
+background:linear-gradient(90deg,#ffb6d9,#a8e6ff);
 text-decoration:none;
-font-size:14px;
 }
 
 /* TOOLS */
@@ -137,12 +159,12 @@ padding:4px 10px;
 margin:3px;
 border-radius:20px;
 font-size:12px;
-border:1px solid;
+background:linear-gradient(90deg,#ffd6e0,#d6f0ff);
 }
 
-/* CONTACT */
+/* FOOTER */
 footer{
-margin-top:50px;
+margin-top:40px;
 opacity:0.5;
 }
 </style>
@@ -150,8 +172,12 @@ opacity:0.5;
 
 <body>
 
+<div class="blob blob1"></div>
+<div class="blob blob2"></div>
+<div class="blob blob3"></div>
+
 <nav>
-<div class="logo">PORTFOLIO</div>
+<div>PORTFOLIO</div>
 <div class="nav-links">
 <a onclick="showSection('home')" class="active">Home</a>
 <a onclick="showSection('projects')">Projects</a>
@@ -162,17 +188,13 @@ opacity:0.5;
 
 <!-- HOME -->
 <div id="home" class="section active">
-
 <div class="hero">
 <img src="profile.jpg" class="profile">
-
 <div class="hero-text">
 <h1>Your Name</h1>
-<p class="subtitle">Turning raw data into decision systems.</p>
-<p class="subtitle">Data Analytics | Engineering | Science</p>
+<p>Turning raw data into decision systems.</p>
 </div>
 </div>
-
 </div>
 
 <!-- PROJECTS -->
@@ -180,80 +202,16 @@ opacity:0.5;
 
 <h1>Projects</h1>
 
-<div class="project-category">
-<h2>Data Analyst</h2>
-
-<div class="project">
-<strong>Project 1</strong>
-<a href="#" class="github">GitHub Repo</a>
-<div class="tools">
-<span>Power BI</span>
-<span>SQL</span>
-</div>
-</div>
-
-<div class="project">
-<strong>Project 2</strong>
-<a href="#" class="github">GitHub Repo</a>
-<div class="tools">
-<span>Python</span>
-<span>Pandas</span>
-</div>
-</div>
-
-</div>
-
-<div class="project-category">
-<h2>Data Engineering</h2>
-
-<div class="project">
-<strong>Project 1</strong>
-<a href="#" class="github">GitHub Repo</a>
-<div class="tools">
-<span>Azure</span>
-<span>ETL</span>
-</div>
-</div>
-
-<div class="project">
-<strong>Project 2</strong>
-<a href="#" class="github">GitHub Repo</a>
-<div class="tools">
-<span>SQL Server</span>
-</div>
-</div>
-
-</div>
-
-<div class="project-category">
-<h2>Data Scientist</h2>
-
-<div class="project">
-<strong>Project 1</strong>
-<a href="#" class="github">GitHub Repo</a>
-<div class="tools">
-<span>Machine Learning</span>
-</div>
-</div>
-
-<div class="project">
-<strong>Project 2</strong>
-<a href="#" class="github">GitHub Repo</a>
-<div class="tools">
-<span>Forecasting</span>
-</div>
-</div>
-
-</div>
+<div class="project">Project 1 – GitHub Repo<div class="tools"><span>SQL</span></div></div>
+<div class="project">Project 2 – GitHub Repo<div class="tools"><span>Python</span></div></div>
 
 </div>
 
 <!-- CONTACT -->
 <div id="contact" class="section">
 <h1>Contact</h1>
-<p>Email: your@email.com</p>
-<p>GitHub: github.com/yourname</p>
-<p>LinkedIn: linkedin.com/in/yourname</p>
+<p>Email</p>
+<p>GitHub</p>
 </div>
 
 <footer>Portfolio Live</footer>
@@ -265,10 +223,18 @@ document.getElementById(id).classList.add("active");
 
 document.querySelectorAll(".nav-links a").forEach(a=>a.classList.remove("active"));
 event.target.classList.add("active");
+
+reveal();
 }
 
 function toggleTheme(){
-document.body.classList.toggle("morning");
+document.body.classList.toggle("night");
+}
+
+function reveal(){
+document.querySelectorAll('.project').forEach(p=>{
+setTimeout(()=>p.classList.add('show'),200);
+});
 }
 </script>
 
