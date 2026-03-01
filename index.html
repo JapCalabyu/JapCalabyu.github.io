@@ -1,567 +1,199 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Portfolio | Your Name</title>
-  <style>
-    :root{
-      --radius: 18px;
-      --radius2: 24px;
-      --max: 1100px;
-      --speed: 260ms;
-      --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-    }
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Jasper | Data Portfolio</title>
 
-    /* -------------------------
-       THEMES (morning / night)
-       ------------------------- */
-    [data-theme="night"]{
-      --bg0:#070A12;
-      --bg1:#0B1020;
-      --card: rgba(255,255,255,.06);
-      --card2: rgba(255,255,255,.09);
-      --stroke: rgba(255,255,255,.12);
-      --text: rgba(255,255,255,.92);
-      --muted: rgba(255,255,255,.65);
-      --accent: #7C5CFF;
-      --accent2:#2EE59D;
-      --shadow: 0 20px 80px rgba(0,0,0,.45);
-      --noiseOpacity:.08;
-    }
+<style>
+:root{
+--radius:18px;
+--max:1100px;
+--font:ui-sans-serif,system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial;
+}
 
-    [data-theme="morning"]{
-      --bg0:#F7F9FF;
-      --bg1:#ECF2FF;
-      --card: rgba(255,255,255,.70);
-      --card2: rgba(255,255,255,.85);
-      --stroke: rgba(20,28,55,.12);
-      --text: rgba(12,16,32,.92);
-      --muted: rgba(12,16,32,.62);
-      --accent:#2D6BFF;
-      --accent2:#FFB020;
-      --shadow: 0 18px 70px rgba(12,16,32,.18);
-      --noiseOpacity:.06;
-    }
+[data-theme="night"]{
+--bg0:#070A12;
+--bg1:#0B1020;
+--card:rgba(255,255,255,.06);
+--stroke:rgba(255,255,255,.12);
+--text:rgba(255,255,255,.92);
+--muted:rgba(255,255,255,.65);
+--accent:#7C5CFF;
+}
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:var(--font);
-      color:var(--text);
-      background:
-        radial-gradient(1200px 600px at 20% 10%, color-mix(in oklab, var(--accent) 28%, transparent), transparent 60%),
-        radial-gradient(1000px 500px at 85% 18%, color-mix(in oklab, var(--accent2) 18%, transparent), transparent 55%),
-        radial-gradient(900px 600px at 55% 85%, color-mix(in oklab, var(--accent) 14%, transparent), transparent 60%),
-        linear-gradient(180deg, var(--bg0), var(--bg1));
-      overflow-x:hidden;
-    }
+[data-theme="morning"]{
+--bg0:#F7F9FF;
+--bg1:#ECF2FF;
+--card:rgba(255,255,255,.70);
+--stroke:rgba(20,28,55,.12);
+--text:rgba(12,16,32,.92);
+--muted:rgba(12,16,32,.62);
+--accent:#2D6BFF;
+}
 
-    /* subtle noise */
-    body::before{
-      content:"";
-      position:fixed;
-      inset:0;
-      pointer-events:none;
-      opacity: var(--noiseOpacity);
-      background-image:url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency=".8" numOctaves="3" stitchTiles="stitch"/></filter><rect width="120" height="120" filter="url(%23n)" opacity=".7"/></svg>');
-      mix-blend-mode:overlay;
-    }
+*{box-sizing:border-box}
+body{
+margin:0;
+font-family:var(--font);
+background:linear-gradient(180deg,var(--bg0),var(--bg1));
+color:var(--text);
+}
 
-    a{color:inherit; text-decoration:none}
-    button{font-family:inherit}
+.wrap{width:min(var(--max),calc(100% - 32px));margin:0 auto}
 
-    .wrap{width:min(var(--max), calc(100% - 32px)); margin:0 auto}
+.topbar{
+position:sticky;top:0;
+background:var(--bg1);
+border-bottom:1px solid var(--stroke);
+}
 
-    /* Top nav */
-    .topbar{
-      position:sticky; top:0; z-index:50;
-      backdrop-filter: blur(14px);
-      background: linear-gradient(180deg, color-mix(in oklab, var(--bg1) 72%, transparent), color-mix(in oklab, var(--bg1) 35%, transparent));
-      border-bottom:1px solid color-mix(in oklab, var(--stroke) 70%, transparent);
-    }
-    .topbar-inner{
-      display:flex; align-items:center; justify-content:space-between;
-      padding:14px 0; gap:14px;
-    }
-    .brand{
-      display:flex; align-items:center; gap:10px;
-      padding:8px 10px;
-      border-radius:999px;
-      border:1px solid color-mix(in oklab, var(--stroke) 90%, transparent);
-      background: color-mix(in oklab, var(--card) 70%, transparent);
-    }
-    .logo{
-      width:34px; height:34px; border-radius:12px;
-      background:
-        radial-gradient(circle at 30% 30%, color-mix(in oklab, white 35%, transparent), transparent 55%),
-        linear-gradient(135deg, var(--accent), var(--accent2));
-      box-shadow: 0 10px 30px color-mix(in oklab, var(--accent) 25%, transparent);
-    }
-    .brand strong{font-weight:700; letter-spacing:.2px}
-    .brand span{color:var(--muted); font-size:12px}
+.topbar-inner{
+display:flex;
+justify-content:space-between;
+padding:14px 0;
+}
 
-    .nav{
-      display:flex; align-items:center; gap:8px; flex-wrap:wrap;
-      justify-content:flex-end;
-    }
+.pill{
+border:1px solid var(--stroke);
+background:var(--card);
+padding:8px 12px;
+border-radius:999px;
+cursor:pointer;
+margin-left:6px;
+}
 
-    .pill{
-      border:1px solid color-mix(in oklab, var(--stroke) 90%, transparent);
-      background: color-mix(in oklab, var(--card) 55%, transparent);
-      color: var(--muted);
-      padding:9px 12px;
-      border-radius:999px;
-      cursor:pointer;
-      transition: transform var(--speed), background var(--speed), border-color var(--speed), color var(--speed);
-      display:flex; align-items:center; gap:8px;
-      user-select:none;
-    }
-    .pill:hover{
-      transform: translateY(-1px);
-      background: color-mix(in oklab, var(--card2) 70%, transparent);
-      border-color: color-mix(in oklab, var(--stroke) 120%, transparent);
-      color: var(--text);
-    }
-    .pill.active{
-      background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 35%, transparent), color-mix(in oklab, var(--accent2) 22%, transparent));
-      border-color: color-mix(in oklab, var(--stroke) 135%, transparent);
-      color: var(--text);
-      box-shadow: 0 12px 35px rgba(0,0,0,.18);
-    }
+main{padding:30px 0}
+.page{display:none}
+.page.active{display:block}
 
-    .icon{width:16px; height:16px; display:inline-block; opacity:.9}
+.card{
+background:var(--card);
+border:1px solid var(--stroke);
+border-radius:18px;
+padding:20px;
+margin-bottom:20px;
+}
 
-    main{padding:26px 0 80px}
-    .page{display:none; animation: fadeIn .35s ease both}
-    .page.active{display:block}
-    @keyframes fadeIn{ from{opacity:0; transform: translateY(8px)} to{opacity:1; transform: translateY(0)} }
+.project{
+padding:14px;
+border:1px solid var(--stroke);
+border-radius:12px;
+margin-bottom:10px;
+}
 
-    .card{
-      background: linear-gradient(180deg, color-mix(in oklab, var(--card2) 85%, transparent), color-mix(in oklab, var(--card) 55%, transparent));
-      border:1px solid color-mix(in oklab, var(--stroke) 100%, transparent);
-      border-radius: var(--radius2);
-      box-shadow: var(--shadow);
-      overflow:hidden;
-      position:relative;
-    }
-    .card::after{
-      content:"";
-      position:absolute; inset:-120px -120px auto auto;
-      width:260px; height:260px;
-      background: radial-gradient(circle, color-mix(in oklab, var(--accent) 28%, transparent), transparent 60%);
-      filter: blur(2px);
-      transform: translate(40px,-30px);
-      pointer-events:none;
-    }
-    .card-pad{padding:22px}
-
-    .kicker{
-      display:inline-flex; align-items:center; gap:8px;
-      padding:7px 11px;
-      border-radius:999px;
-      border:1px solid color-mix(in oklab, var(--stroke) 90%, transparent);
-      background: color-mix(in oklab, var(--card) 55%, transparent);
-      color: var(--muted);
-      font-size:12px;
-    }
-
-    h1{
-      margin:14px 0 10px;
-      font-size: clamp(30px, 3.4vw, 46px);
-      line-height:1.05;
-      letter-spacing:-.6px;
-    }
-    .grad{
-      background: linear-gradient(135deg, color-mix(in oklab, var(--text) 95%, transparent), color-mix(in oklab, var(--text) 70%, transparent), var(--accent2));
-      -webkit-background-clip:text;
-      background-clip:text;
-      color:transparent;
-    }
-    p{margin:0; color:var(--muted); line-height:1.65}
-
-    .cta-row{display:flex; gap:10px; flex-wrap:wrap; margin-top:18px}
-    .btn{
-      border:1px solid color-mix(in oklab, var(--stroke) 95%, transparent);
-      background: color-mix(in oklab, var(--card) 60%, transparent);
-      color:var(--text);
-      padding:10px 14px;
-      border-radius: 14px;
-      cursor:pointer;
-      transition: transform var(--speed), background var(--speed), border-color var(--speed);
-      display:inline-flex; align-items:center; gap:10px;
-    }
-    .btn:hover{
-      transform: translateY(-1px);
-      background: color-mix(in oklab, var(--card2) 75%, transparent);
-      border-color: color-mix(in oklab, var(--stroke) 125%, transparent);
-    }
-    .btn.primary{
-      background: linear-gradient(135deg, color-mix(in oklab, var(--accent) 70%, transparent), color-mix(in oklab, var(--accent2) 35%, transparent));
-      border-color: color-mix(in oklab, var(--stroke) 135%, transparent);
-    }
-
-    .grid{display:grid; grid-template-columns: repeat(12, 1fr); gap:12px; margin-top:16px}
-    .col-12{grid-column: span 12}
-    .col-8{grid-column: span 8}
-    .col-6{grid-column: span 6}
-    .col-4{grid-column: span 4}
-    @media (max-width: 900px){ .col-8,.col-6,.col-4{grid-column: span 12} }
-
-    .section-title{
-      display:flex; align-items:flex-end; justify-content:space-between;
-      gap:12px; margin: 10px 0 12px;
-    }
-    .section-title h2{margin:0; font-size:20px; letter-spacing:-.2px}
-    .section-title small{color:var(--muted); font-size:12px}
-
-    .project{
-      padding:16px;
-      border-radius: var(--radius2);
-      border:1px solid color-mix(in oklab, var(--stroke) 100%, transparent);
-      background: linear-gradient(180deg, color-mix(in oklab, var(--card2) 70%, transparent), color-mix(in oklab, var(--card) 50%, transparent));
-      transition: transform var(--speed), border-color var(--speed), background var(--speed);
-    }
-    .project:hover{
-      transform: translateY(-2px);
-      border-color: color-mix(in oklab, var(--stroke) 140%, transparent);
-      background: linear-gradient(180deg, color-mix(in oklab, var(--card2) 85%, transparent), color-mix(in oklab, var(--card) 55%, transparent));
-    }
-    .project h3{margin:0 0 6px; font-size:16px}
-    .project p{font-size:13px}
-    .tagrow{display:flex; gap:8px; flex-wrap:wrap; margin-top:10px}
-    .tag{
-      font-size:12px;
-      color: var(--muted);
-      border:1px solid color-mix(in oklab, var(--stroke) 90%, transparent);
-      background: color-mix(in oklab, var(--card) 55%, transparent);
-      padding:6px 10px;
-      border-radius:999px;
-    }
-    .actions{margin-top:12px; display:flex; gap:10px; flex-wrap:wrap}
-
-    .input{
-      width:100%;
-      padding:12px 12px;
-      border-radius: 14px;
-      background: color-mix(in oklab, var(--card) 55%, transparent);
-      border:1px solid color-mix(in oklab, var(--stroke) 100%, transparent);
-      color:var(--text);
-      outline:none;
-      transition: border-color var(--speed), background var(--speed);
-    }
-    .input:focus{
-      border-color: color-mix(in oklab, var(--accent) 55%, transparent);
-      background: color-mix(in oklab, var(--card2) 70%, transparent);
-    }
-
-    .toast{
-      position:fixed;
-      left:50%;
-      bottom:18px;
-      transform: translateX(-50%);
-      max-width:min(560px, calc(100% - 24px));
-      background: color-mix(in oklab, var(--bg1) 82%, transparent);
-      border:1px solid color-mix(in oklab, var(--stroke) 110%, transparent);
-      backdrop-filter: blur(14px);
-      border-radius: 16px;
-      padding: 12px 14px;
-      box-shadow: 0 25px 100px rgba(0,0,0,.30);
-      display:none;
-      z-index:60;
-    }
-    .toast.show{display:flex; align-items:flex-start; gap:10px; animation: pop .22s ease both}
-    @keyframes pop{ from{opacity:0; transform: translateX(-50%) translateY(8px) scale(.98)} to{opacity:1; transform: translateX(-50%) translateY(0) scale(1)} }
-    .toast b{display:block; font-size:13px}
-    .toast span{display:block; font-size:12px; color:var(--muted); margin-top:2px}
-    .toast .close{
-      margin-left:auto; border:none; background:transparent;
-      color:var(--muted); cursor:pointer; font-size:16px; padding:2px 6px;
-    }
-
-    footer{margin-top:28px; padding: 16px 0 0; color: color-mix(in oklab, var(--muted) 85%, transparent); font-size:12px}
-
-    @media (prefers-reduced-motion: reduce){
-      *{transition:none !important; animation:none !important; scroll-behavior:auto !important}
-    }
-  </style>
+.tag{font-size:12px;margin-right:6px;color:var(--muted)}
+</style>
 </head>
 
-<!-- default theme -->
 <body data-theme="night">
-  <header class="topbar">
-    <div class="wrap topbar-inner">
-      <a class="brand" href="#home" data-nav="home" aria-label="Go to Home">
-        <div class="logo" aria-hidden="true"></div>
-        <div style="display:flex; flex-direction:column; line-height:1.1">
-          <strong id="brandName">Your Name</strong>
-          <span id="brandRole">Portfolio • Developer</span>
-        </div>
-      </a>
 
-      <nav class="nav" aria-label="Primary navigation">
-        <button class="pill active" data-nav="home"><span class="icon" aria-hidden="true">⌂</span> Home</button>
+<header class="topbar">
+<div class="wrap topbar-inner">
+<strong>Jasper</strong>
+<div>
+<button class="pill" onclick="show('home')">Home</button>
+<button class="pill" onclick="show('projects')">Projects</button>
+<button class="pill" onclick="toggleTheme()">Theme</button>
+</div>
+</div>
+</header>
 
-        <!-- projects page -->
-        <button class="pill" data-nav="projects"><span class="icon" aria-hidden="true">▦</span> Projects</button>
+<main class="wrap">
 
-        <!-- theme toggle -->
-        <button class="pill" id="themeBtn" title="Toggle theme">
-          <span class="icon" aria-hidden="true">☾</span> Night
-        </button>
-      </nav>
-    </div>
-  </header>
+<section id="home" class="page active">
+<div class="card">
+<h1>ERP Data Transformation Portfolio</h1>
+<p>I transform ERP data into analytics insights, engineered datasets, and predictive intelligence.</p>
+</div>
+</section>
 
-  <main class="wrap" id="app" role="main" tabindex="-1">
-    <!-- HOME -->
-    <section class="page active" id="page-home" data-page="home" aria-label="Home page">
-      <div class="card">
-        <div class="card-pad">
-          <div class="kicker">✨ Morning/Night Theme • Single-file</div>
-          <h1>Hi, I’m <span class="grad" id="heroName">Your Name</span>.<br/>I build clean and modern web UI.</h1>
-          <p>
-            This is a 2-page portfolio (Home + Projects) with a theme switcher.
-            You can expand to more pages anytime using the same pattern.
-          </p>
+<section id="projects" class="page">
 
-          <div class="cta-row">
-            <button class="btn primary" data-nav="projects"><span aria-hidden="true">🔎</span> View Projects</button>
-            <button class="btn" id="copyEmailBtn"><span aria-hidden="true">📋</span> Copy Email</button>
-          </div>
+<div class="card">
+<h2>Data Analytics</h2>
 
-          <footer>Tip: Press <b>T</b> to toggle theme • Press <b>H</b> Home • <b>P</b> Projects</footer>
-        </div>
-      </div>
-    </section>
+<div class="project">
+<b>ERP KPI Dashboard</b>
+<p>Transformed raw ERP transactions into KPI-ready datasets for executive dashboards.</p>
+<span class="tag">SQL</span><span class="tag">Power BI</span>
+</div>
 
-    <!-- PROJECTS PAGE -->
-    <section class="page" id="page-projects" data-page="projects" aria-label="Projects page">
-      <div class="section-title">
-        <h2>Projects</h2>
-        <small>Search + clean cards</small>
-      </div>
+<div class="project">
+<b>OPEX Modeling</b>
+<p>Mapped raw accounts into operational expense insights.</p>
+<span class="tag">Finance</span>
+</div>
 
-      <div class="card">
-        <div class="card-pad">
-          <div style="display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between; align-items:end">
-            <div>
-              <div class="kicker">📌 Showcase</div>
-              <h1 style="margin-top:10px; font-size: clamp(22px, 2.2vw, 32px)">Things I’ve built</h1>
-              <p>Replace the sample projects in the JS section with your real work + links.</p>
-            </div>
+<div class="project">
+<b>Cashflow Monitoring</b>
+<p>Built reusable views for inflow and outflow analysis.</p>
+<span class="tag">Insights</span>
+</div>
 
-            <div style="display:flex; gap:10px; flex-wrap:wrap">
-              <input class="input" id="projectSearch" placeholder="Search projects (e.g., dashboard, ui, api)" style="max-width:360px" />
-              <button class="btn" id="clearSearchBtn">Clear</button>
-            </div>
-          </div>
+</div>
 
-          <div class="grid" id="projectGrid" style="margin-top:14px"></div>
-        </div>
-      </div>
-    </section>
-  </main>
+<div class="card">
+<h2>Data Engineering</h2>
 
-  <!-- Toast -->
-  <div class="toast" id="toast" role="status" aria-live="polite">
-    <div style="width:10px; height:10px; border-radius:50%; background:linear-gradient(135deg,var(--accent),var(--accent2)); margin-top:4px"></div>
-    <div>
-      <b id="toastTitle">Done</b>
-      <span id="toastMsg">Copied to clipboard.</span>
-    </div>
-    <button class="close" id="toastClose" aria-label="Close">×</button>
-  </div>
+<div class="project">
+<b>SQL Transformation Layer</b>
+<p>Designed a cloud-based transformation layer using SQL Views.</p>
+<span class="tag">Azure</span><span class="tag">Modeling</span>
+</div>
 
-  <script>
-    // =========================
-    // EDIT THESE (your content)
-    // =========================
-    const PROFILE = {
-      name: "Your Name",
-      role: "Developer",
-      email: "your.email@example.com"
-    };
+<div class="project">
+<b>Raw → Business Structuring</b>
+<p>Standardized ERP datasets for reporting consistency.</p>
+<span class="tag">Cloud</span>
+</div>
 
-    const PROJECTS = [
-      {
-        title: "Solar Forecast Dashboard",
-        desc: "A clean dashboard for KPIs, trends, and exports.",
-        tags: ["Dashboard", "UX", "Charts"],
-        links: [{label:"Live", href:"https://www.facebook.com/"}, {label:"Repo", href:"#"}]
-      },
-      {
-        title: "Portfolio (Single File)",
-        desc: "A 2-page portfolio with themes + smooth navigation.",
-        tags: ["HTML", "CSS", "JavaScript"],
-        links: [{label:"Preview", href:"#"}]
-      },
-      {
-        title: "Automation Toolkit",
-        desc: "Scripts that clean data and generate reports faster.",
-        tags: ["Automation", "Data"],
-        links: [{label:"Docs", href:"#"}, {label:"Code", href:"#"}]
-      },
-      {
-        title: "Landing Page",
-        desc: "High-converting landing page with strong typography and speed.",
-        tags: ["Landing", "Performance"],
-        links: [{label:"Case Study", href:"#"}]
-      },
-      {
-        title: "UI Components",
-        desc: "Reusable cards, buttons, forms and layout patterns.",
-        tags: ["Design System", "UI"],
-        links: [{label:"Gallery", href:"#"}]
-      },
-      {
-        title: "API Starter",
-        desc: "Starter kit for API integration with clean UI patterns.",
-        tags: ["API", "Frontend"],
-        links: [{label:"Guide", href:"#"}]
-      }
-    ];
+<div class="project">
+<b>Analytics Data Flow</b>
+<p>Built cost-efficient cloud data structure.</p>
+<span class="tag">Architecture</span>
+</div>
 
-    // =====================================
-    // App logic (navigation + theme + UX)
-    // =====================================
-    const $ = (sel, el=document) => el.querySelector(sel);
-    const $$ = (sel, el=document) => Array.from(el.querySelectorAll(sel));
+</div>
 
-    // Apply profile
-    $("#brandName").textContent = PROFILE.name;
-    $("#heroName").textContent = PROFILE.name;
-    $("#brandRole").textContent = `Portfolio • ${PROFILE.role}`;
+<div class="card">
+<h2>Data Science</h2>
 
-    // Toast
-    const toast = $("#toast"), toastTitle = $("#toastTitle"), toastMsg = $("#toastMsg");
-    let toastTimer = null;
-    function showToast(title, msg){
-      toastTitle.textContent = title; toastMsg.textContent = msg;
-      toast.classList.add("show");
-      clearTimeout(toastTimer);
-      toastTimer = setTimeout(() => toast.classList.remove("show"), 2400);
-    }
-    $("#toastClose").addEventListener("click", () => toast.classList.remove("show"));
+<div class="project">
+<b>Expense Trend Analysis</b>
+<p>Identified spending patterns using historical ERP data.</p>
+<span class="tag">Trend</span>
+</div>
 
-    async function copyToClipboard(text){
-      try{
-        await navigator.clipboard.writeText(text);
-        showToast("Copied", "Saved to your clipboard.");
-      }catch(e){
-        const ta = document.createElement("textarea");
-        ta.value = text; document.body.appendChild(ta);
-        ta.select(); document.execCommand("copy"); ta.remove();
-        showToast("Copied", "Saved to your clipboard (fallback).");
-      }
-    }
+<div class="project">
+<b>OPEX Forecast</b>
+<p>Simulated future operational costs using past data.</p>
+<span class="tag">Forecast</span>
+</div>
 
-    // Router-like navigation
-    const pages = $$(".page");
-    const navBtns = $$("[data-nav]");
-    function setActivePage(page){
-      pages.forEach(p => p.classList.toggle("active", p.dataset.page === page));
-      $$(".pill[data-nav]").forEach(b => b.classList.toggle("active", b.dataset.nav === page));
-      history.replaceState(null, "", `#${page}`);
-      window.scrollTo({top:0, behavior:"smooth"});
-    }
-    navBtns.forEach(btn => btn.addEventListener("click", (e) => {
-      const page = btn.dataset.nav;
-      if(!page) return;
-      e.preventDefault();
-      setActivePage(page);
-    }));
+<div class="project">
+<b>Financial Pattern Detection</b>
+<p>Explored recurring spending behavior.</p>
+<span class="tag">Patterns</span>
+</div>
 
-    // Init page from hash
-    const initial = (location.hash || "#home").replace("#","");
-    setActivePage(["home","projects"].includes(initial) ? initial : "home");
+</div>
 
-    // Build projects
-    const grid = $("#projectGrid");
-    function projectCard(p){
-      const links = (p.links||[]).map(l => `
-        <a class="btn" href="${l.href || "#"}" target="_blank" rel="noreferrer">
-          <span aria-hidden="true">↗</span> ${l.label}
-        </a>`).join("");
+</section>
 
-      const tags = (p.tags||[]).map(t => `<span class="tag">${t}</span>`).join("");
+</main>
 
-      const div = document.createElement("div");
-      div.className = "project col-4";
-      div.dataset.search = `${p.title} ${p.desc} ${(p.tags||[]).join(" ")}`.toLowerCase();
-      div.innerHTML = `
-        <h3>${p.title}</h3>
-        <p>${p.desc}</p>
-        <div class="tagrow">${tags}</div>
-        <div class="actions">${links}</div>
-      `;
-      return div;
-    }
-    function renderProjects(list){
-      grid.innerHTML = "";
-      list.forEach(p => grid.appendChild(projectCard(p)));
-      if(list.length === 0){
-        const empty = document.createElement("div");
-        empty.className = "project col-12";
-        empty.innerHTML = `<h3>No results</h3><p>Try a different search term.</p>`;
-        grid.appendChild(empty);
-      }
-    }
-    renderProjects(PROJECTS);
+<script>
+function show(id){
+document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+document.getElementById(id).classList.add('active');
+}
 
-    // Search
-    const search = $("#projectSearch");
-    $("#clearSearchBtn").addEventListener("click", () => {
-      search.value = ""; renderProjects(PROJECTS); showToast("Cleared", "Project search reset.");
-    });
-    search.addEventListener("input", () => {
-      const q = search.value.trim().toLowerCase();
-      if(!q) return renderProjects(PROJECTS);
-      renderProjects(PROJECTS.filter(p =>
-        (`${p.title} ${p.desc} ${(p.tags||[]).join(" ")}`).toLowerCase().includes(q)
-      ));
-    });
+function toggleTheme(){
+const b=document.body;
+b.dataset.theme=b.dataset.theme==="night"?"morning":"night";
+}
+</script>
 
-    // Theme toggle (morning <-> night)
-    const themeBtn = $("#themeBtn");
-    const body = document.body;
-
-    function setTheme(theme){
-      body.setAttribute("data-theme", theme);
-      const isNight = theme === "night";
-      themeBtn.innerHTML = isNight
-        ? `<span class="icon" aria-hidden="true">☾</span> Night`
-        : `<span class="icon" aria-hidden="true">☀</span> Morning`;
-      localStorage.setItem("theme", theme);
-      showToast("Theme", isNight ? "Night theme enabled." : "Morning theme enabled.");
-    }
-
-    // Start theme: saved OR based on time (7am-6pm => morning)
-    const saved = localStorage.getItem("theme");
-    if(saved){
-      setTheme(saved);
-    }else{
-      const h = new Date().getHours();
-      setTheme(h >= 7 && h < 18 ? "morning" : "night");
-    }
-
-    themeBtn.addEventListener("click", () => {
-      const current = body.getAttribute("data-theme") || "night";
-      setTheme(current === "night" ? "morning" : "night");
-    });
-
-    // Copy email
-    $("#copyEmailBtn").addEventListener("click", () => copyToClipboard(PROFILE.email));
-
-    // Shortcuts: T theme, H home, P projects
-    window.addEventListener("keydown", (e) => {
-      if (["INPUT","TEXTAREA"].includes(document.activeElement?.tagName)) return;
-      const k = e.key.toLowerCase();
-      if(k === "t") themeBtn.click();
-      if(k === "h") setActivePage("home");
-      if(k === "p") setActivePage("projects");
-    });
-  </script>
 </body>
 </html>
