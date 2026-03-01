@@ -1,252 +1,249 @@
-<!DOCTYPE html>
-<html>
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Jasper | Data Portfolio</title>
-
-<style>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Futuristic Data Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet"><style>
 body {
-margin:0;
-font-family:system-ui;
-display:flex;
-background:#f7f9fc;
-color:#111;
-transition:.3s;
+    margin: 0;
+    font-family: 'Orbitron', sans-serif;
+    background: radial-gradient(circle at top, #0a0f1f, #000);
+    color: #e0f7ff;
+    overflow-x: hidden;
 }
 
-/* DARK MODE */
-
-.dark {
-background:#0c0f14;
-color:#e4e7eb;
+canvas {
+    position: fixed;
+    top:0;
+    left:0;
+    z-index:-1;
 }
 
-/* SIDEBAR */
-
-.sidebar {
-width:240px;
-height:100vh;
-padding:24px;
-background:rgba(255,255,255,0.6);
-backdrop-filter:blur(10px);
-border-right:1px solid rgba(0,0,0,0.08);
-transition:.3s;
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 50px;
+    background: rgba(0,0,0,0.6);
+    backdrop-filter: blur(10px);
+    z-index: 1000;
+    border-bottom: 1px solid #00eaff;
 }
 
-.dark .sidebar {
-background:rgba(20,25,32,0.6);
-border-color:rgba(255,255,255,0.08);
+nav button {
+    background: none;
+    border: 1px solid #00eaff;
+    color: #00eaff;
+    padding: 10px 20px;
+    margin-left: 10px;
+    cursor: pointer;
+    transition: 0.3s;
 }
 
-.sidebar.min {
-width:70px;
+nav button:hover {
+    background: #00eaff;
+    color: #000;
+    box-shadow: 0 0 15px #00eaff;
 }
 
-.nav-btn {
-display:block;
-width:100%;
-text-align:left;
-padding:10px;
-margin:6px 0;
-border-radius:8px;
-background:none;
-border:none;
-cursor:pointer;
-transition:.2s;
+.mode-toggle {
+    border-color: #ff2a6d !important;
+    color: #ff2a6d !important;
 }
 
-.nav-btn:hover {
-background:rgba(0,0,0,0.05);
+.mode-toggle:hover {
+    background:#ff2a6d !important;
 }
 
-.dark .nav-btn:hover {
-background:rgba(255,255,255,0.08);
+section {
+    min-height: 100vh;
+    padding: 120px 50px;
+    display: none;
+    animation: fadeIn 1s ease forwards;
 }
 
-/* MAIN */
+.active { display: block; }
 
-.main {
-flex:1;
-padding:40px;
-}
-
-/* CARD */
+h1, h2 { text-shadow: 0 0 10px #00eaff; }
 
 .card {
-background:rgba(255,255,255,0.7);
-backdrop-filter:blur(10px);
-border-radius:14px;
-padding:24px;
-margin-bottom:20px;
-box-shadow:0 10px 25px rgba(0,0,0,0.05);
-transition:.3s;
+    border: 1px solid #00eaff;
+    padding: 20px;
+    margin: 20px 0;
+    background: rgba(0,0,0,0.5);
+    transition: 0.3s;
+    position: relative;
+    overflow: hidden;
 }
 
-.dark .card {
-background:rgba(20,25,32,0.6);
-box-shadow:0 10px 30px rgba(0,0,0,0.5);
+.card::before {
+    content:"";
+    position:absolute;
+    width:100%;
+    height:2px;
+    background:#00eaff;
+    top:0;
+    left:-100%;
+    transition:0.5s;
 }
 
-/* PROJECT */
+.card:hover::before { left:0; }
 
-.project {
-padding:14px 0;
-border-bottom:1px solid rgba(0,0,0,0.08);
+.card:hover {
+    transform: translateY(-5px) scale(1.02);
+    box-shadow: 0 0 20px #00eaff;
 }
 
-.dark .project {
-border-color:rgba(255,255,255,0.08);
+.skill-bar {
+    margin:10px 0;
 }
 
-.tools {
-font-size:12px;
-opacity:.6;
+.skill-bar span {
+    display:block;
 }
 
-/* SEARCH */
-
-input {
-padding:10px;
-width:100%;
-border-radius:8px;
-border:none;
-background:rgba(0,0,0,0.05);
-margin-bottom:15px;
+.bar {
+    height:10px;
+    background:#111;
+    border:1px solid #00eaff;
 }
 
-.dark input {
-background:rgba(255,255,255,0.08);
-color:#fff;
+.progress {
+    height:100%;
+    width:0;
+    background:#00eaff;
 }
 
-/* BUTTON */
-
-button {
-padding:8px 12px;
-border-radius:8px;
-border:none;
-cursor:pointer;
-background:#4f6df5;
-color:white;
+.ironman {
+    background: radial-gradient(circle at top, #2b0000, #000);
 }
 
-</style>
-</head>
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
 
-<body>
+.typing {
+    border-right: 2px solid #00eaff;
+    white-space: nowrap;
+    overflow: hidden;
+    width: 0;
+    animation: typing 4s steps(40,end) forwards, blink 0.7s infinite;
+}
 
-<div class="sidebar" id="sidebar">
-<h2>Jasper</h2>
+@keyframes typing { to { width: 100%; } }
+@keyframes blink { 50% { border-color: transparent } }
 
-<button class="nav-btn" onclick="showPage('home')">Home</button>
-<button class="nav-btn" onclick="showPage('projects')">Projects</button>
-<button class="nav-btn" onclick="showPage('analytics')">Analytics</button>
-<button class="nav-btn" onclick="showPage('engineering')">Engineering</button>
-<button class="nav-btn" onclick="showPage('science')">Science</button>
-<button class="nav-btn" onclick="showPage('architecture')">Architecture</button>
-<button class="nav-btn" onclick="showPage('dataset')">Dataset</button>
+.counter {
+    font-size: 40px;
+    color:#ff2a6d;
+}
+</style></head>
+<body><canvas id="bg"></canvas>
 
-<button onclick="toggleSidebar()">☰</button>
+<nav>
+<div>⚡ DATA ARMOR PORTFOLIO</div>
+<div>
+<button onclick="showPage('about')">About Me</button>
+<button onclick="showPage('projects')">Projects</button>
+<button onclick="showPage('skills')">Skills</button>
+<button class="mode-toggle" onclick="toggleMode()">Mode</button>
 </div>
-
-<div class="main">
-
-<div class="topbar">
-<button onclick="toggleTheme()">Toggle Theme</button>
-</div>
-
-<div id="home" class="page active">
+</nav><section id="about" class="active">
+<h1 class="typing">ABOUT ME</h1>
+<p>Data-driven professional specializing in Analytics, Engineering, and Science.</p>
+<h2>PROJECTS BUILT</h2>
+<div class="counter" id="counter">0</div>
+</section><section id="projects">
+<h1>PROJECTS</h1>
+<h2>DATA ANALYTICS</h2>
 <div class="card">
-<h1>ERP Data Portfolio</h1>
-<p>I transform ERP data into insights, structured datasets, and predictive analysis.</p>
+<h3>Project 1</h3>
+<p><b>BRS:</b></p>
+<p><b>Output:</b></p>
+<p><b>Impact:</b></p>
 </div>
-</div>
-
-<div id="projects" class="page">
-<input placeholder="Search projects..." onkeyup="searchProjects(this.value)">
-<div id="projectList"></div>
-</div>
-
-<div id="analytics" class="page">
+<h2>DATA ENGINEERING</h2>
 <div class="card">
-<h2>Data Analytics</h2>
-<p>KPI dashboards and financial insights.</p>
+<h3>Project 1</h3>
+<p><b>BRS:</b></p>
+<p><b>Output:</b></p>
+<p><b>Impact:</b></p>
 </div>
-</div>
-
-<div id="engineering" class="page">
+<h2>DATA SCIENCE</h2>
 <div class="card">
-<h2>Data Engineering</h2>
-<p>SQL transformation layer and cloud structuring.</p>
+<h3>Project 1</h3>
+<p><b>BRS:</b></p>
+<p><b>Output:</b></p>
+<p><b>Impact:</b></p>
 </div>
+</section><section id="skills">
+<h1>SKILLS HUD</h1>
+<div class="skill-bar">
+<span>Data Analytics</span>
+<div class="bar"><div class="progress" data-skill="90"></div></div>
 </div>
-
-<div id="science" class="page">
-<div class="card">
-<h2>Data Science</h2>
-<p>Trend analysis and forecasting.</p>
+<div class="skill-bar">
+<span>Data Engineering</span>
+<div class="bar"><div class="progress" data-skill="85"></div></div>
 </div>
+<div class="skill-bar">
+<span>Data Science</span>
+<div class="bar"><div class="progress" data-skill="80"></div></div>
 </div>
-
-<div id="architecture" class="page">
-<div class="card">
-<h2>Architecture</h2>
-<p>ERP → Azure SQL → Clean Views → Business Views → Power BI</p>
-</div>
-</div>
-
-<div id="dataset" class="page">
-<div class="card">
-<h2>Dataset</h2>
-<p>ERP Financial Transactions</p>
-</div>
-</div>
-
-</div>
-
-<script>
-
-const projects = [
-{ name:"ERP KPI Dashboard", tools:"SQL, Power BI", repo:"https://github.com" },
-{ name:"OPEX Modeling", tools:"Finance SQL", repo:"https://github.com" },
-{ name:"Cashflow Monitoring", tools:"Azure SQL", repo:"https://github.com" }
-];
-
-function renderProjects(list){
-let html="";
-list.forEach(p=>{
-html+=`
-<div class="project">
-<b>${p.name}</b><br>
-<div class="tools">Tools: ${p.tools}</div>
-<a href="${p.repo}" target="_blank">Repo</a>
-</div>
-`;
-});
-document.getElementById("projectList").innerHTML=html;
+</section><script>
+function showPage(page) {
+    document.querySelectorAll('section').forEach(sec => sec.classList.remove('active'));
+    document.getElementById(page).classList.add('active');
+    animateSkills();
 }
 
-renderProjects(projects);
-
-function searchProjects(q){
-renderProjects(projects.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())));
+function toggleMode() {
+    document.body.classList.toggle('ironman');
 }
 
-function showPage(id){
-document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
-document.getElementById(id).classList.add("active");
+let count = 0;
+let target = 12;
+let counter = document.getElementById("counter");
+let interval = setInterval(() => {
+    count++;
+    counter.innerText = count;
+    if(count >= target) clearInterval(interval);
+}, 100);
+
+function animateSkills() {
+    document.querySelectorAll('.progress').forEach(bar => {
+        let value = bar.getAttribute('data-skill');
+        bar.style.width = value + '%';
+    });
 }
 
-function toggleTheme(){
-document.body.classList.toggle("dark");
+// PARTICLES
+const canvas = document.getElementById('bg');
+const ctx = canvas.getContext('2d');
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
+
+let particles = [];
+for(let i=0;i<100;i++){
+    particles.push({x:Math.random()*canvas.width,y:Math.random()*canvas.height,r:Math.random()*2});
 }
 
-function toggleSidebar(){
-document.getElementById("sidebar").classList.toggle("min");
+function draw(){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    ctx.fillStyle='#00eaff';
+    particles.forEach(p=>{
+        ctx.beginPath();
+        ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
+        ctx.fill();
+        p.y+=0.3;
+        if(p.y>canvas.height)p.y=0;
+    });
+    requestAnimationFrame(draw);
 }
 
-</script>
-
-</body>
+draw();
+</script></body>
 </html>
