@@ -10,7 +10,7 @@
 
 body{
 background:linear-gradient(120deg,#ffe4ec,#e6f7ff);
-color:#333;
+color:#2b2b2b;
 transition:0.4s;
 }
 
@@ -25,7 +25,7 @@ position:fixed;
 top:10px;
 left:50%;
 transform:translateX(-50%);
-background:rgba(255,255,255,0.4);
+background:rgba(255,255,255,0.6);
 backdrop-filter:blur(10px);
 padding:10px 25px;
 border-radius:25px;
@@ -34,12 +34,16 @@ gap:20px;
 z-index:100;
 }
 
+body.night nav{
+background:rgba(0,0,0,0.5);
+}
+
 nav a{
 text-decoration:none;
 color:inherit;
-opacity:0.7;
+opacity:0.8;
+font-weight:500;
 }
-nav a:hover{opacity:1;}
 
 /* TOGGLE */
 .switch{
@@ -48,18 +52,18 @@ background:#ddd;
 border-radius:20px;
 cursor:pointer;
 position:relative;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:12px;
 }
-.switch::after{
-content:"";
+
+.switch span{
 position:absolute;
-width:16px;height:16px;
-top:2px;left:2px;
-background:#fff;
-border-radius:50%;
-transition:0.3s;
 }
-body.night .switch::after{
-transform:translateX(20px);
+
+body.night .switch{
+background:#444;
 }
 
 /* SECTION */
@@ -93,6 +97,8 @@ padding:8px 15px;
 border-radius:20px;
 text-decoration:none;
 background:linear-gradient(90deg,#ffb6d9,#a8e6ff);
+color:#222;
+font-weight:500;
 }
 
 /* PROJECT GROUP */
@@ -106,10 +112,15 @@ text-align:left;
 padding:15px;
 margin:15px 0;
 border-radius:12px;
-background:rgba(255,255,255,0.4);
+background:rgba(255,255,255,0.7);
 backdrop-filter:blur(10px);
 }
 
+body.night .project{
+background:rgba(0,0,0,0.3);
+}
+
+/* PROJECT BUTTON */
 .project-btn{
 margin-top:5px;
 display:inline-block;
@@ -118,6 +129,22 @@ border-radius:15px;
 background:linear-gradient(90deg,#ffd6e0,#d6f0ff);
 text-decoration:none;
 font-size:12px;
+color:#333;
+}
+
+/* TOOLS */
+.tools{
+margin-top:8px;
+}
+
+.tool{
+display:inline-block;
+padding:4px 10px;
+margin:3px;
+border-radius:20px;
+font-size:12px;
+background:linear-gradient(90deg,#ffd6e0,#d6f0ff);
+color:#222;
 }
 </style>
 </head>
@@ -128,7 +155,11 @@ font-size:12px;
 <a href="#home">Home</a>
 <a href="#projects">Projects</a>
 <a href="#contact">Contact</a>
-<div class="switch" onclick="toggleTheme()"></div>
+
+<div class="switch" onclick="toggleTheme()">
+<span id="themeIcon">☀️</span>
+</div>
+
 </nav>
 
 <section id="home">
@@ -153,12 +184,22 @@ font-size:12px;
 <div class="project">
 Project 1
 <a href="#" class="project-btn">GitHub Repo</a>
+<div class="tools">
+<span class="tool">SQL</span>
+<span class="tool">Power BI</span>
+<span class="tool">Excel</span>
+</div>
 </div>
 
 <div class="project">
 Project 2
 <a href="#" class="project-btn">GitHub Repo</a>
+<div class="tools">
+<span class="tool">Python</span>
+<span class="tool">Pandas</span>
 </div>
+</div>
+
 </div>
 
 <div class="project-group">
@@ -167,12 +208,20 @@ Project 2
 <div class="project">
 Project 1
 <a href="#" class="project-btn">GitHub Repo</a>
+<div class="tools">
+<span class="tool">Azure</span>
+<span class="tool">ETL</span>
+</div>
 </div>
 
 <div class="project">
 Project 2
 <a href="#" class="project-btn">GitHub Repo</a>
+<div class="tools">
+<span class="tool">SQL Server</span>
 </div>
+</div>
+
 </div>
 
 <div class="project-group">
@@ -181,12 +230,20 @@ Project 2
 <div class="project">
 Project 1
 <a href="#" class="project-btn">GitHub Repo</a>
+<div class="tools">
+<span class="tool">Machine Learning</span>
+<span class="tool">Scikit-Learn</span>
+</div>
 </div>
 
 <div class="project">
 Project 2
 <a href="#" class="project-btn">GitHub Repo</a>
+<div class="tools">
+<span class="tool">Forecasting</span>
 </div>
+</div>
+
 </div>
 
 </section>
@@ -201,6 +258,13 @@ Project 2
 <script>
 function toggleTheme(){
 document.body.classList.toggle("night");
+
+let icon=document.getElementById("themeIcon");
+if(document.body.classList.contains("night")){
+icon.innerHTML="🌙";
+}else{
+icon.innerHTML="☀️";
+}
 }
 </script>
 
