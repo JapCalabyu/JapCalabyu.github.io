@@ -12,7 +12,6 @@ body{
 background:linear-gradient(120deg,#ffe4ec,#e6f7ff);
 color:#333;
 overflow-x:hidden;
-position:relative;
 transition:0.4s;
 }
 
@@ -22,26 +21,7 @@ background:linear-gradient(120deg,#1a1f3a,#2c1e3d);
 color:#f5f5f5;
 }
 
-/* FLOATING BLOBS */
-.blob{
-position:fixed;
-border-radius:50%;
-filter:blur(60px);
-opacity:0.4;
-z-index:-1;
-animation:float 20s infinite ease-in-out;
-}
-
-.blob1{width:300px;height:300px;background:#ffb6d9;top:10%;left:10%;}
-.blob2{width:250px;height:250px;background:#a8e6ff;bottom:10%;right:10%;}
-.blob3{width:200px;height:200px;background:#ffd6e0;top:50%;left:50%;}
-
-@keyframes float{
-0%,100%{transform:translateY(0px);}
-50%{transform:translateY(-40px);}
-}
-
-/* NAV */
+/* NAVBAR */
 nav{
 position:fixed;
 top:0;
@@ -52,11 +32,21 @@ justify-content:space-between;
 align-items:center;
 background:rgba(255,255,255,0.3);
 backdrop-filter:blur(10px);
+transition:0.4s;
 z-index:100;
 }
 
-body.night nav{background:rgba(0,0,0,0.3);}
+/* AUTO HIDE */
+nav.hidden{
+transform:translateY(-100%);
+}
 
+/* SHOW WHEN HOVER TOP */
+body:hover nav{
+transform:translateY(0);
+}
+
+/* NAV LINKS */
 .nav-links{
 display:flex;
 gap:20px;
@@ -98,13 +88,6 @@ object-fit:cover;
 box-shadow:0 10px 30px rgba(0,0,0,0.1);
 }
 
-.hero-text h1{
-font-size:45px;
-background:linear-gradient(90deg,#ff9ecb,#9ed8ff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
-}
-
 /* SECTIONS */
 .section{
 min-height:100vh;
@@ -116,7 +99,18 @@ padding:40px;
 
 .section.active{display:flex;}
 
-/* GLASS PROJECTS */
+/* PROJECT GROUP */
+.project-group{
+width:80%;
+max-width:900px;
+margin:40px auto;
+}
+
+.project-group h2{
+margin-bottom:15px;
+}
+
+/* PROJECT CARD */
 .project{
 padding:20px;
 margin:15px 0;
@@ -124,32 +118,15 @@ border-radius:15px;
 background:rgba(255,255,255,0.4);
 backdrop-filter:blur(10px);
 box-shadow:0 5px 20px rgba(0,0,0,0.05);
-transform:translateY(30px);
-opacity:0;
-transition:0.6s;
+transition:0.3s;
 }
 
 body.night .project{
 background:rgba(255,255,255,0.05);
 }
 
-.project.show{
-transform:translateY(0);
-opacity:1;
-}
-
 .project:hover{
-transform:translateY(-5px) scale(1.02);
-}
-
-/* BUTTON */
-.github{
-display:inline-block;
-margin-top:5px;
-padding:5px 12px;
-border-radius:20px;
-background:linear-gradient(90deg,#ffb6d9,#a8e6ff);
-text-decoration:none;
+transform:translateY(-5px);
 }
 
 /* TOOLS */
@@ -162,21 +139,22 @@ font-size:12px;
 background:linear-gradient(90deg,#ffd6e0,#d6f0ff);
 }
 
-/* FOOTER */
-footer{
-margin-top:40px;
-opacity:0.5;
+/* BUTTON */
+.github{
+display:inline-block;
+margin-top:5px;
+padding:5px 12px;
+border-radius:20px;
+background:linear-gradient(90deg,#ffb6d9,#a8e6ff);
+text-decoration:none;
 }
+
 </style>
 </head>
 
 <body>
 
-<div class="blob blob1"></div>
-<div class="blob blob2"></div>
-<div class="blob blob3"></div>
-
-<nav>
+<nav id="navbar">
 <div>PORTFOLIO</div>
 <div class="nav-links">
 <a onclick="showSection('home')" class="active">Home</a>
@@ -190,7 +168,7 @@ opacity:0.5;
 <div id="home" class="section active">
 <div class="hero">
 <img src="profile.jpg" class="profile">
-<div class="hero-text">
+<div>
 <h1>Your Name</h1>
 <p>Turning raw data into decision systems.</p>
 </div>
@@ -202,8 +180,47 @@ opacity:0.5;
 
 <h1>Projects</h1>
 
-<div class="project">Project 1 – GitHub Repo<div class="tools"><span>SQL</span></div></div>
-<div class="project">Project 2 – GitHub Repo<div class="tools"><span>Python</span></div></div>
+<div class="project-group">
+<h2>Data Analyst</h2>
+
+<div class="project">
+Project 1 – <a href="#" class="github">GitHub Repo</a>
+<div class="tools"><span>SQL</span><span>Power BI</span></div>
+</div>
+
+<div class="project">
+Project 2 – <a href="#" class="github">GitHub Repo</a>
+<div class="tools"><span>Python</span></div>
+</div>
+</div>
+
+<div class="project-group">
+<h2>Data Engineering</h2>
+
+<div class="project">
+Project 1 – <a href="#" class="github">GitHub Repo</a>
+<div class="tools"><span>Azure</span></div>
+</div>
+
+<div class="project">
+Project 2 – <a href="#" class="github">GitHub Repo</a>
+<div class="tools"><span>ETL</span></div>
+</div>
+</div>
+
+<div class="project-group">
+<h2>Data Scientist</h2>
+
+<div class="project">
+Project 1 – <a href="#" class="github">GitHub Repo</a>
+<div class="tools"><span>ML</span></div>
+</div>
+
+<div class="project">
+Project 2 – <a href="#" class="github">GitHub Repo</a>
+<div class="tools"><span>Forecasting</span></div>
+</div>
+</div>
 
 </div>
 
@@ -214,8 +231,6 @@ opacity:0.5;
 <p>GitHub</p>
 </div>
 
-<footer>Portfolio Live</footer>
-
 <script>
 function showSection(id){
 document.querySelectorAll(".section").forEach(sec=>sec.classList.remove("active"));
@@ -223,19 +238,24 @@ document.getElementById(id).classList.add("active");
 
 document.querySelectorAll(".nav-links a").forEach(a=>a.classList.remove("active"));
 event.target.classList.add("active");
-
-reveal();
 }
 
 function toggleTheme(){
 document.body.classList.toggle("night");
 }
 
-function reveal(){
-document.querySelectorAll('.project').forEach(p=>{
-setTimeout(()=>p.classList.add('show'),200);
-});
+/* NAV AUTO HIDE */
+let nav=document.getElementById("navbar");
+let timer;
+
+document.addEventListener("mousemove",function(e){
+if(e.clientY<50){
+nav.classList.remove("hidden");
+clearTimeout(timer);
+}else{
+timer=setTimeout(()=>nav.classList.add("hidden"),2000);
 }
+});
 </script>
 
 </body>
