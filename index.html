@@ -12,57 +12,43 @@ body{
 background:#05070d;
 color:#eaeaea;
 transition:0.4s;
-overflow:hidden;
 }
 
-/* LIGHT MODE */
-body.light{
-background:#f5f7fa;
-color:#111;
-}
-
-/* NAV */
+/* NAVBAR */
 nav{
 position:fixed;
+top:0;
 width:100%;
-padding:18px 30px;
+padding:15px 40px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(255,255,255,0.02);
-backdrop-filter: blur(10px);
+background:rgba(0,0,0,0.4);
+backdrop-filter:blur(10px);
 z-index:100;
 }
 
-.logo{color:#9befff;}
-
-button{
-background:none;
-border:1px solid #9befff;
+.logo{
 color:#9befff;
-padding:6px 12px;
+font-weight:600;
+letter-spacing:2px;
+}
+
+.nav-links{
+display:flex;
+gap:20px;
+}
+
+.nav-links a{
+text-decoration:none;
+color:#aaa;
 cursor:pointer;
+transition:0.3s;
 }
 
-/* BURGER */
-.burger span{
-display:block;width:26px;height:2px;background:#9befff;margin:6px 0;
+.nav-links a:hover,.active{
+color:#9befff;
 }
-
-/* MENU */
-.menu{
-position:fixed;top:0;right:-260px;height:100%;width:260px;
-background:#111;
-transition:0.5s;
-padding-top:80px;
-}
-
-.menu a{
-display:block;padding:16px 30px;text-decoration:none;color:#aaa;
-cursor:pointer;
-}
-
-.menu a:hover{color:#9befff;}
 
 /* SECTIONS */
 .section{
@@ -71,9 +57,9 @@ display:none;
 justify-content:center;
 align-items:center;
 flex-direction:column;
-padding:40px;
-text-align:center;
+padding-top:80px;
 animation:fade 0.5s ease;
+text-align:center;
 }
 
 .section.active{display:flex;}
@@ -109,8 +95,26 @@ transition:0.3s;
 }
 
 .card:hover{
-transform:scale(1.05);
+transform:translateY(-5px);
 box-shadow:0 0 10px #9befff;
+}
+
+/* SKILLS */
+.skill{
+margin:10px;
+width:220px;
+text-align:left;
+}
+
+.bar{
+height:8px;
+background:#222;
+margin-top:5px;
+}
+
+.fill{
+height:100%;
+background:#9befff;
 }
 
 /* MODAL */
@@ -130,25 +134,6 @@ border-radius:10px;
 max-width:400px;
 }
 
-/* SKILL BARS */
-.skill{
-margin:10px;
-width:200px;
-text-align:left;
-}
-
-.bar{
-height:8px;
-background:#222;
-margin-top:5px;
-}
-
-.fill{
-height:100%;
-background:#9befff;
-}
-
-/* FOOTER */
 footer{
 position:fixed;
 bottom:0;
@@ -156,7 +141,7 @@ width:100%;
 text-align:center;
 padding:10px;
 font-size:12px;
-opacity:0.6;
+opacity:0.5;
 }
 </style>
 </head>
@@ -165,20 +150,16 @@ opacity:0.6;
 
 <nav>
 <div class="logo">PORTFOLIO</div>
-<div>
-<button onclick="toggleTheme()">Mode</button>
-<button onclick="toggleMenu()">☰</button>
-</div>
-</nav>
-
-<div class="menu" id="menu">
-<a onclick="showSection('home')">Home</a>
+<div class="nav-links">
+<a onclick="showSection('home')" class="active">Home</a>
 <a onclick="showSection('projects')">Projects</a>
 <a onclick="showSection('case')">Case Studies</a>
 <a onclick="showSection('skills')">Skills</a>
 <a onclick="showSection('contact')">Contact</a>
 </div>
+</nav>
 
+<!-- HOME -->
 <div id="home" class="section active">
 <h1>Portfolio</h1>
 <p>Turning raw data into decision systems.</p>
@@ -186,6 +167,7 @@ opacity:0.6;
 <a href="resume.pdf" download><button>Download Resume</button></a>
 </div>
 
+<!-- PROJECTS -->
 <div id="projects" class="section">
 <h1>Projects</h1>
 <div class="grid">
@@ -195,11 +177,13 @@ opacity:0.6;
 </div>
 </div>
 
+<!-- CASE -->
 <div id="case" class="section">
 <h1>Case Study</h1>
-<p>Click a project to view details</p>
+<p>Click project to see business impact</p>
 </div>
 
+<!-- SKILLS -->
 <div id="skills" class="section">
 <h1>Skills</h1>
 <div class="skill">Python<div class="bar"><div class="fill" style="width:80%"></div></div></div>
@@ -207,6 +191,7 @@ opacity:0.6;
 <div class="skill">Power BI<div class="bar"><div class="fill" style="width:75%"></div></div></div>
 </div>
 
+<!-- CONTACT -->
 <div id="contact" class="section">
 <h1>Contact</h1>
 <p>Email: your@email.com</p>
@@ -225,19 +210,12 @@ opacity:0.6;
 <footer>Portfolio Live</footer>
 
 <script>
-function toggleMenu(){
-let menu=document.getElementById("menu");
-menu.style.right=menu.style.right==="0px"?"-260px":"0px";
-}
-
 function showSection(id){
 document.querySelectorAll(".section").forEach(sec=>sec.classList.remove("active"));
 document.getElementById(id).classList.add("active");
-toggleMenu();
-}
 
-function toggleTheme(){
-document.body.classList.toggle("light");
+document.querySelectorAll(".nav-links a").forEach(a=>a.classList.remove("active"));
+event.target.classList.add("active");
 }
 
 function openModal(text){
