@@ -1,40 +1,42 @@
-<!DOCTYPE html><html lang="en">
+<!DOCTYPE html>
+<html>
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Jasper | Data Portfolio</title><style>
-:root {
---bg:#f4f6fb;
---text:#1a1a1a;
---card:#ffffff;
---accent:#3b5cff;
-}
+<title>Jasper | Data Portfolio</title>
 
-body.dark {
---bg:#0e1117;
---text:#e6e6e6;
---card:#161b22;
---accent:#7c5cff;
-}
+<style>
+
+/* ===== BASE ===== */
 
 body {
 margin:0;
-font-family:system-ui;
-background:var(--bg);
-color:var(--text);
+font-family:Arial;
 display:flex;
+background:#f4f6fa;
+color:#111;
 transition:.3s;
 }
 
-/* Sidebar */
+.dark {
+background:#0f1117;
+color:#eee;
+}
+
+/* ===== SIDEBAR ===== */
+
 .sidebar {
 width:240px;
-background:var(--card);
+background:#ffffff;
 height:100vh;
 padding:20px;
-box-shadow:2px 0 10px rgba(0,0,0,.1);
+border-right:1px solid #ddd;
 transition:.3s;
 overflow:hidden;
+}
+
+.dark .sidebar {
+background:#161b22;
+border-color:#333;
 }
 
 .sidebar.min {
@@ -47,54 +49,57 @@ margin:0 0 20px;
 
 .nav-btn {
 display:block;
-margin:10px 0;
+width:100%;
+text-align:left;
+margin:8px 0;
 padding:10px;
 background:none;
 border:none;
-width:100%;
-text-align:left;
 cursor:pointer;
-color:var(--text);
+font-size:14px;
 }
 
 .nav-btn:hover {
-color:var(--accent);
+color:#3b5cff;
 }
 
-/* Main */
+/* ===== MAIN ===== */
+
 .main {
 flex:1;
 padding:30px;
 }
 
-/* Cards */
-.card {
-background:var(--card);
-padding:20px;
-margin-bottom:20px;
-border-radius:10px;
-}
+/* ===== TOPBAR ===== */
 
-/* Topbar */
 .topbar {
 display:flex;
 justify-content:space-between;
 margin-bottom:20px;
 }
 
-button {
-cursor:pointer;
-padding:8px 12px;
-border:none;
-background:var(--accent);
-color:white;
-border-radius:6px;
+/* ===== CARD ===== */
+
+.card {
+background:#fff;
+padding:20px;
+margin-bottom:20px;
+border-radius:8px;
 }
 
-/* Projects */
+.dark .card {
+background:#1c2128;
+}
+
+/* ===== PROJECT ===== */
+
 .project {
-border-bottom:1px solid #ccc;
 padding:10px 0;
+border-bottom:1px solid #ddd;
+}
+
+.dark .project {
+border-color:#333;
 }
 
 .tools {
@@ -102,64 +107,111 @@ font-size:12px;
 opacity:.7;
 }
 
-/* Search */
-.search {
-padding:10px;
+/* ===== SEARCH ===== */
+
+input {
+padding:8px;
 width:100%;
-margin-bottom:20px;
+margin-bottom:15px;
 }
-</style></head><body><div class="sidebar" id="sidebar">
-<h2>Jasper</h2><button class="nav-btn" onclick="show('home')">Home</button>
-<button class="nav-btn" onclick="show('projects')">Projects</button>
-<button class="nav-btn" onclick="show('analytics')">Analytics</button>
-<button class="nav-btn" onclick="show('engineering')">Engineering</button>
-<button class="nav-btn" onclick="show('science')">Science</button>
+
+/* ===== BUTTON ===== */
+
+button {
+padding:8px;
+cursor:pointer;
+}
+
+/* ===== PAGE ===== */
+
+.page {
+display:none;
+}
+
+.page.active {
+display:block;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="sidebar" id="sidebar">
+<h2>Jasper</h2>
+
+<button class="nav-btn" onclick="showPage('home')">Home</button>
+<button class="nav-btn" onclick="showPage('projects')">Projects</button>
+<button class="nav-btn" onclick="showPage('analytics')">Analytics</button>
+<button class="nav-btn" onclick="showPage('engineering')">Engineering</button>
+<button class="nav-btn" onclick="showPage('science')">Science</button>
+<button class="nav-btn" onclick="showPage('architecture')">Architecture</button>
+<button class="nav-btn" onclick="showPage('dataset')">Dataset</button>
 
 <button onclick="toggleSidebar()">☰</button>
+</div>
 
-</div><div class="main"><div class="topbar">
-<button onclick="toggleTheme()">Theme</button>
-</div><div id="home" class="page">
+<div class="main">
+
+<div class="topbar">
+<button onclick="toggleTheme()">Toggle Theme</button>
+</div>
+
+<div id="home" class="page active">
 <div class="card">
 <h1>ERP Data Portfolio</h1>
-<p>I transform ERP data into analytics insights, engineered datasets and predictive analysis.</p>
+<p>I transform ERP data into insights, structured datasets, and predictive analysis.</p>
 </div>
-</div><div id="projects" class="page" style="display:none">
-<input class="search" placeholder="Search projects..." onkeyup="searchProjects(this.value)">
+</div>
+
+<div id="projects" class="page">
+<input placeholder="Search projects..." onkeyup="searchProjects(this.value)">
 <div id="projectList"></div>
-</div><div id="analytics" class="page" style="display:none">
+</div>
+
+<div id="analytics" class="page">
 <div class="card">
 <h2>Data Analytics</h2>
-<p>KPI dashboards, OPEX analysis and financial insights.</p>
+<p>KPI dashboards and financial insights.</p>
 </div>
-</div><div id="engineering" class="page" style="display:none">
+</div>
+
+<div id="engineering" class="page">
 <div class="card">
 <h2>Data Engineering</h2>
 <p>SQL transformation layer and cloud structuring.</p>
 </div>
-</div><div id="science" class="page" style="display:none">
+</div>
+
+<div id="science" class="page">
 <div class="card">
 <h2>Data Science</h2>
 <p>Trend analysis and forecasting.</p>
 </div>
-</div></div><script>
+</div>
+
+<div id="architecture" class="page">
+<div class="card">
+<h2>Architecture</h2>
+<p>ERP → Azure SQL → Clean Views → Business Views → Power BI</p>
+</div>
+</div>
+
+<div id="dataset" class="page">
+<div class="card">
+<h2>Dataset</h2>
+<p>ERP Financial Transactions</p>
+</div>
+</div>
+
+</div>
+
+<script>
 
 const projects = [
-{
-name:"ERP KPI Dashboard",
-tools:"SQL, Power BI",
-repo:"#"
-},
-{
-name:"OPEX Modeling",
-tools:"Finance SQL",
-repo:"#"
-},
-{
-name:"Cashflow Monitoring",
-tools:"Azure SQL",
-repo:"#"
-}
+{ name:"ERP KPI Dashboard", tools:"SQL, Power BI", repo:"https://github.com" },
+{ name:"OPEX Modeling", tools:"Finance SQL", repo:"https://github.com" },
+{ name:"Cashflow Monitoring", tools:"Azure SQL", repo:"https://github.com" }
 ];
 
 function renderProjects(list){
@@ -167,7 +219,7 @@ let html="";
 list.forEach(p=>{
 html+=`
 <div class="project">
-<b>${p.name}</b>
+<b>${p.name}</b><br>
 <div class="tools">Tools: ${p.tools}</div>
 <a href="${p.repo}" target="_blank">Repo</a>
 </div>
@@ -182,9 +234,9 @@ function searchProjects(q){
 renderProjects(projects.filter(p=>p.name.toLowerCase().includes(q.toLowerCase())));
 }
 
-function show(id){
-document.querySelectorAll(".page").forEach(p=>p.style.display="none");
-document.getElementById(id).style.display="block";
+function showPage(id){
+document.querySelectorAll(".page").forEach(p=>p.classList.remove("active"));
+document.getElementById(id).classList.add("active");
 }
 
 function toggleTheme(){
@@ -195,5 +247,7 @@ function toggleSidebar(){
 document.getElementById("sidebar").classList.toggle("min");
 }
 
-</script></body>
+</script>
+
+</body>
 </html>
