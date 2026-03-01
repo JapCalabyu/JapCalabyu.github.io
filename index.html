@@ -6,15 +6,19 @@
 <title>Portfolio</title>
 
 <style>
-*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+*{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;transition:0.4s;}
 
 body{
-background:#05070d;
+background:#0b0f1a;
 color:#eaeaea;
-transition:0.4s;
 }
 
-/* NAVBAR */
+body.morning{
+background:#f4f7fb;
+color:#111;
+}
+
+/* NAV */
 nav{
 position:fixed;
 top:0;
@@ -23,124 +27,122 @@ padding:15px 40px;
 display:flex;
 justify-content:space-between;
 align-items:center;
-background:rgba(0,0,0,0.4);
+background:rgba(255,255,255,0.05);
 backdrop-filter:blur(10px);
 z-index:100;
 }
 
-.logo{
-color:#9befff;
-font-weight:600;
-letter-spacing:2px;
-}
+.logo{font-weight:600;}
 
 .nav-links{
 display:flex;
 gap:20px;
+align-items:center;
 }
 
 .nav-links a{
 text-decoration:none;
-color:#aaa;
+color:inherit;
+opacity:0.6;
 cursor:pointer;
-transition:0.3s;
 }
 
-.nav-links a:hover,.active{
-color:#9befff;
+.nav-links a:hover,.active{opacity:1;}
+
+.toggle{
+cursor:pointer;
+padding:5px 10px;
+border:1px solid;
+}
+
+/* HERO */
+.hero{
+display:flex;
+align-items:center;
+gap:40px;
+padding-top:120px;
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.profile{
+width:180px;
+height:180px;
+border-radius:50%;
+object-fit:cover;
+border:3px solid rgba(0,0,0,0.2);
+}
+
+.hero-text h1{
+font-size:45px;
+}
+
+.subtitle{
+opacity:0.6;
+margin-top:10px;
 }
 
 /* SECTIONS */
 .section{
-height:100vh;
+min-height:100vh;
 display:none;
-justify-content:center;
-align-items:center;
 flex-direction:column;
-padding-top:80px;
-animation:fade 0.5s ease;
-text-align:center;
+align-items:center;
+padding:40px;
 }
 
 .section.active{display:flex;}
 
-@keyframes fade{
-from{opacity:0;transform:translateY(20px);}
-to{opacity:1;transform:translateY(0);}
+/* PROJECTS */
+.project-category{
+width:80%;
+max-width:900px;
+margin:30px auto;
 }
 
-h1{
-font-size:50px;
-background:linear-gradient(90deg,#9befff,#c59bff);
--webkit-background-clip:text;
--webkit-text-fill-color:transparent;
+.project-category h2{
+margin-bottom:15px;
 }
 
-/* CARDS */
-.grid{
-display:flex;
-gap:20px;
-flex-wrap:wrap;
-justify-content:center;
-margin-top:30px;
-}
-
-.card{
+.project{
+padding:15px;
+margin:15px 0;
+border-radius:10px;
 background:rgba(255,255,255,0.05);
-padding:20px;
-border-radius:12px;
-width:240px;
-cursor:pointer;
 transition:0.3s;
 }
 
-.card:hover{
-transform:translateY(-5px);
-box-shadow:0 0 10px #9befff;
+.project:hover{
+transform:translateY(-3px);
 }
 
-/* SKILLS */
-.skill{
-margin:10px;
-width:220px;
-text-align:left;
+body.morning .project{
+background:#fff;
 }
 
-.bar{
-height:8px;
-background:#222;
+/* GITHUB BUTTON */
+.github{
+display:inline-block;
 margin-top:5px;
+padding:5px 12px;
+border:1px solid;
+text-decoration:none;
+font-size:14px;
 }
 
-.fill{
-height:100%;
-background:#9befff;
-}
-
-/* MODAL */
-.modal{
-position:fixed;
-top:0;left:0;width:100%;height:100%;
-background:rgba(0,0,0,0.8);
-display:none;
-justify-content:center;
-align-items:center;
-}
-
-.modal-content{
-background:#111;
-padding:30px;
-border-radius:10px;
-max-width:400px;
-}
-
-footer{
-position:fixed;
-bottom:0;
-width:100%;
-text-align:center;
-padding:10px;
+/* TOOLS */
+.tools span{
+display:inline-block;
+padding:4px 10px;
+margin:3px;
+border-radius:20px;
 font-size:12px;
+border:1px solid;
+}
+
+/* CONTACT */
+footer{
+margin-top:50px;
 opacity:0.5;
 }
 </style>
@@ -153,58 +155,105 @@ opacity:0.5;
 <div class="nav-links">
 <a onclick="showSection('home')" class="active">Home</a>
 <a onclick="showSection('projects')">Projects</a>
-<a onclick="showSection('case')">Case Studies</a>
-<a onclick="showSection('skills')">Skills</a>
 <a onclick="showSection('contact')">Contact</a>
+<span class="toggle" onclick="toggleTheme()">☀️ / 🌙</span>
 </div>
 </nav>
 
 <!-- HOME -->
 <div id="home" class="section active">
-<h1>Portfolio</h1>
-<p>Turning raw data into decision systems.</p>
-<br>
-<a href="resume.pdf" download><button>Download Resume</button></a>
+
+<div class="hero">
+<img src="profile.jpg" class="profile">
+
+<div class="hero-text">
+<h1>Your Name</h1>
+<p class="subtitle">Turning raw data into decision systems.</p>
+<p class="subtitle">Data Analytics | Engineering | Science</p>
+</div>
+</div>
+
 </div>
 
 <!-- PROJECTS -->
 <div id="projects" class="section">
+
 <h1>Projects</h1>
-<div class="grid">
-<div class="card" onclick="openModal('Forecasting Dashboard')">Forecasting Dashboard</div>
-<div class="card" onclick="openModal('ETL Pipeline')">ETL Pipeline</div>
-<div class="card" onclick="openModal('Segmentation Model')">Segmentation Model</div>
+
+<div class="project-category">
+<h2>Data Analyst</h2>
+
+<div class="project">
+<strong>Project 1</strong>
+<a href="#" class="github">GitHub Repo</a>
+<div class="tools">
+<span>Power BI</span>
+<span>SQL</span>
 </div>
 </div>
 
-<!-- CASE -->
-<div id="case" class="section">
-<h1>Case Study</h1>
-<p>Click project to see business impact</p>
+<div class="project">
+<strong>Project 2</strong>
+<a href="#" class="github">GitHub Repo</a>
+<div class="tools">
+<span>Python</span>
+<span>Pandas</span>
+</div>
 </div>
 
-<!-- SKILLS -->
-<div id="skills" class="section">
-<h1>Skills</h1>
-<div class="skill">Python<div class="bar"><div class="fill" style="width:80%"></div></div></div>
-<div class="skill">SQL<div class="bar"><div class="fill" style="width:85%"></div></div></div>
-<div class="skill">Power BI<div class="bar"><div class="fill" style="width:75%"></div></div></div>
+</div>
+
+<div class="project-category">
+<h2>Data Engineering</h2>
+
+<div class="project">
+<strong>Project 1</strong>
+<a href="#" class="github">GitHub Repo</a>
+<div class="tools">
+<span>Azure</span>
+<span>ETL</span>
+</div>
+</div>
+
+<div class="project">
+<strong>Project 2</strong>
+<a href="#" class="github">GitHub Repo</a>
+<div class="tools">
+<span>SQL Server</span>
+</div>
+</div>
+
+</div>
+
+<div class="project-category">
+<h2>Data Scientist</h2>
+
+<div class="project">
+<strong>Project 1</strong>
+<a href="#" class="github">GitHub Repo</a>
+<div class="tools">
+<span>Machine Learning</span>
+</div>
+</div>
+
+<div class="project">
+<strong>Project 2</strong>
+<a href="#" class="github">GitHub Repo</a>
+<div class="tools">
+<span>Forecasting</span>
+</div>
+</div>
+
+</div>
+
 </div>
 
 <!-- CONTACT -->
 <div id="contact" class="section">
 <h1>Contact</h1>
 <p>Email: your@email.com</p>
-<p>GitHub</p>
-<p>LinkedIn</p>
-</div>
-
-<div class="modal" id="modal">
-<div class="modal-content">
-<p id="modal-text"></p>
-<br>
-<button onclick="closeModal()">Close</button>
-</div>
+<p>GitHub: github.com/yourname</p>
+<p>LinkedIn: linkedin.com/in/yourname</p>
 </div>
 
 <footer>Portfolio Live</footer>
@@ -218,13 +267,8 @@ document.querySelectorAll(".nav-links a").forEach(a=>a.classList.remove("active"
 event.target.classList.add("active");
 }
 
-function openModal(text){
-document.getElementById("modal").style.display="flex";
-document.getElementById("modal-text").innerText=text;
-}
-
-function closeModal(){
-document.getElementById("modal").style.display="none";
+function toggleTheme(){
+document.body.classList.toggle("morning");
 }
 </script>
 
