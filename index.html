@@ -19,7 +19,7 @@ background:linear-gradient(120deg,#1a1f3a,#2c1e3d);
 color:#f5f5f5;
 }
 
-/* FLOAT NAV */
+/* NAV */
 nav{
 position:fixed;
 top:10px;
@@ -51,22 +51,15 @@ width:40px;height:20px;
 background:#ddd;
 border-radius:20px;
 cursor:pointer;
-position:relative;
 display:flex;
 align-items:center;
 justify-content:center;
 font-size:12px;
 }
 
-.switch span{
-position:absolute;
-}
+body.night .switch{background:#444;}
 
-body.night .switch{
-background:#444;
-}
-
-/* SECTION */
+/* SECTIONS */
 section{
 min-height:100vh;
 display:flex;
@@ -108,11 +101,12 @@ max-width:800px;
 text-align:left;
 }
 
+/* PROJECT CARD */
 .project{
-padding:15px;
-margin:15px 0;
+padding:18px;
+margin:18px 0;
 border-radius:12px;
-background:rgba(255,255,255,0.7);
+background:rgba(255,255,255,0.75);
 backdrop-filter:blur(10px);
 }
 
@@ -120,21 +114,22 @@ body.night .project{
 background:rgba(0,0,0,0.3);
 }
 
-/* PROJECT BUTTON */
-.project-btn{
-margin-top:5px;
+/* GITHUB BUTTON */
+.github-btn{
 display:inline-block;
-padding:5px 10px;
-border-radius:15px;
-background:linear-gradient(90deg,#ffd6e0,#d6f0ff);
+margin-top:8px;
+padding:6px 14px;
+border-radius:20px;
+background:linear-gradient(90deg,#6fd3ff,#b983ff);
+color:white;
 text-decoration:none;
-font-size:12px;
-color:#333;
+font-size:13px;
+font-weight:500;
 }
 
 /* TOOLS */
 .tools{
-margin-top:8px;
+margin-top:10px;
 }
 
 .tool{
@@ -144,7 +139,7 @@ margin:3px;
 border-radius:20px;
 font-size:12px;
 background:linear-gradient(90deg,#ffd6e0,#d6f0ff);
-color:#222;
+color:#333;
 }
 </style>
 </head>
@@ -159,7 +154,6 @@ color:#222;
 <div class="switch" onclick="toggleTheme()">
 <span id="themeIcon">☀️</span>
 </div>
-
 </nav>
 
 <section id="home">
@@ -182,8 +176,8 @@ color:#222;
 <h2>Data Analyst</h2>
 
 <div class="project">
-Project 1 teach me how to doginsdjkasjdklsjadklsjakldjsakldjsakldjsakldjskaldjsklajdlksajdklsajdklsajdlksajklsdaj
-<a href="#" class="project-btn">GitHub Repo</a>
+<strong>Project 1</strong><br>
+<a href="#" class="github-btn">View GitHub Repository</a>
 <div class="tools">
 <span class="tool">SQL</span>
 <span class="tool">Power BI</span>
@@ -192,8 +186,8 @@ Project 1 teach me how to doginsdjkasjdklsjadklsjakldjsakldjsakldjsakldjskaldjsk
 </div>
 
 <div class="project">
-Project 2
-<a href="#" class="project-btn">GitHub Repo</a>
+<strong>Project 2</strong><br>
+<a href="#" class="github-btn">View GitHub Repository</a>
 <div class="tools">
 <span class="tool">Python</span>
 <span class="tool">Pandas</span>
@@ -206,8 +200,8 @@ Project 2
 <h2>Data Engineering</h2>
 
 <div class="project">
-Project 1
-<a href="#" class="project-btn">GitHub Repo</a>
+<strong>Project 1</strong><br>
+<a href="#" class="github-btn">View GitHub Repository</a>
 <div class="tools">
 <span class="tool">Azure</span>
 <span class="tool">ETL</span>
@@ -215,8 +209,8 @@ Project 1
 </div>
 
 <div class="project">
-Project 2
-<a href="#" class="project-btn">GitHub Repo</a>
+<strong>Project 2</strong><br>
+<a href="#" class="github-btn">View GitHub Repository</a>
 <div class="tools">
 <span class="tool">SQL Server</span>
 </div>
@@ -228,8 +222,8 @@ Project 2
 <h2>Data Scientist</h2>
 
 <div class="project">
-Project 1
-<a href="#" class="project-btn">GitHub Repo</a>
+<strong>Project 1</strong><br>
+<a href="#" class="github-btn">View GitHub Repository</a>
 <div class="tools">
 <span class="tool">Machine Learning</span>
 <span class="tool">Scikit-Learn</span>
@@ -237,8 +231,8 @@ Project 1
 </div>
 
 <div class="project">
-Project 2
-<a href="#" class="project-btn">GitHub Repo</a>
+<strong>Project 2</strong><br>
+<a href="#" class="github-btn">View GitHub Repository</a>
 <div class="tools">
 <span class="tool">Forecasting</span>
 </div>
@@ -258,13 +252,8 @@ Project 2
 <script>
 function toggleTheme(){
 document.body.classList.toggle("night");
-
 let icon=document.getElementById("themeIcon");
-if(document.body.classList.contains("night")){
-icon.innerHTML="🌙";
-}else{
-icon.innerHTML="☀️";
-}
+icon.innerHTML=document.body.classList.contains("night")?"🌙":"☀️";
 }
 </script>
 
