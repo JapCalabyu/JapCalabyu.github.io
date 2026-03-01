@@ -6,35 +6,13 @@
 
 <style>
 
-html { scroll-behavior:smooth; }
-
 body {
 margin:0;
 font-family:-apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
 background:#f7f7f5;
 color:#111;
 letter-spacing:0.3px;
-transition:0.4s;
-}
-
-/* subtle grain */
-
-body::before {
-content:"";
-position:fixed;
-top:0;
-left:0;
-width:100%;
-height:100%;
-background-image:url('data:image/svg+xml;utf8,\
-<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100">\
-<filter id="n">\
-<feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2"/>\
-</filter>\
-<rect width="100%" height="100%" filter="url(%23n)" opacity="0.015"/>\
-</svg>');
-pointer-events:none;
-z-index:1;
+overflow:hidden;
 }
 
 /* NAV */
@@ -46,9 +24,9 @@ width:100%;
 display:flex;
 justify-content:space-between;
 padding:24px 80px;
-z-index:999;
-background:rgba(247,247,245,0.7);
+background:rgba(247,247,245,0.85);
 backdrop-filter:blur(6px);
+z-index:10;
 }
 
 nav a {
@@ -57,110 +35,86 @@ color:#111;
 margin-left:40px;
 font-size:13px;
 opacity:0.6;
+cursor:pointer;
 transition:0.3s;
 }
 
 nav a:hover { opacity:1; }
 
-/* SECTIONS */
+/* PAGE SYSTEM */
 
-section {
-min-height:100vh;
-padding:140px 20vw;
-display:flex;
-flex-direction:column;
-justify-content:center;
+.page {
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+padding:160px 20vw;
 opacity:0;
-transform:translateY(60px);
-transition:1.2s cubic-bezier(.19,1,.22,1);
-position:relative;
-z-index:2;
+transform:translateY(40px);
+transition:0.8s;
+pointer-events:none;
 }
 
-.show {
+.active {
 opacity:1;
 transform:translateY(0);
+pointer-events:auto;
 }
 
-/* HERO */
+/* TYPO */
 
-.hero h1 {
+h1 {
 font-weight:300;
-font-size:clamp(38px,5vw,64px);
+font-size:60px;
 margin-bottom:20px;
 }
-
-.hero p {
-max-width:620px;
-line-height:1.9;
-opacity:0.65;
-font-size:17px;
-}
-
-.cta {
-margin-top:50px;
-font-size:14px;
-cursor:pointer;
-opacity:0.5;
-transition:0.4s;
-}
-
-.cta:hover {
-opacity:1;
-transform:translateX(6px);
-}
-
-/* HEADINGS */
 
 h2 {
 font-weight:400;
-margin-bottom:40px;
-font-size:24px;
+margin-bottom:30px;
 }
 
 h3 {
-font-weight:400;
 margin-top:40px;
-margin-bottom:20px;
-opacity:0.8;
+font-weight:400;
 }
 
-.block {
-margin-bottom:28px;
-max-width:640px;
-line-height:1.9;
+p {
+max-width:600px;
+line-height:1.8;
 opacity:0.7;
 }
 
-/* PROJECTS */
-
-.project-group {
-margin-top:40px;
+.block {
+margin-bottom:30px;
+max-width:640px;
+line-height:1.9;
+opacity:0.75;
 }
 
 .project {
-margin-bottom:28px;
+margin-bottom:25px;
 padding-left:20px;
 border-left:1px solid #ddd;
-transition:0.4s;
+transition:0.3s;
 }
 
 .project:hover {
 border-left:1px solid #111;
 }
 
-/* DARK MODE */
+.cta {
+display:inline-block;
+margin-top:40px;
+opacity:0.6;
+cursor:pointer;
+transition:0.3s;
+}
 
-@media (prefers-color-scheme: dark) {
-
-body { background:#111; color:#eee; }
-
-nav { background:rgba(20,20,20,0.6); }
-
-.project { border-left:1px solid #444; }
-
-.project:hover { border-left:1px solid #eee; }
-
+.cta:hover {
+opacity:1;
+transform:translateX(6px);
 }
 
 </style>
@@ -169,25 +123,31 @@ nav { background:rgba(20,20,20,0.6); }
 <body>
 
 <nav>
-<div>Portfolio</div>
+<div>Jasper</div>
 <div>
-<a href="#home">Home</a>
-<a href="#about">About</a>
-<a href="#projects">Work</a>
+<a onclick="go('home')">Home</a>
+<a onclick="go('about')">About</a>
+<a onclick="go('projects')">Work</a>
 </div>
 </nav>
 
-<section id="home" class="hero">
-<h1>Jasper</h1>
+<!-- HOME -->
+
+<div id="home" class="page active">
+<h1>Data Systems Architect</h1>
+
 <p>
 Big 4–trained data professional specializing in analytics, engineering, and machine learning solutions that drive real business outcomes.
 </p>
-<div class="cta" onclick="document.getElementById('projects').scrollIntoView()">
+
+<div class="cta" onclick="go('projects')">
 → View Work
 </div>
-</section>
+</div>
 
-<section id="about">
+<!-- ABOUT -->
+
+<div id="about" class="page">
 <h2>About Me</h2>
 
 <div class="block">
@@ -199,35 +159,34 @@ My work connects business priorities with technical execution — translating am
 </div>
 
 <div class="block">
-I focus on scalable thinking: from ingestion to modeling to executive visibility.
+From ingestion to modeling to executive visibility, I design scalable solutions that enable action.
 </div>
 
 <div class="block">
-The goal is simple — turn raw data into reliable action.
+I specialize in transforming data into strategic infrastructure.
 </div>
 
-</section>
+</div>
 
-<section id="projects">
+<!-- PROJECTS -->
+
+<div id="projects" class="page">
+
 <h2>Selected Work</h2>
 
-<div class="project-group">
 <h3>Data Analytics</h3>
-
 <div class="project"><b>BRS</b><br>Enabled leadership visibility across fragmented reporting layers.</div>
 <div class="project"><b>Architectural Design</b><br>Aligned operational metrics with executive KPIs.</div>
 <div class="project"><b>Final Output</b><br>Insight dashboards.</div>
 <div class="project"><b>Business Impact</b><br>Accelerated decision cycles.</div>
 
 <h3>Data Engineering</h3>
-
 <div class="project"><b>BRS</b><br>Need for scalable enterprise pipelines.</div>
 <div class="project"><b>Architectural Design</b><br>Designed ETL logic and warehouse-ready flows.</div>
 <div class="project"><b>Final Output</b><br>Centralized data system.</div>
 <div class="project"><b>Business Impact</b><br>Operational efficiency.</div>
 
 <h3>Data Science</h3>
-
 <div class="project"><b>BRS</b><br>Predictive planning need.</div>
 <div class="project"><b>Architectural Design</b><br>ML integrated into workflows.</div>
 <div class="project"><b>Final Output</b><br>Forecasting models.</div>
@@ -235,19 +194,14 @@ The goal is simple — turn raw data into reliable action.
 
 </div>
 
-</section>
-
 <script>
 
-let sections=document.querySelectorAll("section");
-
-window.addEventListener("scroll",function(){
-sections.forEach(sec=>{
-if(sec.getBoundingClientRect().top < window.innerHeight-120){
-sec.classList.add("show");
+function go(page){
+document.querySelectorAll('.page').forEach(p=>{
+p.classList.remove('active');
+});
+document.getElementById(page).classList.add('active');
 }
-});
-});
 
 </script>
 
