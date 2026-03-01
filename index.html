@@ -7,22 +7,18 @@
 
 <style>
 *{margin:0;padding:0;box-sizing:border-box;font-family:'Segoe UI',sans-serif;}
+
 body{
 background:#05070d;
 color:#eaeaea;
+transition:0.4s;
 overflow:hidden;
 }
 
-/* Ambient glow */
-body::before{
-content:"";
-position:fixed;
-width:100%;
-height:100%;
-background:
-radial-gradient(circle at 20% 20%, rgba(0,255,255,0.08), transparent 40%),
-radial-gradient(circle at 80% 60%, rgba(140,0,255,0.08), transparent 40%);
-z-index:-1;
+/* LIGHT MODE */
+body.light{
+background:#f5f7fa;
+color:#111;
 }
 
 /* NAV */
@@ -34,14 +30,21 @@ display:flex;
 justify-content:space-between;
 align-items:center;
 background:rgba(255,255,255,0.02);
-backdrop-filter: blur(12px);
-border-bottom:1px solid rgba(255,255,255,0.05);
+backdrop-filter: blur(10px);
 z-index:100;
 }
 
-.logo{letter-spacing:3px;font-size:14px;color:#9befff;}
+.logo{color:#9befff;}
 
-.burger{cursor:pointer;}
+button{
+background:none;
+border:1px solid #9befff;
+color:#9befff;
+padding:6px 12px;
+cursor:pointer;
+}
+
+/* BURGER */
 .burger span{
 display:block;width:26px;height:2px;background:#9befff;margin:6px 0;
 }
@@ -49,19 +52,17 @@ display:block;width:26px;height:2px;background:#9befff;margin:6px 0;
 /* MENU */
 .menu{
 position:fixed;top:0;right:-260px;height:100%;width:260px;
-background:rgba(10,12,20,0.95);
-backdrop-filter: blur(20px);
+background:#111;
 transition:0.5s;
 padding-top:80px;
 }
 
 .menu a{
 display:block;padding:16px 30px;text-decoration:none;color:#aaa;
+cursor:pointer;
 }
 
-.menu a:hover,.active{
-color:#9befff;background:rgba(155,239,255,0.08);
-}
+.menu a:hover{color:#9befff;}
 
 /* SECTIONS */
 .section{
@@ -72,60 +73,90 @@ align-items:center;
 flex-direction:column;
 padding:40px;
 text-align:center;
-animation: fade 0.6s ease;
+animation:fade 0.5s ease;
 }
 
 .section.active{display:flex;}
 
 @keyframes fade{
-from{opacity:0;transform:translateY(30px);}
+from{opacity:0;transform:translateY(20px);}
 to{opacity:1;transform:translateY(0);}
 }
 
 h1{
-font-size:60px;
+font-size:50px;
 background:linear-gradient(90deg,#9befff,#c59bff);
 -webkit-background-clip:text;
 -webkit-text-fill-color:transparent;
 }
 
-.subtitle{
-margin-top:10px;
-color:#bbb;
-}
-
+/* CARDS */
 .grid{
 display:flex;
-gap:25px;
+gap:20px;
 flex-wrap:wrap;
 justify-content:center;
 margin-top:30px;
 }
 
 .card{
-background:rgba(255,255,255,0.04);
-padding:25px;
-border-radius:16px;
-width:250px;
-border:1px solid rgba(255,255,255,0.08);
+background:rgba(255,255,255,0.05);
+padding:20px;
+border-radius:12px;
+width:240px;
+cursor:pointer;
 transition:0.3s;
 }
 
 .card:hover{
-transform:translateY(-5px);
-box-shadow:0 0 12px #9befff;
+transform:scale(1.05);
+box-shadow:0 0 10px #9befff;
 }
 
-.card h3{color:#9befff;margin-bottom:10px;}
+/* MODAL */
+.modal{
+position:fixed;
+top:0;left:0;width:100%;height:100%;
+background:rgba(0,0,0,0.8);
+display:none;
+justify-content:center;
+align-items:center;
+}
 
-.tag{
-display:inline-block;
-padding:6px 12px;
-margin:5px;
-border:1px solid rgba(155,239,255,0.3);
-border-radius:20px;
-color:#9befff;
+.modal-content{
+background:#111;
+padding:30px;
+border-radius:10px;
+max-width:400px;
+}
+
+/* SKILL BARS */
+.skill{
+margin:10px;
+width:200px;
+text-align:left;
+}
+
+.bar{
+height:8px;
+background:#222;
+margin-top:5px;
+}
+
+.fill{
+height:100%;
+background:#9befff;
+}
+
+/* FOOTER */
+footer{
+position:fixed;
+bottom:0;
+width:100%;
+text-align:center;
+padding:10px;
 font-size:12px;
+opacity:0.6;
 }
 </style>
 </head>
@@ -134,96 +165,64 @@ font-size:12px;
 
 <nav>
 <div class="logo">PORTFOLIO</div>
-<div class="burger" onclick="toggleMenu()">
-<span></span><span></span><span></span>
+<div>
+<button onclick="toggleTheme()">Mode</button>
+<button onclick="toggleMenu()">☰</button>
 </div>
 </nav>
 
 <div class="menu" id="menu">
-<a onclick="showSection('home')" class="active">Home</a>
+<a onclick="showSection('home')">Home</a>
 <a onclick="showSection('projects')">Projects</a>
 <a onclick="showSection('case')">Case Studies</a>
 <a onclick="showSection('skills')">Skills</a>
-<a onclick="showSection('experience')">Experience</a>
-<a onclick="showSection('tools')">Tools</a>
 <a onclick="showSection('contact')">Contact</a>
 </div>
 
-<!-- HOME -->
 <div id="home" class="section active">
 <h1>Portfolio</h1>
-<p class="subtitle">Turning raw data into decision systems.</p>
-<p class="subtitle">Analytics | Engineering | Modeling</p>
+<p>Turning raw data into decision systems.</p>
+<br>
+<a href="resume.pdf" download><button>Download Resume</button></a>
 </div>
 
-<!-- PROJECTS -->
 <div id="projects" class="section">
 <h1>Projects</h1>
 <div class="grid">
-<div class="card"><h3>Sales Forecasting Dashboard</h3></div>
-<div class="card"><h3>ETL Automation Pipeline</h3></div>
-<div class="card"><h3>Customer Segmentation Model</h3></div>
+<div class="card" onclick="openModal('Forecasting Dashboard')">Forecasting Dashboard</div>
+<div class="card" onclick="openModal('ETL Pipeline')">ETL Pipeline</div>
+<div class="card" onclick="openModal('Segmentation Model')">Segmentation Model</div>
 </div>
 </div>
 
-<!-- CASE STUDIES -->
 <div id="case" class="section">
-<h1>Case Studies</h1>
-<div class="grid">
-<div class="card">
-<h3>Forecasting</h3>
-<p>Problem: Manual reports caused delays</p>
-<p>Solution: Automated pipeline</p>
-<p>Impact: Faster decisions</p>
+<h1>Case Study</h1>
+<p>Click a project to view details</p>
 </div>
 
-<div class="card">
-<h3>Segmentation</h3>
-<p>Problem: Poor targeting</p>
-<p>Solution: Clustering</p>
-<p>Impact: Better campaigns</p>
-</div>
-</div>
-</div>
-
-<!-- SKILLS -->
 <div id="skills" class="section">
 <h1>Skills</h1>
-<div>
-<span class="tag">Python</span>
-<span class="tag">SQL</span>
-<span class="tag">Power BI</span>
-<span class="tag">ETL</span>
-<span class="tag">Machine Learning</span>
-</div>
+<div class="skill">Python<div class="bar"><div class="fill" style="width:80%"></div></div></div>
+<div class="skill">SQL<div class="bar"><div class="fill" style="width:85%"></div></div></div>
+<div class="skill">Power BI<div class="bar"><div class="fill" style="width:75%"></div></div></div>
 </div>
 
-<!-- EXPERIENCE -->
-<div id="experience" class="section">
-<h1>Experience</h1>
-<p>Data Projects</p>
-<p>Freelance Work</p>
-<p>Self-led Systems</p>
-</div>
-
-<!-- TOOLS -->
-<div id="tools" class="section">
-<h1>Tools</h1>
-<div>
-<span class="tag">Azure</span>
-<span class="tag">Excel</span>
-<span class="tag">Git</span>
-<span class="tag">SQL Server</span>
-</div>
-</div>
-
-<!-- CONTACT -->
 <div id="contact" class="section">
 <h1>Contact</h1>
 <p>Email: your@email.com</p>
-<p>GitHub: github.com/yourname</p>
-<p>LinkedIn: linkedin.com/in/yourname</p>
+<p>GitHub</p>
+<p>LinkedIn</p>
 </div>
+
+<div class="modal" id="modal">
+<div class="modal-content">
+<p id="modal-text"></p>
+<br>
+<button onclick="closeModal()">Close</button>
+</div>
+</div>
+
+<footer>Portfolio Live</footer>
 
 <script>
 function toggleMenu(){
@@ -234,11 +233,20 @@ menu.style.right=menu.style.right==="0px"?"-260px":"0px";
 function showSection(id){
 document.querySelectorAll(".section").forEach(sec=>sec.classList.remove("active"));
 document.getElementById(id).classList.add("active");
-
-document.querySelectorAll(".menu a").forEach(a=>a.classList.remove("active"));
-event.target.classList.add("active");
-
 toggleMenu();
+}
+
+function toggleTheme(){
+document.body.classList.toggle("light");
+}
+
+function openModal(text){
+document.getElementById("modal").style.display="flex";
+document.getElementById("modal-text").innerText=text;
+}
+
+function closeModal(){
+document.getElementById("modal").style.display="none";
 }
 </script>
 
