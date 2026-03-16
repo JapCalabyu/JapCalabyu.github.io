@@ -1,210 +1,242 @@
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
-  <meta charset="UTF-8"/>
-  <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
-  <title>Jasper Calabio &mdash; Data Portfolio</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com"/>
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&family=Syne:wght@400;600;700;800&display=swap" rel="stylesheet"/>
-  <script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
-  <style>
-    /* ── TOKENS ──────────────────────────────────────────────────────── */
-    :root{
-      --bg0:#080d1a;--bg1:#0d1526;--bg2:#0f1a2e;
-      --glass:rgba(13,21,38,.72);--border:rgba(0,255,255,.12);
-      --t1:#e8f4f8;--t2:#7a9ab5;--t3:#3d5a73;
-      --c:#00e5ff;--v:#b44fff;--l:#aaff00;
-      --gc:rgba(0,229,255,.35);--gv:rgba(180,79,255,.35);--gl:rgba(170,255,0,.30);
-      --nav:rgba(8,13,26,.85);--grid:rgba(0,229,255,.04);
-      --shadow:0 8px 40px rgba(0,0,0,.55);--r:12px;--tr:.25s cubic-bezier(.4,0,.2,1);
-    }
-    [data-theme=light]{
-      --bg0:#f0f4fa;--bg1:#e4ecf7;--bg2:#fff;
-      --glass:rgba(240,244,250,.82);--border:rgba(0,100,200,.15);
-      --t1:#0a1628;--t2:#3a5a7a;--t3:#8aaccc;
-      --c:#0077cc;--v:#7722cc;--l:#3a8800;
-      --gc:rgba(0,119,204,.20);--gv:rgba(119,34,204,.18);--gl:rgba(58,136,0,.18);
-      --nav:rgba(8,13,26,.85);--grid:rgba(0,100,200,.05);
-      --shadow:0 4px 28px rgba(0,50,100,.12);
-    }
-    *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-    html{scroll-behavior:smooth}
-    body{font-family:'Syne',sans-serif;background:var(--bg0);color:var(--t1);line-height:1.65;overflow-x:hidden;transition:background var(--tr),color var(--tr)}
-    body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
-    section,nav,footer{position:relative;z-index:1}
-    a{color:inherit;text-decoration:none}
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<title>Jasper Calabio &mdash; Data Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet"/>
+<script src="https://cdn.jsdelivr.net/npm/typed.js@2.1.0/dist/typed.umd.js"></script>
+<style>
+:root{
+  --bg0:#0b0f1c;--bg1:#111827;--bg2:#1a2236;
+  --border:rgba(59,158,255,.18);
+  --t1:#f1f5f9;--t2:#94a3b8;--t3:#475569;
+  --c:#3B9EFF;--v:#F97316;--l:#34D399;
+  --gc:rgba(59,158,255,.30);--gv:rgba(249,115,22,.30);--gl:rgba(52,211,153,.25);
+  --navbg:rgba(11,15,28,.90);--grid:rgba(59,158,255,.05);
+  --shadow:0 8px 40px rgba(0,0,0,.55);--r:12px;--ease:.25s cubic-bezier(.4,0,.2,1);
+}
+[data-theme=light]{
+  --bg0:#f8fafc;--bg1:#f1f5f9;--bg2:#ffffff;
+  --border:rgba(30,100,220,.15);
+  --t1:#0f172a;--t2:#334155;--t3:#64748b;
+  --c:#1d6fd6;--v:#d6590a;--l:#059669;
+  --gc:rgba(29,111,214,.18);--gv:rgba(214,89,10,.18);--gl:rgba(5,150,105,.18);
+  --navbg:rgba(248,250,252,.95);--grid:rgba(30,100,220,.04);
+  --shadow:0 4px 28px rgba(15,23,42,.10);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg0);color:var(--t1);line-height:1.75;overflow-x:hidden;transition:background var(--ease),color var(--ease);font-size:16px;-webkit-font-smoothing:antialiased}
+body::before{content:'';position:fixed;inset:0;background-image:linear-gradient(var(--grid) 1px,transparent 1px),linear-gradient(90deg,var(--grid) 1px,transparent 1px);background-size:48px 48px;pointer-events:none;z-index:0}
+section,nav,footer{position:relative;z-index:1}
+section[id]{scroll-margin-top:68px}
+a{color:inherit;text-decoration:none}
+h1,h2,h3{font-family:'Inter',sans-serif;font-weight:800;line-height:1.15}
+/* NAV */
+#navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;background:var(--navbg);backdrop-filter:blur(18px) saturate(180%);-webkit-backdrop-filter:blur(18px) saturate(180%);border-bottom:1px solid var(--border);transition:background var(--ease)}
+.nav-logo{font-family:'Inter',sans-serif;font-weight:800;font-size:1.05rem;color:var(--c);letter-spacing:-.01em}
+.nav-links{display:flex;gap:.4rem;list-style:none;align-items:center}
+.nav-links a{font-family:'Inter',sans-serif;font-size:.82rem;letter-spacing:.03em;text-transform:none;color:var(--t1);font-weight:600;transition:color var(--ease),background var(--ease);padding:.25rem .5rem;border-radius:6px}
+.nav-links a:hover{color:var(--c);background:rgba(59,158,255,.08)}.nav-links a.active{color:var(--c);background:rgba(59,158,255,.12);font-weight:700}
+.nav-right{display:flex;align-items:center;gap:1rem}
+#theme-toggle{background:none;border:1px solid var(--border);border-radius:50px;padding:.3rem .8rem;cursor:pointer;font-family:'DM Mono',monospace;font-size:.7rem;color:var(--t1);font-weight:700;transition:all var(--ease);display:flex;align-items:center;gap:.4rem}
+#theme-toggle:hover{border-color:var(--c);color:var(--c);box-shadow:0 0 12px var(--gc)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
+.hamburger span{display:block;width:22px;height:2px;background:var(--t1);transition:all var(--ease)}
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border-radius:6px;font-family:'DM Mono',monospace;font-size:.75rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;border:none;transition:all var(--ease)}
+.btn-p{background:var(--c);color:#000}
+.btn-p:hover{box-shadow:0 0 24px var(--gc);transform:translateY(-2px)}
+.btn-o{background:transparent;color:var(--c);border:1px solid var(--c)}
+.btn-o:hover{background:var(--gc);box-shadow:0 0 18px var(--gc);transform:translateY(-2px)}
+.btn-v{background:transparent;color:var(--v);border:1px solid var(--v)}
+.btn-v:hover{background:var(--gv);box-shadow:0 0 18px var(--gv);transform:translateY(-2px)}
+.github-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1.1rem;border-radius:6px;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:700;letter-spacing:.04em;cursor:pointer;border:1px solid var(--l);color:var(--l);background:transparent;transition:all var(--ease);text-transform:uppercase}
+.github-btn:hover{background:var(--gl);box-shadow:0 0 18px var(--gl);transform:translateY(-2px)}
+/* HERO */
+#home{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 2rem 4rem;text-align:center}
+.hero-inner{max-width:780px;width:100%}
+.profile-ring{position:relative;display:inline-block;margin-bottom:2rem}
+.profile-ring::before{content:'';position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(var(--c),var(--v),var(--l),var(--c));animation:spin 6s linear infinite;z-index:0}
+@keyframes spin{to{transform:rotate(360deg)}}
+.profile-img{position:relative;z-index:1;width:140px;height:140px;border-radius:50%;background:var(--bg2);border:4px solid var(--bg0);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:3.5rem}
+.hero-name{font-size:clamp(2.6rem,7vw,5rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.4rem}
+.hero-name .first{color:var(--t1)}
+.hero-name .last{background:linear-gradient(120deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.hero-typed{font-family:'DM Mono',monospace;font-size:clamp(1rem,2.5vw,1.35rem);color:var(--c);margin-bottom:1.5rem;min-height:2rem}
+.hero-bio{font-size:1.05rem;color:var(--t2);max-width:580px;margin:0 auto 1.4rem;line-height:1.75}
+.hero-meta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1.8rem}
+.hero-meta-item{display:flex;align-items:center;gap:.5rem;font-family:'Inter',sans-serif;font-size:.82rem;color:var(--t2);font-weight:500;letter-spacing:.01em}
+.hero-cta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
+.scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:.4;font-family:'DM Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
+.scroll-arrow{width:1px;height:40px;background:linear-gradient(to bottom,var(--c),transparent);animation:pulse 1.8s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:.3;transform:scaleY(.8)}50%{opacity:1;transform:scaleY(1)}}
+/* SHARED */
+.sec-wrap{max-width:1160px;margin:0 auto;padding:6rem 2rem}
+.sec-hdr{margin-bottom:3.5rem}
+.sec-label{font-family:'DM Mono',monospace;font-size:.78rem;letter-spacing:.15em;text-transform:uppercase;color:var(--c);margin-bottom:.6rem;font-weight:500}
+.sec-title{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:1rem}
+.sec-title span{background:linear-gradient(120deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.divider{height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.2;margin:0 2rem}
+/* REVEAL — visible by default; JS adds .hide first, then removes it on scroll */
+.rv{opacity:1;transform:none;transition:opacity .7s ease,transform .7s ease}
+.rv.hide{opacity:0;transform:translateY(28px)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+/* EXPERIENCE */
+.exp-timeline{display:flex;flex-direction:column;gap:2rem}
+.exp-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:2rem;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform var(--ease),box-shadow var(--ease)}
+.exp-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--c),var(--v))}
+.exp-card:hover{transform:translateX(4px);box-shadow:0 12px 48px var(--gc);border-color:rgba(0,229,255,.25)}
+.exp-header{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.4rem}
+.exp-role{font-size:1.1rem;font-weight:700}
+.exp-period{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--c);background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.2);padding:.2rem .65rem;border-radius:50px;white-space:nowrap}
+.exp-company{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--v);letter-spacing:.05em;margin-bottom:1.2rem}
+.exp-bullets{list-style:none;display:flex;flex-direction:column;gap:.65rem}
+.exp-bullets li{font-size:.95rem;color:var(--t1);padding-left:1.2rem;position:relative;line-height:1.8}
+.exp-bullets li::before{content:'\25B8';position:absolute;left:0;color:var(--c);font-size:.7rem;top:.2rem}
+.exp-bullets li strong{color:var(--t1);font-weight:600}
+.exp-tools{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.3rem}
+.exp-badge{font-family:'DM Mono',monospace;font-size:.72rem;padding:.25rem .7rem;border-radius:6px;background:rgba(59,158,255,.10);color:var(--t1);border:1px solid rgba(59,158,255,.25);font-weight:500}
+/* SKILLS */
+.skills-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.8rem}
+.skill-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:2rem;box-shadow:var(--shadow);transition:transform var(--ease),box-shadow var(--ease)}
+.skill-card:hover{transform:translateY(-6px)}
+.sk-c:hover{box-shadow:0 12px 48px var(--gc);border-color:rgba(0,229,255,.3)}
+.sk-v:hover{box-shadow:0 12px 48px var(--gv);border-color:rgba(180,79,255,.3)}
+.sk-l:hover{box-shadow:0 12px 48px var(--gl);border-color:rgba(170,255,0,.25)}
+.skill-title{font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.4rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)}
+.sk-c .skill-title{color:var(--c)}.sk-v .skill-title{color:var(--v)}.sk-l .skill-title{color:var(--l)}
+.skill-icon{font-size:1.8rem;margin-bottom:.5rem}
+.pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.6rem}
+.pill{font-family:'DM Mono',monospace;font-size:.72rem;padding:.3rem .85rem;border-radius:50px;border:1px solid;transition:all var(--ease)}
+.sk-c .pill{color:var(--c);border-color:rgba(59,158,255,.40);background:rgba(59,158,255,.08)}
+.sk-c .pill:hover{background:rgba(59,158,255,.18);box-shadow:0 0 12px var(--gc)}
+.sk-v .pill{color:var(--v);border-color:rgba(249,115,22,.40);background:rgba(249,115,22,.08)}
+.sk-v .pill:hover{background:rgba(249,115,22,.18);box-shadow:0 0 12px var(--gv)}
+.sk-l .pill{color:var(--l);border-color:rgba(52,211,153,.40);background:rgba(52,211,153,.08)}
+.sk-l .pill:hover{background:rgba(52,211,153,.18);box-shadow:0 0 12px var(--gl)}
+.bars{display:flex;flex-direction:column;gap:.85rem}
+.bar-row{display:flex;flex-direction:column;gap:.3rem}
+.bar-label{display:flex;justify-content:space-between;font-family:'Inter',sans-serif;font-size:.78rem;color:var(--t1);font-weight:500;margin-bottom:.1rem}
+.bar-track{height:5px;background:rgba(148,163,184,.2);border-radius:4px;overflow:hidden}
+.bar-fill{height:100%;border-radius:4px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
+.sk-c .bar-fill{background:linear-gradient(90deg,var(--c),rgba(0,229,255,.4))}
+.sk-v .bar-fill{background:linear-gradient(90deg,var(--v),rgba(180,79,255,.4))}
+.sk-l .bar-fill{background:linear-gradient(90deg,var(--l),rgba(170,255,0,.3))}
+/* PROJECTS */
+.proj-track{margin-bottom:3.5rem}
+.track-label{display:inline-flex;align-items:center;gap:.6rem;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.35rem 1rem;border-radius:50px;margin-bottom:1.8rem}
+.tl-c{color:var(--c);background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2)}
+.tl-v{color:var(--v);background:rgba(180,79,255,.08);border:1px solid rgba(180,79,255,.2)}
+.tl-l{color:var(--l);background:rgba(170,255,0,.06);border:1px solid rgba(170,255,0,.2)}
+.proj-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.project{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem;display:flex;flex-direction:column;gap:.9rem;box-shadow:var(--shadow);transition:transform var(--ease),box-shadow var(--ease),border-color var(--ease)}
+.tc-c .project:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 16px 56px var(--gc);border-color:rgba(0,229,255,.35)}
+.tc-v .project:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 16px 56px var(--gv);border-color:rgba(180,79,255,.35)}
+.tc-l .project:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 16px 56px var(--gl);border-color:rgba(170,255,0,.3)}
+.proj-num{font-family:'DM Mono',monospace;font-size:.68rem;letter-spacing:.06em;color:var(--t2);font-weight:500}
+.proj-title{font-size:1.1rem;font-weight:700}
+.proj-desc{font-size:.95rem;color:var(--t1);line-height:1.75;flex:1;opacity:.85}
+.proj-stack{display:flex;flex-wrap:wrap;gap:.45rem}
+.badge{font-family:'DM Mono',monospace;font-size:.72rem;padding:.3rem .75rem;border-radius:6px;background:rgba(59,158,255,.10);color:var(--t1);border:1px solid rgba(59,158,255,.25);font-weight:500}
+/* EDUCATION */
+.edu-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:2rem 2.5rem;display:flex;align-items:center;gap:2rem;box-shadow:var(--shadow);max-width:680px;transition:all var(--ease)}
+.edu-card:hover{border-color:rgba(170,255,0,.3);box-shadow:0 12px 48px var(--gl);transform:translateY(-4px)}
+.edu-icon{font-size:3rem;flex-shrink:0}
+.edu-deg{font-size:1.1rem;font-weight:700;margin-bottom:.3rem}
+.edu-school{font-family:'DM Mono',monospace;font-size:.75rem;color:var(--l);letter-spacing:.05em;margin-bottom:.2rem}
+.edu-year{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--t3)}
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr;max-width:600px;gap:2rem}
+.contact-info{display:flex;flex-direction:column;gap:1.6rem}
+.contact-tagline{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.2}
+.contact-tagline span{background:linear-gradient(120deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+.contact-row{display:flex;align-items:center;gap:.8rem;font-family:'Inter',sans-serif;font-size:.88rem;color:var(--t1);font-weight:500}
+.contact-row a{color:var(--c);transition:all var(--ease)}
+.contact-row a:hover{text-shadow:0 0 12px var(--gc)}
+.contact-socials{display:flex;gap:1rem;flex-wrap:wrap}
+.social-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.1rem;border-radius:6px;font-family:'DM Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--border);color:var(--t1);font-weight:700;transition:all var(--ease)}
+.social-btn:hover{border-color:var(--c);color:var(--c);box-shadow:0 0 16px var(--gc)}
 
-    /* ── TYPOGRAPHY ────────────────────────────────────────────────────── */
-    h1,h2,h3{font-family:'Syne',sans-serif;font-weight:800;line-height:1.15}
-    .mono{font-family:'Space Mono',monospace}
-    .lbl{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.2em;text-transform:uppercase;color:var(--c);margin-bottom:.5rem}
-    .sec-title{font-size:clamp(2rem,5vw,3.2rem);margin-bottom:1rem}
-    .sec-title span{background:linear-gradient(120deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
 
-    /* ── NAV ───────────────────────────────────────────────────────────── */
-    #navbar{position:fixed;top:0;left:0;right:0;z-index:1000;display:flex;align-items:center;justify-content:space-between;padding:0 2rem;height:60px;background:var(--nav);backdrop-filter:blur(18px) saturate(180%);-webkit-backdrop-filter:blur(18px) saturate(180%);border-bottom:1px solid var(--border);transition:background var(--tr)}
-    .nav-logo{font-family:'Space Mono',monospace;font-weight:700;font-size:1rem;color:var(--c)}
-    .nav-links{display:flex;gap:1.4rem;list-style:none}
-    .nav-links a{font-family:'Space Mono',monospace;font-size:.7rem;letter-spacing:.06em;text-transform:uppercase;color:var(--t2);transition:color var(--tr)}
-    .nav-links a:hover{color:var(--c)}
-    .nav-right{display:flex;align-items:center;gap:1rem}
-    #theme-toggle{background:none;border:1px solid var(--border);border-radius:50px;padding:.3rem .8rem;cursor:pointer;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--t2);transition:all var(--tr);display:flex;align-items:center;gap:.4rem}
-    #theme-toggle:hover{border-color:var(--c);color:var(--c);box-shadow:0 0 12px var(--gc)}
-    .hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;padding:4px}
-    .hamburger span{display:block;width:22px;height:2px;background:var(--t2);transition:all var(--tr)}
 
-    /* ── BUTTONS ───────────────────────────────────────────────────────── */
-    .btn{display:inline-flex;align-items:center;gap:.5rem;padding:.65rem 1.5rem;border-radius:6px;font-family:'Space Mono',monospace;font-size:.78rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;cursor:pointer;border:none;transition:all var(--tr)}
-    .btn-c{background:var(--c);color:#000}.btn-c:hover{box-shadow:0 0 24px var(--gc);transform:translateY(-2px)}
-    .btn-oc{background:transparent;color:var(--c);border:1px solid var(--c)}.btn-oc:hover{background:var(--gc);box-shadow:0 0 18px var(--gc);transform:translateY(-2px)}
-    .btn-ov{background:transparent;color:var(--v);border:1px solid var(--v)}.btn-ov:hover{background:var(--gv);box-shadow:0 0 18px var(--gv);transform:translateY(-2px)}
-    .gbtn{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1.1rem;border-radius:6px;font-family:'Space Mono',monospace;font-size:.72rem;font-weight:700;letter-spacing:.04em;cursor:pointer;border:1px solid var(--l);color:var(--l);background:transparent;transition:all var(--tr);text-transform:uppercase}
-    .gbtn:hover{background:var(--gl);box-shadow:0 0 18px var(--gl);transform:translateY(-2px)}
 
-    /* ── LAYOUT HELPERS ────────────────────────────────────────────────── */
-    .wrap{max-width:1160px;margin:0 auto;padding:6rem 2rem}
-    .sec-hdr{margin-bottom:3.5rem}
-    .divider{height:1px;background:linear-gradient(90deg,transparent,var(--c),transparent);opacity:.2;margin:0 2rem}
 
-    /* ── PARTICLES ─────────────────────────────────────────────────────── */
-    #particles{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.45}
 
-    /* ── REVEAL ────────────────────────────────────────────────────────── */
-    .rv{opacity:0;transform:translateY(30px);transition:opacity .7s ease,transform .7s ease}
-    .rv.in{opacity:1;transform:translateY(0)}
-    .d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+/* FOOTER */
+footer{background:var(--bg0);border-top:1px solid var(--border);padding:2rem;text-align:center;font-family:'DM Mono',monospace;font-size:.72rem;color:var(--t3);letter-spacing:.08em}
+footer a{color:var(--c)}
+footer a:hover{color:var(--v)}
+/* CANVAS */
+#particles{position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.45}
+/* MOBILE */
+@media(max-width:768px){
+  .nav-links{position:fixed;top:60px;left:0;right:0;background:var(--navbg);backdrop-filter:blur(20px);flex-direction:column;align-items:center;gap:0;padding:0;max-height:0;overflow:hidden;transition:max-height .35s ease;border-bottom:1px solid var(--border)}
+  .nav-links.open{max-height:420px}
+  .nav-links li{width:100%;text-align:center}
+  .nav-links a{display:block !important;padding:.9rem 1rem !important;color:var(--t1);border-radius:0 !important}
+  .hamburger{display:flex}
+  .contact-grid{grid-template-columns:1fr;gap:2.5rem}
+  .hero-cta{flex-direction:column;align-items:center}
+  .sec-wrap{padding:4rem 1.2rem}
+  .edu-card{flex-direction:column;gap:1rem;text-align:center}
+}
 
-    /* ── HERO ──────────────────────────────────────────────────────────── */
-    #home{min-height:100vh;display:flex;align-items:center;justify-content:center;padding:100px 2rem 4rem;text-align:center}
-    .hero-inner{max-width:780px;width:100%}
-    .profile-ring{position:relative;display:inline-block;margin-bottom:2rem}
-    .profile-ring::before{content:'';position:absolute;inset:-4px;border-radius:50%;background:conic-gradient(var(--c),var(--v),var(--l),var(--c));animation:spin 6s linear infinite;z-index:0}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .profile-img{position:relative;z-index:1;width:140px;height:140px;border-radius:50%;background:var(--bg2);border:4px solid var(--bg0);display:flex;align-items:center;justify-content:center;overflow:hidden;font-size:3.5rem}
-    .hero-name{font-size:clamp(2.6rem,7vw,5rem);font-weight:800;letter-spacing:-.02em;margin-bottom:.4rem}
-    .hero-name .fn{color:var(--t1)}
-    .hero-name .ln{background:linear-gradient(120deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .hero-typed{font-family:'Space Mono',monospace;font-size:clamp(1rem,2.5vw,1.35rem);color:var(--c);margin-bottom:1.5rem;min-height:2rem}
-    .hero-bio{font-size:1.05rem;color:var(--t2);max-width:580px;margin:0 auto 1.5rem;line-height:1.75}
-    .hero-meta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center;margin-bottom:1.8rem}
-    .hm-item{display:flex;align-items:center;gap:.4rem;font-family:'Space Mono',monospace;font-size:.68rem;color:var(--t3);letter-spacing:.04em}
-    .hero-cta{display:flex;flex-wrap:wrap;gap:1rem;justify-content:center}
-    .scroll-hint{position:absolute;bottom:2rem;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:.4rem;opacity:.4;font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase}
-    .scroll-arr{width:1px;height:40px;background:linear-gradient(to bottom,var(--c),transparent);animation:sp 1.8s ease-in-out infinite}
-    @keyframes sp{0%,100%{opacity:.3;transform:scaleY(.8)}50%{opacity:1;transform:scaleY(1)}}
-
-    /* ── EXPERIENCE ────────────────────────────────────────────────────── */
-    #experience{background:var(--bg1)}
-    .exp-list{display:flex;flex-direction:column;gap:2rem}
-    .exp-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:2rem;box-shadow:var(--shadow);position:relative;overflow:hidden;transition:transform var(--tr),box-shadow var(--tr)}
-    .exp-card::before{content:'';position:absolute;top:0;left:0;width:3px;height:100%;background:linear-gradient(to bottom,var(--c),var(--v))}
-    .exp-card:hover{transform:translateX(4px);box-shadow:0 12px 48px var(--gc);border-color:rgba(0,229,255,.25)}
-    .exp-head{display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:.5rem;margin-bottom:.4rem}
-    .exp-role{font-size:1.1rem;font-weight:700}
-    .exp-period{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.08em;color:var(--c);background:rgba(0,229,255,.07);border:1px solid rgba(0,229,255,.2);padding:.2rem .65rem;border-radius:50px;white-space:nowrap}
-    .exp-co{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--v);letter-spacing:.05em;margin-bottom:1.2rem}
-    .exp-ul{list-style:none;display:flex;flex-direction:column;gap:.65rem}
-    .exp-ul li{font-size:.9rem;color:var(--t2);padding-left:1.2rem;position:relative;line-height:1.65}
-    .exp-ul li::before{content:'▸';position:absolute;left:0;color:var(--c);font-size:.7rem;top:.18rem}
-    .exp-ul li strong{color:var(--t1);font-weight:600}
-    .exp-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.3rem}
-    .etag{font-family:'Space Mono',monospace;font-size:.62rem;padding:.2rem .6rem;border-radius:4px;background:rgba(0,229,255,.07);color:var(--c);border:1px solid rgba(0,229,255,.18);letter-spacing:.04em}
-
-    /* ── SKILLS ────────────────────────────────────────────────────────── */
-    #skills{background:var(--bg0)}
-    .sk-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.8rem}
-    .sk-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:2rem;box-shadow:var(--shadow);transition:transform var(--tr),box-shadow var(--tr)}
-    .sk-card:hover{transform:translateY(-6px)}
-    .sk-c:hover{box-shadow:0 12px 48px var(--gc);border-color:rgba(0,229,255,.3)}
-    .sk-v:hover{box-shadow:0 12px 48px var(--gv);border-color:rgba(180,79,255,.3)}
-    .sk-l:hover{box-shadow:0 12px 48px var(--gl);border-color:rgba(170,255,0,.25)}
-    .sk-title{font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;margin-bottom:1.4rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)}
-    .sk-c .sk-title{color:var(--c)}.sk-v .sk-title{color:var(--v)}.sk-l .sk-title{color:var(--l)}
-    .sk-icon{font-size:1.8rem;margin-bottom:.5rem}
-    .pills{display:flex;flex-wrap:wrap;gap:.6rem;margin-bottom:1.6rem}
-    .pill{font-family:'Space Mono',monospace;font-size:.72rem;padding:.3rem .85rem;border-radius:50px;border:1px solid;transition:all var(--tr)}
-    .sk-c .pill{color:var(--c);border-color:rgba(0,229,255,.35);background:rgba(0,229,255,.05)}.sk-c .pill:hover{background:rgba(0,229,255,.15);box-shadow:0 0 10px var(--gc)}
-    .sk-v .pill{color:var(--v);border-color:rgba(180,79,255,.35);background:rgba(180,79,255,.05)}.sk-v .pill:hover{background:rgba(180,79,255,.15);box-shadow:0 0 10px var(--gv)}
-    .sk-l .pill{color:var(--l);border-color:rgba(170,255,0,.3);background:rgba(170,255,0,.04)}.sk-l .pill:hover{background:rgba(170,255,0,.12);box-shadow:0 0 10px var(--gl)}
-    .bars{display:flex;flex-direction:column;gap:.85rem}
-    .bar-row{display:flex;flex-direction:column;gap:.3rem}
-    .bar-lbl{display:flex;justify-content:space-between;font-family:'Space Mono',monospace;font-size:.7rem;color:var(--t2)}
-    .bar-track{height:4px;background:var(--border);border-radius:4px;overflow:hidden}
-    .bar-fill{height:100%;border-radius:4px;width:0;transition:width 1.2s cubic-bezier(.4,0,.2,1)}
-    .sk-c .bar-fill{background:linear-gradient(90deg,var(--c),rgba(0,229,255,.4))}
-    .sk-v .bar-fill{background:linear-gradient(90deg,var(--v),rgba(180,79,255,.4))}
-    .sk-l .bar-fill{background:linear-gradient(90deg,var(--l),rgba(170,255,0,.3))}
-
-    /* ── PROJECTS ──────────────────────────────────────────────────────── */
-    #projects{background:var(--bg1)}
-    .track{margin-bottom:3.5rem}
-    .track-lbl{display:inline-flex;align-items:center;gap:.6rem;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;padding:.35rem 1rem;border-radius:50px;margin-bottom:1.8rem}
-    .tl-c{color:var(--c);background:rgba(0,229,255,.08);border:1px solid rgba(0,229,255,.2)}
-    .tl-v{color:var(--v);background:rgba(180,79,255,.08);border:1px solid rgba(180,79,255,.2)}
-    .tl-l{color:var(--l);background:rgba(170,255,0,.06);border:1px solid rgba(170,255,0,.2)}
-    .proj-row{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
-    .project{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:1.6rem;display:flex;flex-direction:column;gap:.9rem;box-shadow:var(--shadow);transition:transform var(--tr),box-shadow var(--tr),border-color var(--tr)}
-    .tc .project:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 16px 56px var(--gc);border-color:rgba(0,229,255,.35)}
-    .tv .project:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 16px 56px var(--gv);border-color:rgba(180,79,255,.35)}
-    .tl .project:hover{transform:translateY(-6px) scale(1.01);box-shadow:0 16px 56px var(--gl);border-color:rgba(170,255,0,.3)}
-    .pnum{font-family:'Space Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--t3)}
-    .ptitle{font-size:1.1rem;font-weight:700}
-    .pdesc{font-size:.9rem;color:var(--t2);line-height:1.65;flex:1}
-    .pstack{display:flex;flex-wrap:wrap;gap:.45rem}
-    .sbadge{font-family:'Space Mono',monospace;font-size:.62rem;padding:.2rem .6rem;border-radius:4px;background:var(--border);color:var(--t3);letter-spacing:.04em}
-
-    /* ── EDUCATION ─────────────────────────────────────────────────────── */
-    #education{background:var(--bg0)}
-    .edu-card{background:var(--bg2);border:1px solid var(--border);border-radius:var(--r);padding:2rem 2.5rem;display:flex;align-items:center;gap:2rem;box-shadow:var(--shadow);max-width:680px;transition:all var(--tr)}
-    .edu-card:hover{border-color:rgba(170,255,0,.3);box-shadow:0 12px 48px var(--gl);transform:translateY(-4px)}
-    .edu-icon{font-size:3rem;flex-shrink:0}
-    .edu-deg{font-size:1.1rem;font-weight:700;margin-bottom:.3rem}
-    .edu-school{font-family:'Space Mono',monospace;font-size:.75rem;color:var(--l);letter-spacing:.05em;margin-bottom:.2rem}
-    .edu-year{font-family:'Space Mono',monospace;font-size:.68rem;color:var(--t3)}
-
-    /* ── CONTACT ───────────────────────────────────────────────────────── */
-    #contact{background:var(--bg1)}
-    .contact-grid{display:grid;grid-template-columns:1fr 1.4fr;gap:4rem;align-items:start}
-    .contact-left{display:flex;flex-direction:column;gap:1.6rem}
-    .contact-tagline{font-size:clamp(1.6rem,3.5vw,2.4rem);font-weight:800;line-height:1.2}
-    .contact-tagline span{background:linear-gradient(120deg,var(--c),var(--v));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
-    .contact-detail{display:flex;align-items:center;gap:.65rem;font-family:'Space Mono',monospace;font-size:.78rem;color:var(--t2)}
-    .contact-detail a{color:var(--c);transition:all var(--tr)}.contact-detail a:hover{text-shadow:0 0 12px var(--gc)}
-    .socials{display:flex;gap:1rem;flex-wrap:wrap}
-    .soc-btn{display:inline-flex;align-items:center;gap:.5rem;padding:.55rem 1.1rem;border-radius:6px;font-family:'Space Mono',monospace;font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;border:1px solid var(--border);color:var(--t2);transition:all var(--tr)}
-    .soc-btn:hover{border-color:var(--c);color:var(--c);box-shadow:0 0 16px var(--gc)}
-    .contact-form{display:flex;flex-direction:column;gap:1.1rem}
-    .fg{display:flex;flex-direction:column;gap:.35rem}
-    .fg label{font-family:'Space Mono',monospace;font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--t3)}
-    .fg input,.fg textarea{background:var(--bg2);border:1px solid var(--border);border-radius:6px;padding:.75rem 1rem;font-family:'Syne',sans-serif;font-size:.92rem;color:var(--t1);resize:vertical;transition:border-color var(--tr),box-shadow var(--tr);outline:none}
-    .fg input:focus,.fg textarea:focus{border-color:var(--c);box-shadow:0 0 0 3px var(--gc)}
-    .fg textarea{min-height:120px}
-
-    /* ── FOOTER ────────────────────────────────────────────────────────── */
-    footer{background:var(--bg0);border-top:1px solid var(--border);padding:2rem;text-align:center;font-family:'Space Mono',monospace;font-size:.72rem;color:var(--t3);letter-spacing:.08em}
-    footer a{color:var(--c)}.footer a:hover{color:var(--v)}
-
-    /* ── RESPONSIVE ────────────────────────────────────────────────────── */
-    @media(max-width:768px){
-      .nav-links{position:fixed;top:60px;left:0;right:0;background:var(--nav);backdrop-filter:blur(20px);flex-direction:column;align-items:center;gap:0;padding:0;max-height:0;overflow:hidden;transition:max-height .35s ease;border-bottom:1px solid var(--border)}
-      .nav-links.open{max-height:400px}
-      .nav-links li{width:100%;text-align:center}
-      .nav-links a{display:block;padding:1rem}
-      .hamburger{display:flex}
-      .contact-grid{grid-template-columns:1fr;gap:2.5rem}
-      .hero-cta,.hero-meta{flex-direction:column;align-items:center}
-      .wrap{padding:4rem 1.2rem}
-      .edu-card{flex-direction:column;gap:1rem;text-align:center}
-    }
-  </style>
+/* PREVIEW MODAL */
+.modal-overlay{position:fixed;inset:0;background:rgba(0,0,0,.75);z-index:2000;display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;pointer-events:none;transition:opacity .3s ease;backdrop-filter:blur(6px)}
+.modal-overlay.open{opacity:1;pointer-events:all}
+.modal-box{background:var(--bg2);border:1px solid var(--border);border-radius:16px;width:100%;max-width:900px;max-height:90vh;overflow:hidden;display:flex;flex-direction:column;transform:translateY(20px) scale(.97);transition:transform .3s ease;box-shadow:0 32px 80px rgba(0,0,0,.6)}
+.modal-overlay.open .modal-box{transform:translateY(0) scale(1)}
+.modal-header{display:flex;align-items:center;justify-content:space-between;padding:1.2rem 1.6rem;border-bottom:1px solid var(--border)}
+.modal-title{font-family:'Inter',sans-serif;font-size:1rem;font-weight:700;color:var(--t1)}
+.modal-subtitle{font-family:'DM Mono',monospace;font-size:.68rem;color:var(--c);margin-top:.15rem}
+.modal-close{background:none;border:1px solid var(--border);border-radius:8px;width:32px;height:32px;cursor:pointer;color:var(--t2);font-size:1.1rem;display:flex;align-items:center;justify-content:center;transition:all var(--ease);flex-shrink:0}
+.modal-close:hover{border-color:var(--c);color:var(--c)}
+.modal-body{flex:1;overflow-y:auto;padding:1.6rem}
+.preview-btn{display:inline-flex;align-items:center;gap:.45rem;padding:.5rem 1rem;border-radius:6px;font-family:'DM Mono',monospace;font-size:.7rem;font-weight:500;cursor:pointer;border:1px solid var(--c);color:var(--c);background:rgba(59,158,255,.07);transition:all var(--ease);text-transform:uppercase;letter-spacing:.04em}
+.preview-btn:hover{background:rgba(59,158,255,.18);box-shadow:0 0 16px rgba(59,158,255,.3);transform:translateY(-2px)}
+/* Dashboard chart elements */
+.dash-grid{display:grid;gap:1rem}
+.dash-grid-2{grid-template-columns:1fr 1fr}
+.dash-grid-3{grid-template-columns:1fr 1fr 1fr}
+.dash-kpi{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:1.1rem 1.3rem}
+.dash-kpi-label{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--t2);text-transform:uppercase;letter-spacing:.1em;margin-bottom:.3rem}
+.dash-kpi-value{font-family:'Inter',sans-serif;font-size:1.6rem;font-weight:800;color:var(--t1)}
+.dash-kpi-delta{font-family:'Inter',sans-serif;font-size:.75rem;font-weight:600;margin-top:.2rem}
+.dash-kpi-delta.up{color:#34D399}.dash-kpi-delta.down{color:#F97316}
+.dash-chart-box{background:var(--bg1);border:1px solid var(--border);border-radius:10px;padding:1.2rem}
+.dash-chart-title{font-family:'Inter',sans-serif;font-size:.82rem;font-weight:600;color:var(--t1);margin-bottom:1rem}
+.bar-chart{display:flex;align-items:flex-end;gap:.5rem;height:120px}
+.bar-chart-col{display:flex;flex-direction:column;align-items:center;gap:.3rem;flex:1}
+.bar-chart-bar{width:100%;border-radius:4px 4px 0 0;transition:height .8s cubic-bezier(.4,0,.2,1);min-height:4px}
+.bar-chart-lbl{font-family:'DM Mono',monospace;font-size:.58rem;color:var(--t3);text-align:center}
+.line-chart{position:relative;height:100px}
+.line-chart svg{width:100%;height:100%}
+.donut-wrap{display:flex;align-items:center;gap:1.2rem}
+.donut-legend{display:flex;flex-direction:column;gap:.5rem}
+.donut-legend-item{display:flex;align-items:center;gap:.5rem;font-family:'Inter',sans-serif;font-size:.75rem;color:var(--t2)}
+.donut-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.table-preview{width:100%;border-collapse:collapse;font-family:'Inter',sans-serif;font-size:.78rem}
+.table-preview th{font-family:'DM Mono',monospace;font-size:.65rem;color:var(--t2);text-transform:uppercase;letter-spacing:.08em;padding:.5rem .75rem;border-bottom:1px solid var(--border);text-align:left}
+.table-preview td{padding:.55rem .75rem;border-bottom:1px solid rgba(148,163,184,.08);color:var(--t1)}
+.table-preview tr:last-child td{border-bottom:none}
+.table-preview tr:hover td{background:rgba(59,158,255,.05)}
+.status-pill{display:inline-block;padding:.15rem .55rem;border-radius:50px;font-size:.65rem;font-weight:600;font-family:'DM Mono',monospace}
+.status-ok{background:rgba(52,211,153,.15);color:#34D399}
+.status-warn{background:rgba(249,115,22,.15);color:#F97316}
+.status-info{background:rgba(59,158,255,.15);color:#3B9EFF}
+@media(max-width:640px){.dash-grid-2,.dash-grid-3{grid-template-columns:1fr}}
+</style>
 </head>
 <body>
 <canvas id="particles"></canvas>
 
-<!-- ═══ NAV ════════════════════════════════════════════════════════════════ -->
+<!-- NAV -->
 <nav id="navbar">
-  <span class="nav-logo mono">// JGC.DEV</span>
+  <span class="nav-logo">// JGC.DEV</span>
   <ul class="nav-links" id="nav-links">
     <li><a href="#home">Home</a></li>
     <li><a href="#experience">Experience</a></li>
@@ -214,299 +246,257 @@
     <li><a href="#contact">Contact</a></li>
   </ul>
   <div class="nav-right">
-    <button id="theme-toggle"><span id="ti">&#9728;</span><span id="tl">Light</span></button>
+    <button id="theme-toggle"><span id="ti">&#9728;</span>&nbsp;<span id="tl">Light</span></button>
     <button class="hamburger" id="hbg" aria-label="Menu"><span></span><span></span><span></span></button>
   </div>
 </nav>
 
-<!-- ═══ HERO ═══════════════════════════════════════════════════════════════ -->
+<!-- HERO -->
 <section id="home">
   <div class="hero-inner">
     <div class="profile-ring">
-      <!-- TODO: Replace with <img src="your-photo.jpg" …> -->
-      <div class="profile-img">&#x1F9D1;&#x200D;&#x1F4BB;</div>
+      <!-- TODO: Replace with <img src="your-photo.jpg" style="width:140px;height:140px;border-radius:50%;object-fit:cover;position:relative;z-index:1;"> -->
+      <div class="profile-img">&#128104;&#8205;&#128187;</div>
     </div>
-    <h1 class="hero-name"><span class="fn">Jasper </span><span class="ln">Calabio</span></h1>
-    <div class="hero-typed mono">&gt; <span id="typed"></span></div>
-    <p class="hero-bio">
-      I bridge the gap between raw data and real decisions &mdash; building Power BI dashboards
-      that cut through the noise, automating ETL workflows, and turning messy datasets
-      into clear, actionable intelligence. Based in Navotas, Metro Manila &#x1F1F5;&#x1F1ED;
-    </p>
+    <h1 class="hero-name"><span class="first">Jasper </span><span class="last">Calabio</span></h1>
+    <div class="hero-typed">&gt;&nbsp;<span id="typed"></span></div>
+    <p class="hero-bio">I bridge the gap between raw data and real decisions &mdash; building Power BI dashboards that cut through noise, automating ETL workflows, and turning messy datasets into clear, actionable intelligence.</p>
     <div class="hero-meta">
-      <span class="hm-item">
+      <span class="hero-meta-item">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
         Navotas, Metro Manila
       </span>
-      <span class="hm-item">
+      <span class="hero-meta-item">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
         2020jaspercalabio@gmail.com
       </span>
-      <span class="hm-item">
+      <span class="hero-meta-item">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
         (+63) 962 464 0511
       </span>
     </div>
     <div class="hero-cta">
       <!-- TODO: Replace # with your resume PDF link -->
-      <a href="#" class="btn btn-c"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>Resume</a>
+      <a href="#" class="btn btn-p"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8l-6-6zm-1 1.5L18.5 9H13V3.5zM6 20V4h5v7h7v9H6z"/></svg>Resume</a>
       <!-- TODO: Replace # with your GitHub URL -->
-      <a href="#" target="_blank" rel="noopener" class="btn btn-oc"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+      <a href="#" target="_blank" class="btn btn-o"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
       <!-- TODO: Replace # with your LinkedIn URL -->
-      <a href="#" target="_blank" rel="noopener" class="btn btn-ov"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+      <a href="#" target="_blank" class="btn btn-v"><svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
     </div>
   </div>
-  <div class="scroll-hint">scroll<div class="scroll-arr"></div></div>
+  <div class="scroll-hint">scroll<div class="scroll-arrow"></div></div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ EXPERIENCE ══════════════════════════════════════════════════════════ -->
-<section id="experience">
-  <div class="wrap">
+<!-- EXPERIENCE -->
+<section id="experience" style="background:var(--bg1)">
+  <div class="sec-wrap">
     <div class="sec-hdr rv">
-      <p class="lbl">// 01 &mdash; Work History</p>
+      <p class="sec-label">// 01 &mdash; Work History</p>
       <h2 class="sec-title">My <span>Experience</span></h2>
-      <p style="color:var(--t2);max-width:520px;font-size:.95rem;">Over a year of hands-on BI, ETL, ERP, and analytics work across Metro Manila.</p>
+      <p style="color:var(--t2);max-width:520px;font-size:.95rem">Over a year of hands-on BI, ETL, ERP implementation, and analytics across Metro Manila.</p>
     </div>
-    <div class="exp-list">
-
+    <div class="exp-timeline">
       <div class="exp-card rv d1">
-        <div class="exp-head">
+        <div class="exp-header">
           <div class="exp-role">Data &amp; Systems Analyst</div>
           <div class="exp-period">June 2025 &mdash; Present</div>
         </div>
-        <div class="exp-co">Netsolar Incorporated &middot; Pasig, Manila</div>
-        <ul class="exp-ul">
+        <div class="exp-company">Netsolar Incorporated &middot; Pasig, Manila</div>
+        <ul class="exp-bullets">
           <li>Developed a <strong>cash flow monitoring dashboard</strong> tracking payables, receivables, and company balance &mdash; reducing manual PO/SO tracking by approximately <strong>50%</strong>.</li>
-          <li>Built an <strong>operations expense dashboard</strong> in Power BI tracking company-wide expenses vs. projected budgets, enabling early cost overrun detection and contributing to a <strong>10% profitability increase</strong>.</li>
-          <li>Designed a <strong>sales KPI dashboard</strong> monitoring milestones and delivery timelines &mdash; reducing project delays by <strong>10%</strong>.</li>
-          <li>Created an <strong>inventory monitoring dashboard</strong> for the supply chain team comparing forecasted vs. actual levels, supporting data audits and reducing inconsistent records by <strong>24%</strong>.</li>
-          <li>Collaborated cross-functionally during <strong>Odoo ERP implementation</strong> by developing process documentation and user manuals, reducing recurring user questions by <strong>30%</strong>.</li>
-          <li>Performed <strong>ad hoc cash flow forecasting</strong> in Excel to support leadership in evaluating financial performance.</li>
-          <li>Managed projects in <strong>Asana</strong> to track milestones and team status, boosting delivery efficiency by <strong>50%</strong>.</li>
+          <li>Built an <strong>operations expense dashboard</strong> in Power BI tracking actuals vs. projected budgets, enabling early cost overrun detection and contributing to a <strong>10% profitability increase</strong>.</li>
+          <li>Designed a <strong>sales KPI dashboard</strong> monitoring milestones and delivery timelines, reducing project delays by <strong>10%</strong>.</li>
+          <li>Created an <strong>inventory monitoring dashboard</strong> for the supply chain team comparing forecasted vs. actual levels &mdash; reducing dirty or inconsistent data by <strong>24%</strong>.</li>
+          <li>Led cross-functional <strong>Odoo ERP implementation</strong> documentation and user manuals, standardizing workflows and reducing recurring support questions by <strong>30%</strong>.</li>
+          <li>Performed <strong>ad hoc cash flow forecasting</strong> in Excel to support leadership financial decisions.</li>
+          <li>Managed projects in <strong>Asana</strong>, boosting project delivery efficiency by <strong>50%</strong>.</li>
         </ul>
-        <div class="exp-tags">
-          <span class="etag">Power BI</span><span class="etag">DAX</span><span class="etag">Excel</span><span class="etag">Odoo ERP</span><span class="etag">Asana</span><span class="etag">Cash Flow Modeling</span><span class="etag">Supply Chain Analytics</span>
+        <div class="exp-tools">
+          <span class="exp-badge">Power BI</span><span class="exp-badge">DAX</span><span class="exp-badge">Excel</span>
+          <span class="exp-badge">Odoo ERP</span><span class="exp-badge">Asana</span><span class="exp-badge">Cash Flow Modeling</span><span class="exp-badge">Supply Chain Analytics</span>
         </div>
       </div>
-
       <div class="exp-card rv d2">
-        <div class="exp-head">
+        <div class="exp-header">
           <div class="exp-role">Data Analyst</div>
           <div class="exp-period">June 2024 &mdash; June 2025</div>
         </div>
-        <div class="exp-co">Straive &middot; Para&ntilde;aque, Manila</div>
-        <ul class="exp-ul">
-          <li>Analyzed customer and edtech sales data from <strong>Salesforce</strong> and the company website, reducing integration issues by <strong>14%</strong> and improving data integrity through cross-referencing and validation.</li>
+        <div class="exp-company">Straive &middot; Para&ntilde;aque, Manila</div>
+        <ul class="exp-bullets">
+          <li>Analyzed customer and edtech sales data from <strong>Salesforce</strong> and the company website &mdash; reducing integration issues by <strong>14%</strong> and improving data integrity through cross-referencing and validation.</li>
           <li>Investigated missing customer records and data mismatches across internal databases, supporting sales teams with timely and accurate responses.</li>
           <li>Collaborated with IT and business stakeholders to implement <strong>data validation processes</strong>, leading to a <strong>75% improvement</strong> in order automation efficiency.</li>
-          <li>Performed <strong>ETL processes</strong> using Power Query and VBA macros to extract, transform, and load data &mdash; streamlining workflows and enhancing reporting accuracy.</li>
-          <li>Developed interactive <strong>Power BI dashboards</strong> visualizing KPIs for real-time stakeholder insights.</li>
+          <li>Performed <strong>ETL processes</strong> using Power Query and VBA macros to extract, transform, and load data from multiple sources &mdash; streamlining workflows and enhancing reporting accuracy.</li>
+          <li>Developed interactive <strong>Power BI dashboards</strong> to visualize KPIs, enabling stakeholders to gain real-time insights and make informed decisions.</li>
         </ul>
-        <div class="exp-tags">
-          <span class="etag">Power BI</span><span class="etag">Salesforce</span><span class="etag">Power Query</span><span class="etag">VBA Macros</span><span class="etag">Excel</span><span class="etag">ETL</span><span class="etag">Data Validation</span>
+        <div class="exp-tools">
+          <span class="exp-badge">Power BI</span><span class="exp-badge">Salesforce</span><span class="exp-badge">Power Query</span>
+          <span class="exp-badge">VBA Macros</span><span class="exp-badge">Excel</span><span class="exp-badge">ETL</span><span class="exp-badge">Data Validation</span>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ SKILLS ══════════════════════════════════════════════════════════════ -->
-<section id="skills">
-  <div class="wrap">
+<!-- SKILLS -->
+<section id="skills" style="background:var(--bg0)">
+  <div class="sec-wrap">
     <div class="sec-hdr rv">
-      <p class="lbl">// 02 &mdash; Capabilities</p>
+      <p class="sec-label">// 02 &mdash; Capabilities</p>
       <h2 class="sec-title">My <span>Skill Stack</span></h2>
-      <p style="color:var(--t2);max-width:520px;font-size:.95rem;">Analytics, engineering, and governance &mdash; three pillars of my data practice.</p>
+      <p style="color:var(--t2);max-width:520px;font-size:.95rem">Analytics, engineering, and governance &mdash; three pillars of my data practice.</p>
     </div>
-    <div class="sk-grid">
-
-      <!-- Analytics -->
-      <div class="sk-card sk-c rv d1">
-        <div class="sk-icon">&#x1F4CA;</div>
-        <div class="sk-title">Analytics &amp; BI</div>
+    <div class="skills-grid">
+      <div class="skill-card sk-c rv d1">
+        <div class="skill-icon">&#128202;</div>
+        <div class="skill-title">Analytics &amp; BI</div>
         <div class="pills">
-          <span class="pill">Excel (Advanced)</span>
-          <span class="pill">Power BI</span>
-          <span class="pill">Power Query</span>
-          <span class="pill">DAX</span>
-          <span class="pill">VBA Macros</span>
-          <span class="pill">KPI Dashboards</span>
-          <span class="pill">SQL (Basic)</span>
+          <span class="pill">Excel (Advanced)</span><span class="pill">Power BI</span><span class="pill">Power Query</span>
+          <span class="pill">VBA Macros</span><span class="pill">DAX</span><span class="pill">KPI Dashboards</span><span class="pill">SQL (Basic)</span>
         </div>
         <div class="bars">
-          <div class="bar-row"><div class="bar-lbl"><span>Excel (Advanced)</span><span>95%</span></div><div class="bar-track"><div class="bar-fill" data-w="95"></div></div></div>
-          <div class="bar-row"><div class="bar-lbl"><span>Power BI</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" data-w="90"></div></div></div>
-          <div class="bar-row"><div class="bar-lbl"><span>Power Query</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-w="88"></div></div></div>
-          <div class="bar-row"><div class="bar-lbl"><span>VBA Macros</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-w="82"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>Excel (Advanced)</span><span>95%</span></div><div class="bar-track"><div class="bar-fill" data-w="95"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>Power BI</span><span>90%</span></div><div class="bar-track"><div class="bar-fill" data-w="90"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>Power Query</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-w="88"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>VBA Macros</span><span>82%</span></div><div class="bar-track"><div class="bar-fill" data-w="82"></div></div></div>
         </div>
       </div>
-
-      <!-- Engineering -->
-      <div class="sk-card sk-v rv d2">
-        <div class="sk-icon">&#x2699;&#xFE0F;</div>
-        <div class="sk-title">Data Engineering &amp; ETL</div>
+      <div class="skill-card sk-v rv d2">
+        <div class="skill-icon">&#9881;</div>
+        <div class="skill-title">Data Engineering &amp; ETL</div>
         <div class="pills">
-          <span class="pill">ETL / ELT Workflows</span>
-          <span class="pill">MySQL (Beginner)</span>
-          <span class="pill">SQL Server</span>
-          <span class="pill">Salesforce</span>
-          <span class="pill">Odoo ERP</span>
-          <span class="pill">DB Fundamentals</span>
+          <span class="pill">ETL / ELT</span><span class="pill">MySQL (Beginner)</span><span class="pill">SQL Server</span>
+          <span class="pill">Salesforce</span><span class="pill">Odoo ERP</span><span class="pill">DB Fundamentals</span>
         </div>
         <div class="bars">
-          <div class="bar-row"><div class="bar-lbl"><span>ETL Workflows</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-w="85"></div></div></div>
-          <div class="bar-row"><div class="bar-lbl"><span>SQL / MySQL</span><span>60%</span></div><div class="bar-track"><div class="bar-fill" data-w="60"></div></div></div>
-          <div class="bar-row"><div class="bar-lbl"><span>Salesforce Data</span><span>78%</span></div><div class="bar-track"><div class="bar-fill" data-w="78"></div></div></div>
-          <div class="bar-row"><div class="bar-lbl"><span>ERP (Odoo)</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-w="75"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>ETL Workflows</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-w="85"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>SQL / MySQL</span><span>60%</span></div><div class="bar-track"><div class="bar-fill" data-w="60"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>Salesforce Data</span><span>78%</span></div><div class="bar-track"><div class="bar-fill" data-w="78"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>ERP (Odoo)</span><span>75%</span></div><div class="bar-track"><div class="bar-fill" data-w="75"></div></div></div>
         </div>
       </div>
-
-      <!-- Governance -->
-      <div class="sk-card sk-l rv d3">
-        <div class="sk-icon">&#x1F6E1;&#xFE0F;</div>
-        <div class="sk-title">Governance &amp; PM</div>
+      <div class="skill-card sk-l rv d3">
+        <div class="skill-icon">&#128737;</div>
+        <div class="skill-title">Governance &amp; PM</div>
         <div class="pills">
-          <span class="pill">Data Validation</span>
-          <span class="pill">Entity Matching</span>
-          <span class="pill">Process Improvement</span>
-          <span class="pill">Asana</span>
-          <span class="pill">Ad Hoc Analysis</span>
-          <span class="pill">Stakeholder Comms</span>
-          <span class="pill">User Manuals</span>
+          <span class="pill">Data Validation</span><span class="pill">Entity Matching</span><span class="pill">Process Improvement</span>
+          <span class="pill">Asana</span><span class="pill">Stakeholder Comms</span><span class="pill">Ad Hoc Analysis</span>
         </div>
         <div class="bars">
-          <div class="bar-row"><div class="bar-lbl"><span>Data Quality / Governance</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-w="88"></div></div></div>
-          <div class="bar-row"><div class="bar-lbl"><span>Project Management (Asana)</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-w="85"></div></div></div>
-          <div class="bar-row"><div class="bar-lbl"><span>Cross-functional Collaboration</span><span>92%</span></div><div class="bar-track"><div class="bar-fill" data-w="92"></div></div></div>
-          <div class="bar-row"><div class="bar-lbl"><span>Documentation</span><span>87%</span></div><div class="bar-track"><div class="bar-fill" data-w="87"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>Data Quality / Governance</span><span>88%</span></div><div class="bar-track"><div class="bar-fill" data-w="88"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>Project Mgmt (Asana)</span><span>85%</span></div><div class="bar-track"><div class="bar-fill" data-w="85"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>Cross-functional Collab</span><span>92%</span></div><div class="bar-track"><div class="bar-fill" data-w="92"></div></div></div>
+          <div class="bar-row"><div class="bar-label"><span>Documentation</span><span>87%</span></div><div class="bar-track"><div class="bar-fill" data-w="87"></div></div></div>
         </div>
       </div>
-
     </div>
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ PROJECTS ════════════════════════════════════════════════════════════ -->
-<section id="projects">
-  <div class="wrap">
+<!-- PROJECTS -->
+<section id="projects" style="background:var(--bg1)">
+  <div class="sec-wrap">
     <div class="sec-hdr rv">
-      <p class="lbl">// 03 &mdash; Work</p>
+      <p class="sec-label">// 03 &mdash; Work</p>
       <h2 class="sec-title">Featured <span>Projects</span></h2>
-      <p style="color:var(--t2);max-width:520px;font-size:.95rem;">Dashboards, pipelines, and automation delivered in real production environments.</p>
+      <p style="color:var(--t2);max-width:520px;font-size:.95rem">Dashboards, pipelines, and automation delivered in real production environments.</p>
     </div>
-
-    <!-- BI & Analytics -->
-    <div class="track tc rv">
-      <div class="track-lbl tl-c">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3v18h18v-2H5V3H3zm5 12l4-4 3 3 4-6 1.5 1.5L15 16l-3-3-4 4-1.5-2z"/></svg>
-        BI &amp; Analytics
-      </div>
+    <div class="proj-track tc-c rv">
+      <div class="track-label tl-c"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M3 3v18h18v-2H5V3H3zm5 12l4-4 3 3 4-6 1.5 1.5L15 16l-3-3-4 4-1.5-2z"/></svg>BI &amp; Analytics</div>
       <div class="proj-row">
         <div class="project">
-          <div class="pnum mono">// BI &mdash; 001</div>
-          <h3 class="ptitle">Cash Flow Monitoring Dashboard</h3>
-          <p class="pdesc">Live dashboard tracking company payables, receivables, and real-time balance at Netsolar &mdash; eliminating ~50% of manual PO/SO tracking overhead and improving financial transparency for leadership.</p>
-          <div class="pstack"><span class="sbadge">Power BI</span><span class="sbadge">DAX</span><span class="sbadge">Excel</span><span class="sbadge">Financial Modeling</span></div>
-          <!-- TODO: Add GitHub repo link when published -->
-          <a href="#" target="_blank" rel="noopener" class="gbtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
+          <div class="proj-num">// BI &mdash; 001</div>
+          <h3 class="proj-title">Cash Flow Monitoring Dashboard</h3>
+          <p class="proj-desc">Live Power BI dashboard tracking company payables, receivables, and real-time balance at Netsolar &mdash; eliminating ~50% of manual PO/SO tracking overhead and improving financial transparency for leadership.</p>
+          <div class="proj-stack"><span class="badge">Power BI</span><span class="badge">DAX</span><span class="badge">Excel</span><span class="badge">Financial Modeling</span></div>
+          <button class="preview-btn" onclick="openPreview('cash-flow')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Live Preview</button>
+          <a href="#" target="_blank" class="github-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
         </div>
         <div class="project">
-          <div class="pnum mono">// BI &mdash; 002</div>
-          <h3 class="ptitle">Operations Expense Dashboard</h3>
-          <p class="pdesc">Company-wide Power BI expense tracker measuring actuals vs. projected budgets across departments &mdash; enabling early cost overrun detection and contributing to a 10% profitability increase.</p>
-          <div class="pstack"><span class="sbadge">Power BI</span><span class="sbadge">DAX</span><span class="sbadge">Budget Analysis</span><span class="sbadge">Excel</span></div>
-          <!-- TODO: Add GitHub repo link when published -->
-          <a href="#" target="_blank" rel="noopener" class="gbtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
+          <div class="proj-num">// BI &mdash; 002</div>
+          <h3 class="proj-title">Operations Expense Dashboard</h3>
+          <p class="proj-desc">Company-wide Power BI expense tracker measuring actuals vs. projected budgets across departments &mdash; enabling early cost overrun detection and contributing to a 10% profitability increase.</p>
+          <div class="proj-stack"><span class="badge">Power BI</span><span class="badge">DAX</span><span class="badge">Budget Analysis</span><span class="badge">Excel</span></div>
+          <button class="preview-btn" onclick="openPreview('ops-expense')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Live Preview</button>
+          <a href="#" target="_blank" class="github-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
         </div>
         <div class="project">
-          <div class="pnum mono">// BI &mdash; 003</div>
-          <h3 class="ptitle">Inventory vs. Forecast Dashboard</h3>
-          <p class="pdesc">Supply chain Power BI dashboard comparing forecasted vs. actual inventory levels &mdash; supporting data audits and reducing dirty/inconsistent data records by 24%.</p>
-          <div class="pstack"><span class="sbadge">Power BI</span><span class="sbadge">Power Query</span><span class="sbadge">Supply Chain</span><span class="sbadge">Data Auditing</span></div>
-          <!-- TODO: Add GitHub repo link when published -->
-          <a href="#" target="_blank" rel="noopener" class="gbtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
+          <div class="proj-num">// BI &mdash; 003</div>
+          <h3 class="proj-title">Inventory vs. Forecast Dashboard</h3>
+          <p class="proj-desc">Supply chain Power BI dashboard comparing forecasted vs. actual inventory for the operations team &mdash; supporting data audits and reducing dirty or inconsistent records by 24%.</p>
+          <div class="proj-stack"><span class="badge">Power BI</span><span class="badge">Power Query</span><span class="badge">Supply Chain</span><span class="badge">Data Auditing</span></div>
+          <button class="preview-btn" onclick="openPreview('inventory')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Live Preview</button>
+          <a href="#" target="_blank" class="github-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
         </div>
       </div>
     </div>
-
-    <!-- ETL & Engineering -->
-    <div class="track tv rv">
-      <div class="track-lbl tl-v">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg>
-        ETL &amp; Engineering
-      </div>
+    <div class="proj-track tc-v rv">
+      <div class="track-label tl-v"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-1 9H9V9h10v2zm-4 4H9v-2h6v2zm4-8H9V5h10v2z"/></svg>ETL &amp; Data Engineering</div>
       <div class="proj-row">
         <div class="project">
-          <div class="pnum mono">// DE &mdash; 001</div>
-          <h3 class="ptitle">Salesforce ETL &amp; Validation Pipeline</h3>
-          <p class="pdesc">ETL workflows at Straive using Power Query and VBA macros to extract CRM data, resolve mismatches, and load clean records &mdash; cutting integration issues by 14% and boosting order automation by 75%.</p>
-          <div class="pstack"><span class="sbadge">Power Query</span><span class="sbadge">VBA Macros</span><span class="sbadge">Salesforce</span><span class="sbadge">ETL</span><span class="sbadge">Excel</span></div>
-          <!-- TODO: Add GitHub repo link when published -->
-          <a href="#" target="_blank" rel="noopener" class="gbtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
+          <div class="proj-num">// DE &mdash; 001</div>
+          <h3 class="proj-title">Salesforce ETL &amp; Validation Pipeline</h3>
+          <p class="proj-desc">ETL workflows at Straive using Power Query and VBA macros to extract CRM data, resolve mismatches, and load clean records &mdash; cutting integration issues by 14% and boosting order automation by 75%.</p>
+          <div class="proj-stack"><span class="badge">Power Query</span><span class="badge">VBA Macros</span><span class="badge">Salesforce</span><span class="badge">ETL</span><span class="badge">Excel</span></div>
+          <button class="preview-btn" onclick="openPreview('salesforce-etl')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Live Preview</button>
+          <a href="#" target="_blank" class="github-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
         </div>
         <div class="project">
-          <div class="pnum mono">// DE &mdash; 002</div>
-          <h3 class="ptitle">Odoo ERP Workflow Documentation</h3>
-          <p class="pdesc">Process documentation and user manuals for Netsolar's Odoo ERP rollout &mdash; standardizing cross-team workflows and reducing recurring support queries by 30%.</p>
-          <div class="pstack"><span class="sbadge">Odoo ERP</span><span class="sbadge">Process Design</span><span class="sbadge">Documentation</span><span class="sbadge">Change Management</span></div>
-          <!-- TODO: Add GitHub repo link when published -->
-          <a href="#" target="_blank" rel="noopener" class="gbtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
+          <div class="proj-num">// DE &mdash; 002</div>
+          <h3 class="proj-title">Odoo ERP Workflow Documentation</h3>
+          <p class="proj-desc">Process documentation and user manuals for Netsolar's Odoo ERP rollout &mdash; standardizing cross-team workflows and reducing recurring user support queries by 30%.</p>
+          <div class="proj-stack"><span class="badge">Odoo ERP</span><span class="badge">Process Design</span><span class="badge">Documentation</span><span class="badge">Change Management</span></div>
+          <button class="preview-btn" onclick="openPreview('odoo-erp')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Live Preview</button>
+          <a href="#" target="_blank" class="github-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
         </div>
       </div>
     </div>
-
-    <!-- Ad Hoc Analysis -->
-    <div class="track tl rv">
-      <div class="track-lbl tl-l">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19.8 18.4L14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.65-.02 1.6.8 1.6h14c.82 0 1.29-.95.8-1.6z"/></svg>
-        Sales KPI &amp; Ad Hoc Analysis
-      </div>
+    <div class="proj-track tc-l rv">
+      <div class="track-label tl-l"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M19.8 18.4L14 10.67V6.5l1.35-1.69c.26-.33.03-.81-.39-.81H9.04c-.42 0-.65.48-.39.81L10 6.5v4.17L4.2 18.4c-.49.65-.02 1.6.8 1.6h14c.82 0 1.29-.95.8-1.6z"/></svg>Sales KPI &amp; Ad Hoc Analysis</div>
       <div class="proj-row">
         <div class="project">
-          <div class="pnum mono">// AN &mdash; 001</div>
-          <h3 class="ptitle">Sales KPI &amp; Milestone Tracker</h3>
-          <p class="pdesc">Power BI dashboard monitoring sales milestones and delivery timelines across active projects &mdash; improving performance visibility and reducing project delays by 10%.</p>
-          <div class="pstack"><span class="sbadge">Power BI</span><span class="sbadge">KPI Design</span><span class="sbadge">Asana</span><span class="sbadge">DAX</span></div>
-          <!-- TODO: Add GitHub repo link when published -->
-          <a href="#" target="_blank" rel="noopener" class="gbtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
+          <div class="proj-num">// AN &mdash; 001</div>
+          <h3 class="proj-title">Sales KPI &amp; Milestone Tracker</h3>
+          <p class="proj-desc">Power BI dashboard monitoring sales milestones and delivery timelines across active projects &mdash; improving performance visibility and reducing project delays by 10%.</p>
+          <div class="proj-stack"><span class="badge">Power BI</span><span class="badge">KPI Design</span><span class="badge">Asana</span><span class="badge">DAX</span></div>
+          <button class="preview-btn" onclick="openPreview('sales-kpi')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Live Preview</button>
+          <a href="#" target="_blank" class="github-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
         </div>
         <div class="project">
-          <div class="pnum mono">// AN &mdash; 002</div>
-          <h3 class="ptitle">Excel Cash Flow Forecasting Model</h3>
-          <p class="pdesc">Ad hoc financial model forecasting rolling cash flow positions &mdash; used directly by Netsolar leadership to evaluate company financial health and guide strategic decisions.</p>
-          <div class="pstack"><span class="sbadge">Excel (Advanced)</span><span class="sbadge">Financial Forecasting</span><span class="sbadge">Scenario Modeling</span><span class="sbadge">Ad Hoc Analysis</span></div>
-          <!-- TODO: Add GitHub repo link when published -->
-          <a href="#" target="_blank" rel="noopener" class="gbtn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
+          <div class="proj-num">// AN &mdash; 002</div>
+          <h3 class="proj-title">Excel Cash Flow Forecasting Model</h3>
+          <p class="proj-desc">Ad hoc financial model built in Excel to forecast rolling cash flow positions &mdash; used directly by Netsolar leadership to evaluate company financial health and guide strategic decisions.</p>
+          <div class="proj-stack"><span class="badge">Excel (Advanced)</span><span class="badge">Financial Forecasting</span><span class="badge">Scenario Modeling</span><span class="badge">Ad Hoc</span></div>
+          <button class="preview-btn" onclick="openPreview('cash-forecast')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Live Preview</button>
+          <a href="#" target="_blank" class="github-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
         </div>
       </div>
     </div>
-
   </div>
 </section>
 
 <div class="divider"></div>
 
-<!-- ═══ EDUCATION ════════════════════════════════════════════════════════════ -->
-<section id="education">
-  <div class="wrap">
+<!-- EDUCATION -->
+<section id="education" style="background:var(--bg0)">
+  <div class="sec-wrap">
     <div class="sec-hdr rv">
-      <p class="lbl">// 04 &mdash; Background</p>
+      <p class="sec-label">// 04 &mdash; Background</p>
       <h2 class="sec-title">My <span>Education</span></h2>
     </div>
     <div class="edu-card rv d1">
-      <div class="edu-icon">&#x1F393;</div>
+      <div class="edu-icon">&#127891;</div>
       <div>
         <div class="edu-deg">Bachelor of Science in Medical Technology</div>
         <div class="edu-school">Far Eastern University &mdash; Manila</div>
         <div class="edu-year">Graduated: December 2023</div>
-        <p style="font-size:.85rem;color:var(--t3);margin-top:.6rem;line-height:1.6;">Strong analytical and scientific foundation &mdash; translating naturally into data-driven problem solving, statistical thinking, and evidence-based decision making.</p>
+        <p style="font-size:.85rem;color:var(--t3);margin-top:.6rem;line-height:1.6">Strong analytical and scientific foundation &mdash; translating naturally into data-driven problem solving, statistical thinking, and evidence-based decision making.</p>
       </div>
     </div>
   </div>
@@ -514,106 +504,209 @@
 
 <div class="divider"></div>
 
-<!-- ═══ CONTACT ══════════════════════════════════════════════════════════════ -->
-<section id="contact">
-  <div class="wrap">
+<!-- CONTACT -->
+<section id="contact" style="background:var(--bg1)">
+  <div class="sec-wrap">
     <div class="sec-hdr rv">
-      <p class="lbl">// 05 &mdash; Connect</p>
+      <p class="sec-label">// 05 &mdash; Connect</p>
       <h2 class="sec-title">Get In <span>Touch</span></h2>
     </div>
     <div class="contact-grid">
-      <div class="contact-left rv">
-        <p class="contact-tagline">Let&rsquo;s build something<br><span>data-driven</span><br>together.</p>
-        <p style="color:var(--t2);font-size:.92rem;line-height:1.7;">Open to data analyst, BI developer, or data engineering opportunities across Metro Manila and remote setups. Always happy to talk dashboards, ETL, or anything data.</p>
-        <div class="contact-detail">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-          <a href="mailto:2020jaspercalabio@gmail.com">2020jaspercalabio@gmail.com</a>
-        </div>
-        <div class="contact-detail">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
-          <span>(+63) 962 464 0511</span>
-        </div>
-        <div class="contact-detail">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
-          <span>Navotas, Metro Manila</span>
-        </div>
-        <div class="socials">
+      <div class="contact-info rv">
+        <p class="contact-tagline">Let's build something<br><span>data-driven</span><br>together.</p>
+        <p style="color:var(--t2);font-size:.92rem;line-height:1.7">Open to data analyst, BI developer, or data engineering roles across Metro Manila and remote setups.</p>
+        <div class="contact-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:2020jaspercalabio@gmail.com">2020jaspercalabio@gmail.com</a></div>
+        <div class="contact-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span>(+63) 962 464 0511</span></div>
+        <div class="contact-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Navotas, Metro Manila</span></div>
+        <div class="contact-socials">
           <!-- TODO: Replace # with your GitHub URL -->
-          <a href="#" target="_blank" rel="noopener" class="soc-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
+          <a href="#" target="_blank" class="social-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>GitHub</a>
           <!-- TODO: Replace # with your LinkedIn URL -->
-          <a href="#" target="_blank" rel="noopener" class="soc-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
+          <a href="#" target="_blank" class="social-btn"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>LinkedIn</a>
         </div>
       </div>
-      <div class="contact-form rv d2">
-        <div class="fg"><label for="fname">Name</label><input type="text" id="fname" placeholder="Your name"/></div>
-        <div class="fg"><label for="femail">Email</label><input type="email" id="femail" placeholder="your@email.com"/></div>
-        <div class="fg"><label for="fmsg">Message</label><textarea id="fmsg" placeholder="Tell me about the opportunity or project..."></textarea></div>
-        <!-- TODO: Wire up to Formspree or EmailJS for real email delivery -->
-        <button class="btn btn-c" id="fsub" type="button" style="align-self:flex-start"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>Send Message</button>
-        <div id="fmsg-out" style="font-family:'Space Mono',monospace;font-size:.72rem;color:var(--c);min-height:1.4rem;"></div>
-      </div>
+          </div>
     </div>
   </div>
 </section>
 
 <footer>
-  <span>&copy; 2025 <a href="#home">Jasper John G. Calabio</a> &mdash; Built with &lt;/&gt; &amp; &#x2615; &middot; Navotas, Metro Manila &#x1F1F5;&#x1F1ED;</span>
+  <span>&copy; 2025 <a href="#home">Jasper John G. Calabio</a> &mdash; Built with &lt;/&gt; &amp; &#9749; &middot; Navotas, Metro Manila</span>
 </footer>
 
 <script>
-  /* Typed.js */
-  new Typed('#typed',{strings:['Data Analyst','BI Developer','Data &amp; Systems Analyst','ETL Specialist','Dashboard Engineer'],typeSpeed:60,backSpeed:35,backDelay:1800,loop:true,cursorChar:'&#x2588;',contentType:'html'});
+/* Typed.js */
+new Typed('#typed', {
+  strings: ['Data Analyst', 'BI Developer', 'Data & Systems Analyst', 'ETL Specialist', 'Dashboard Engineer'],
+  typeSpeed: 60,
+  backSpeed: 35,
+  backDelay: 1800,
+  loop: true,
+  cursorChar: '|'
+});
 
-  /* Theme toggle */
-  const H=document.documentElement,ti=document.getElementById('ti'),tl=document.getElementById('tl');
-  function setTheme(t){H.setAttribute('data-theme',t);ti.innerHTML=t==='dark'?'&#9728;':'&#127769;';tl.textContent=t==='dark'?'Light':'Dark';localStorage.setItem('theme',t)}
-  document.getElementById('theme-toggle').addEventListener('click',()=>setTheme(H.getAttribute('data-theme')==='dark'?'light':'dark'));
-  const sv=localStorage.getItem('theme');if(sv)setTheme(sv);
+/* Theme toggle */
+var html = document.documentElement;
+var ti = document.getElementById('ti');
+var tl = document.getElementById('tl');
+function setTheme(t) {
+  html.setAttribute('data-theme', t);
+  ti.innerHTML = t === 'dark' ? '&#9728;' : '&#127769;';
+  tl.textContent = t === 'dark' ? 'Light' : 'Dark';
+  localStorage.setItem('ptheme', t);
+}
+document.getElementById('theme-toggle').addEventListener('click', function() {
+  setTheme(html.getAttribute('data-theme') === 'dark' ? 'light' : 'dark');
+});
+var sv = localStorage.getItem('ptheme');
+if (sv) { setTheme(sv); }
 
-  /* Mobile nav */
-  const nl=document.getElementById('nav-links');
-  document.getElementById('hbg').addEventListener('click',()=>nl.classList.toggle('open'));
-  nl.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>nl.classList.remove('open')));
+/* Mobile nav */
+var hbg = document.getElementById('hbg');
+var nl = document.getElementById('nav-links');
+hbg.addEventListener('click', function() { nl.classList.toggle('open'); });
+nl.querySelectorAll('a').forEach(function(a) {
+  a.addEventListener('click', function() { nl.classList.remove('open'); });
+});
 
-  /* Scroll reveal — class .rv -> .in */
-  const ro=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');ro.unobserve(e.target)}})},{threshold:.1});
-  document.querySelectorAll('.rv').forEach(el=>ro.observe(el));
+/* Scroll reveal — progressive enhancement.
+   Elements are visible by default (CSS). JS hides them, then reveals on scroll.
+   If JS fails, everything stays visible. */
+var rvEls = Array.prototype.slice.call(document.querySelectorAll('.rv'));
+if (typeof IntersectionObserver !== 'undefined') {
+  rvEls.forEach(function(el) { el.classList.add('hide'); });
+  var ro = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.classList.remove('hide');
+        ro.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
+  rvEls.forEach(function(el) { ro.observe(el); });
+}
 
-  /* Skill bar animation — data-w attribute */
-  const bo=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting){e.target.querySelectorAll('.bar-fill').forEach(b=>b.style.width=b.dataset.w+'%');bo.unobserve(e.target)}})},{threshold:.25});
-  document.querySelectorAll('.sk-card').forEach(c=>bo.observe(c));
+/* Skill bar animation */
+if (typeof IntersectionObserver !== 'undefined') {
+  var bo = new IntersectionObserver(function(entries) {
+    entries.forEach(function(e) {
+      if (e.isIntersecting) {
+        e.target.querySelectorAll('.bar-fill').forEach(function(b) {
+          b.style.width = b.getAttribute('data-w') + '%';
+        });
+        bo.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.3 });
+  document.querySelectorAll('.skill-card').forEach(function(c) { bo.observe(c); });
+}
 
-  /* Particles */
-  (function(){
-    const cv=document.getElementById('particles'),ctx=cv.getContext('2d');
-    let W,H,pts=[];
-    const COLS=['#00e5ff','#b44fff','#aaff00'],N=55;
-    function sz(){W=cv.width=innerWidth;H=cv.height=innerHeight}
-    function rnd(a,b){return Math.random()*(b-a)+a}
-    function init(){pts=[];for(let i=0;i<N;i++)pts.push({x:rnd(0,W),y:rnd(0,H),vx:rnd(-.3,.3),vy:rnd(-.3,.3),r:rnd(1,2.5),col:COLS[Math.floor(rnd(0,3))],a:rnd(.2,.7)})}
-    function draw(){
-      ctx.clearRect(0,0,W,H);
-      for(let i=0;i<pts.length;i++)for(let j=i+1;j<pts.length;j++){const dx=pts[i].x-pts[j].x,dy=pts[i].y-pts[j].y,d=Math.hypot(dx,dy);if(d<120){ctx.beginPath();ctx.moveTo(pts[i].x,pts[i].y);ctx.lineTo(pts[j].x,pts[j].y);ctx.strokeStyle=`rgba(0,229,255,${.06*(1-d/120)})`;ctx.lineWidth=.6;ctx.stroke()}}
-      pts.forEach(p=>{p.x+=p.vx;p.y+=p.vy;if(p.x<0)p.x=W;if(p.x>W)p.x=0;if(p.y<0)p.y=H;if(p.y>H)p.y=0;ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);ctx.fillStyle=p.col;ctx.globalAlpha=p.a;ctx.fill();ctx.globalAlpha=1});
-      requestAnimationFrame(draw)}
-    sz();init();draw();
-    window.addEventListener('resize',()=>{sz();init()});
-  })();
+/* Particle canvas */
+(function() {
+  var cv = document.getElementById('particles');
+  if (!cv) { return; }
+  var ctx = cv.getContext('2d');
+  var W = 0, H = 0, pts = [];
+  var COLS = ['#00e5ff', '#b44fff', '#aaff00'];
+  var N = 55;
+  function resize() { W = cv.width = window.innerWidth; H = cv.height = window.innerHeight; }
+  function rnd(a, b) { return Math.random() * (b - a) + a; }
+  function init() {
+    pts = [];
+    for (var i = 0; i < N; i++) {
+      pts.push({ x: rnd(0,W), y: rnd(0,H), vx: rnd(-0.3,0.3), vy: rnd(-0.3,0.3), r: rnd(1,2.5), col: COLS[Math.floor(rnd(0,COLS.length))], a: rnd(0.2,0.7) });
+    }
+  }
+  function draw() {
+    ctx.clearRect(0, 0, W, H);
+    var i, j, dx, dy, d;
+    for (i = 0; i < pts.length; i++) {
+      for (j = i + 1; j < pts.length; j++) {
+        dx = pts[i].x - pts[j].x;
+        dy = pts[i].y - pts[j].y;
+        d = Math.sqrt(dx*dx + dy*dy);
+        if (d < 120) {
+          ctx.beginPath();
+          ctx.moveTo(pts[i].x, pts[i].y);
+          ctx.lineTo(pts[j].x, pts[j].y);
+          ctx.strokeStyle = 'rgba(0,229,255,' + (0.06 * (1 - d/120)) + ')';
+          ctx.lineWidth = 0.6;
+          ctx.stroke();
+        }
+      }
+    }
+    for (i = 0; i < pts.length; i++) {
+      var p = pts[i];
+      p.x += p.vx; p.y += p.vy;
+      if (p.x < 0) { p.x = W; } if (p.x > W) { p.x = 0; }
+      if (p.y < 0) { p.y = H; } if (p.y > H) { p.y = 0; }
+      ctx.beginPath();
+      ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+      ctx.fillStyle = p.col;
+      ctx.globalAlpha = p.a;
+      ctx.fill();
+      ctx.globalAlpha = 1;
+    }
+    requestAnimationFrame(draw);
+  }
+  resize(); init(); draw();
+  window.addEventListener('resize', function() { resize(); init(); });
+})();
 
-  /* Form */
-  document.getElementById('fsub').addEventListener('click',()=>{
-    const n=document.getElementById('fname').value.trim(),e=document.getElementById('femail').value.trim(),m=document.getElementById('fmsg').value.trim(),o=document.getElementById('fmsg-out');
-    if(!n||!e||!m){o.style.color='var(--v)';o.textContent='> Error: all fields are required.';return}
-    o.style.color='var(--c)';o.textContent="> Message queued — I'll get back to you soon!";
-    document.getElementById('fname').value='';document.getElementById('femail').value='';document.getElementById('fmsg').value='';
+
+/* Nav: smooth scroll + active highlight */
+var secs = document.querySelectorAll('section[id]');
+var nas = document.querySelectorAll('.nav-links a');
+
+/* Smooth scroll on click - use id from href hash only */
+nas.forEach(function(a) {
+  a.addEventListener('click', function(e) {
+    var href = a.getAttribute('href');
+    if (href && href.charAt(0) === '#') {
+      e.preventDefault();
+      var id = href.slice(1);
+      var target = document.getElementById(id);
+      if (target) {
+        var top = target.getBoundingClientRect().top + window.scrollY - 68;
+        window.scrollTo({ top: top, behavior: 'smooth' });
+        nl.classList.remove('open');
+      }
+    }
   });
+});
 
-  /* Active nav */
-  const secs=document.querySelectorAll('section[id]'),nas=document.querySelectorAll('.nav-links a');
-  window.addEventListener('scroll',()=>{
-    let cur='';secs.forEach(s=>{if(scrollY>=s.offsetTop-80)cur=s.id});
-    nas.forEach(a=>{a.style.color=a.getAttribute('href')==='#'+cur?'var(--c)':''});
-  },{passive:true});
+/* Active section highlight on scroll */
+function updateActiveNav() {
+  var cur = '';
+  var scrollY = window.scrollY;
+  secs.forEach(function(s) {
+    if (scrollY >= s.offsetTop - 100) { cur = s.id; }
+  });
+  nas.forEach(function(a) {
+    if (a.getAttribute('href') === '#' + cur) {
+      a.classList.add('active');
+    } else {
+      a.classList.remove('active');
+    }
+  });
+}
+window.addEventListener('scroll', updateActiveNav, { passive: true });
+updateActiveNav();
 </script>
+
+<!-- PREVIEW MODAL -->
+<div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
+  <div class="modal-box">
+    <div class="modal-header">
+      <div>
+        <div class="modal-title" id="modal-title">Dashboard Preview</div>
+        <div class="modal-subtitle" id="modal-subtitle">Interactive Visualization</div>
+      </div>
+      <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
+    </div>
+    <div class="modal-body" id="modal-body"></div>
+  </div>
+</div>
+
 </body>
 </html>
