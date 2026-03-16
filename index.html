@@ -184,11 +184,10 @@ footer a:hover{color:var(--v)}
     background:var(--bg0);
     flex-direction:column;
     align-items:flex-start;
-    justify-content:flex-start;
+    justify-content:stretch;
     gap:0;
-    padding:0.25rem 0 1rem;
-    overflow-y:hidden;
-    overflow-x:hidden;
+    padding:0;
+    overflow:hidden;
     border-top:3px solid var(--c);
     border-bottom:1px solid var(--border);
     z-index:1099;
@@ -200,14 +199,16 @@ footer a:hover{color:var(--v)}
     clip-path:inset(0 0 0% 0);
     box-shadow:0 20px 60px rgba(0,0,0,.6);
   }
-  .nav-links li{width:100%;border-bottom:1px solid var(--border)}
+  .nav-links li{width:100%;flex:1;display:flex;flex-direction:column;border-bottom:1px solid var(--border)}
   .nav-links li:first-child{border-top:1px solid var(--border)}
   .nav-links li:last-child{border-bottom:none}
   .nav-links a{
     display:flex !important;
     align-items:center;
     gap:.75rem;
-    padding:.82rem 1.6rem !important;
+    padding:0 1.6rem !important;
+    height:100% !important;
+    width:100% !important;
     color:var(--t1) !important;
     font-family:'Inter',sans-serif !important;
     font-size:.92rem !important;
@@ -421,7 +422,7 @@ footer a:hover{color:var(--v)}
       </span>
       <span class="hero-meta-item">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        <span id="email-display" style="color:var(--c);cursor:pointer;text-decoration:underline;text-underline-offset:3px" onclick="var e='2020jaspercalabio'+'@gmail.com';window.location.href='mail'+'to:'+e">2020jaspercalabio@gmail.com</span>
+        <span id="email-display" style="color:var(--c);cursor:pointer;text-decoration:underline;text-underline-offset:3px" onclick="var e='2020jaspercalabio'+'@gmail.com';window.location.href='mail'+'to:'+e"><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="a597959795cfc4d6d5c0d7c6c4c9c4c7cccae5c2c8c4ccc98bc6cac8">[email&#160;protected]</a></span>
       </span>
       <span class="hero-meta-item">
         <svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
@@ -736,7 +737,7 @@ footer a:hover{color:var(--v)}
       <div class="contact-info rv">
         <p class="contact-tagline">Let's build something<br><span>data-driven</span><br>together.</p>
         <p style="color:var(--t2);font-size:.92rem;line-height:1.7">Open to data analyst, BI developer, or data engineering roles across Metro Manila and remote setups.</p>
-        <div class="contact-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="#" onclick="var e='2020jaspercalabio'+'@gmail.com';window.location.href='mail'+'to:'+e;return false;" style="color:var(--c)">2020jaspercalabio@gmail.com</a><button class="copy-email-btn" onclick="copyEmail()" title="Copy email"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
+        <div class="contact-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="#" onclick="var e='2020jaspercalabio'+'@gmail.com';window.location.href='mail'+'to:'+e;return false;" style="color:var(--c)"><span class="__cf_email__" data-cfemail="f3c1c3c1c399928083968190929f92919a9cb3949e929a9fdd909c9e">[email&#160;protected]</span></a><button class="copy-email-btn" onclick="copyEmail()" title="Copy email"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>Copy</button></div>
         <div class="contact-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg><span>(+63) 962 464 0511</span></div>
         <div class="contact-row"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg><span>Navotas, Metro Manila</span></div>
         <div class="contact-socials">
@@ -754,7 +755,7 @@ footer a:hover{color:var(--v)}
   <span>&copy; 2025 <a href="#home">Jasper John G. Calabio</a> &mdash; Built with &lt;/&gt; &amp; &#9749; &middot; Navotas, Metro Manila</span>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
 /* Typed.js */
 new Typed('#typed', {
   strings: ['Data Analyst', 'BI Developer', 'Data & Systems Analyst', 'ETL Specialist', 'Dashboard Engineer'],
@@ -1040,11 +1041,6 @@ dashboards['fashion-retail'] = {
 <!-- PREVIEW MODAL -->
 <div class="modal-overlay" id="modal-overlay" onclick="if(event.target===this)closeModal()">
   <div class="modal-box">
-    <div class="modal-header">
-      <div>
-        <div class="modal-title" id="modal-title">Dashboard Preview</div>
-        <div class="modal-subtitle" id="modal-subtitle">Interactive Visualization</div>
-      </div>
       <button class="modal-close" onclick="closeModal()" aria-label="Close">&times;</button>
     </div>
     <div class="modal-body" id="modal-body"></div>
