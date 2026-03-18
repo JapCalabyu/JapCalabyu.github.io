@@ -1750,18 +1750,64 @@ a.contact-item-value:hover { opacity: .75 }
   .contact-sub { max-width: 100% }
 }
 
+
+/* Iframe dashboard modal */
+.modal-overlay.open .modal-box[style*="height"] {
+  display: flex;
+  flex-direction: column;
+}
+.modal-overlay.open .modal-box[style*="height"] .modal-body {
+  flex: 1;
+  overflow: hidden;
+  padding: var(--space-4);
+}
+
+/* Fullscreen iframe modal */
+.modal-overlay.open.fs-modal {
+  padding: var(--space-2);
+  align-items: center;
+}
+.modal-overlay.open.fs-modal .modal-body {
+  padding: 0;
+  overflow: hidden;
+}
+
+
+/* Power BI iframe fills modal body */
+.modal-overlay.open.fs-modal .modal-body {
+  padding: 0;
+  flex: 1;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.modal-overlay.open.fs-modal .modal-body > div {
+  flex: 1;
+  height: 100%;
+}
+.modal-overlay.open.fs-modal .modal-body iframe {
+  width: 100%;
+  height: 100%;
+  min-height: unset;
+  border: none;
+  border-radius: 0 0 var(--radius-xl) var(--radius-xl);
+}
+.modal-overlay.open.fs-modal .modal-box {
+  display: flex;
+  flex-direction: column;
+}
 </style>
 </head>
 <body>
 
 <div id="intro-overlay">
   <div class="intro-logo">// JGC.DEV</div>
-  <div class="intro-greeting">Hello! &#128075;</div>
+  <div class="intro-greeting">Kamusta! &#128075;</div>
   <div class="intro-name">Jasper <span class="accent">Calabio</span></div>
   <div class="intro-role">Data Analyst &middot; BI Developer &middot; ETL Specialist</div>
   <div class="intro-line-wrap"><div class="intro-line"></div></div>
-  <button class="intro-enter" onclick="dismissIntro()">Enter Portfolio &rsaquo;</button>
-  <button class="intro-skip" onclick="dismissIntro()">Skip &rsaquo;</button>
+  <button class="intro-enter" onclick="window.dismissIntro && window.dismissIntro()">Enter Portfolio &rsaquo;</button>
+  <button class="intro-skip" onclick="window.dismissIntro && window.dismissIntro()">Skip &rsaquo;</button>
 </div>
 
 <div id="scroll-bar"></div>
@@ -1811,7 +1857,7 @@ a.contact-item-value:hover { opacity: .75 }
       </span>
       <span class="hero-meta-item">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
-        2020jaspercalabio@gmail.com
+        <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="023032303268637172677061636e63606b6d42656f636b6e2c616d6f">[email&#160;protected]</a>
       </span>
       <span class="hero-meta-item">
         <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
@@ -1883,7 +1929,7 @@ a.contact-item-value:hover { opacity: .75 }
           <h3 class="proj-title">Fashion Retail Sales Monthly Analysis</h3>
           <p class="proj-desc">Personal project analysing monthly fashion retail sales data to uncover seasonal trends, top-performing categories, and revenue patterns &mdash; built end-to-end in Excel and visualized in Power BI.</p>
           <div class="proj-stack"><span class="badge">Excel</span><span class="badge">Power BI</span><span class="badge">Sales Analysis</span><span class="badge">Trend Modeling</span></div>
-          <button class="preview-btn" onclick="openPreview('fashion-retail')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Live Preview</button>
+          <button class="preview-btn" onclick="openPreview('fashion-retail')"><svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>Live Dashboard</button>
           <a href="#" target="_blank" class="github-btn"><svg width="12" height="12" viewBox="0 0 24 24" fill="currentColor"><path d="M12 .297c-6.63 0-12 5.373-12 12 0 5.303 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.724-4.042-1.61-4.042-1.61C4.422 18.07 3.633 17.7 3.633 17.7c-1.087-.744.084-.729.084-.729 1.205.084 1.838 1.236 1.838 1.236 1.07 1.835 2.809 1.305 3.495.998.108-.776.417-1.305.76-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.465-2.38 1.235-3.22-.135-.303-.54-1.523.105-3.176 0 0 1.005-.322 3.3 1.23.96-.267 1.98-.399 3-.405 1.02.006 2.04.138 3 .405 2.28-1.552 3.285-1.23 3.285-1.23.645 1.653.24 2.873.12 3.176.765.84 1.23 1.91 1.23 3.22 0 4.61-2.805 5.625-5.475 5.92.42.36.81 1.096.81 2.22 0 1.606-.015 2.896-.015 3.286 0 .315.21.69.825.57C20.565 22.092 24 17.592 24 12.297c0-6.627-5.373-12-12-12"/></svg>View GitHub Repository</a>
         </div>
       </div>
@@ -2230,7 +2276,7 @@ a.contact-item-value:hover { opacity: .75 }
             </div>
             <div class="contact-item-body">
               <span class="contact-item-label">Email</span>
-              <a href="#" onclick="var e='2020jaspercalabio'+'@gmail.com';window.location.href='mail'+'to:'+e;return false;" class="contact-item-value">2020jaspercalabio@gmail.com</a>
+              <a href="#" onclick="var e='2020jaspercalabio'+'@gmail.com';window.location.href='mail'+'to:'+e;return false;" class="contact-item-value"><span class="__cf_email__" data-cfemail="21131113114b405251445342404d4043484e61464c40484d0f424e4c">[email&#160;protected]</span></a>
             </div>
             <button class="copy-email-btn" onclick="copyEmail()" title="Copy email">
               <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
@@ -2352,6 +2398,7 @@ a.contact-item-value:hover { opacity: .75 }
 </footer>
 
 <script>
+
 
 
 
@@ -2783,40 +2830,39 @@ function openPreview(id) {
   document.getElementById('modal-title').textContent = data.title;
   document.getElementById('modal-subtitle').textContent = data.subtitle;
   document.getElementById('modal-body').innerHTML = data.render();
-  document.getElementById('modal-overlay').classList.add('open');
+  var overlay = document.getElementById('modal-overlay');
+  var box = overlay.querySelector('.modal-box');
+  overlay.classList.add('open');
+  if (id === 'fashion-retail') {
+    overlay.classList.add('fs-modal');
+    box.style.maxWidth = '98vw';
+    box.style.width = '98vw';
+    box.style.height = '95vh';
+    box.style.margin = '0 auto';
+  } else {
+    overlay.classList.remove('fs-modal');
+    box.style.maxWidth = '';
+    box.style.width = '';
+    box.style.height = '';
+    box.style.margin = '';
+  }
   document.body.style.overflow = 'hidden';
 }
+
 function closeModal() {
-  document.getElementById('modal-overlay').classList.remove('open');
+  var ov = document.getElementById('modal-overlay');
+  ov.classList.remove('open');
+  ov.classList.remove('fs-modal');
+  var box = ov.querySelector('.modal-box');
+  if (box) { box.style.maxWidth = ''; box.style.width = ''; box.style.height = ''; box.style.margin = ''; }
   document.body.style.overflow = '';
 }
+
 document.addEventListener('keydown', function(e) {
   if (e.key === 'Escape') closeModal();
 });
 
-/* Fashion Retail dashboard */
-dashboards['fashion-retail'] = {
-  title: 'Fashion Retail Sales Monthly Analysis',
-  subtitle: 'Personal Project · Excel + Power BI',
-  render: function() {
-    return '<div class="dash-grid dash-grid-3" style="margin-bottom:1rem">' +
-      kpi('Total Revenue', '&#8369;2.84M', '+18% vs prior period', 'up') +
-      kpi('Top Category', 'Outerwear', '34% of total sales', 'up') +
-      kpi('Best Month', 'December', 'Peak seasonal demand', 'up') +
-    '</div>' +
-    '<div class="dash-grid dash-grid-2">' +
-      '<div class="dash-chart-box"><div class="dash-chart-title">Monthly Revenue Trend</div>' +
-        barChart(['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'],
-          [{v:55,c:'#3B9EFF'},{v:48,c:'#3B9EFF'},{v:62,c:'#3B9EFF'},{v:58,c:'#3B9EFF'},
-           {v:65,c:'#3B9EFF'},{v:70,c:'#3B9EFF'},{v:75,c:'#3B9EFF'},{v:68,c:'#3B9EFF'},
-           {v:72,c:'#F97316'},{v:80,c:'#F97316'},{v:88,c:'#F97316'},{v:100,c:'#34D399'}]) +
-      '</div>' +
-      '<div class="dash-chart-box"><div class="dash-chart-title">Sales by Category</div>' +
-        donut([{l:'Outerwear',v:34,c:'#3B9EFF'},{l:'Tops',v:28,c:'#F97316'},{l:'Bottoms',v:22,c:'#34D399'},{l:'Accessories',v:16,c:'#94a3b8'}],'100%') +
-      '</div>' +
-    '</div>';
-  }
-};
+
 
 
 /* ── Intro Greeting Animation ── */
@@ -2904,226 +2950,26 @@ if (cg && window.matchMedia('(min-width:769px)').matches) {
 
 
 
-/* ── REVEAL — multiple directions ───────────────── */
-var allReveal = document.querySelectorAll('.rv, .rv-left, .rv-right, .rv-scale');
-if (typeof IntersectionObserver !== 'undefined') {
-  allReveal.forEach(function(el) { el.classList.add('hide'); });
-  var revealObs = new IntersectionObserver(function(entries) {
-    entries.forEach(function(e) {
-      if (e.isIntersecting) {
-        e.target.classList.remove('hide');
-        revealObs.unobserve(e.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -30px 0px' });
-  allReveal.forEach(function(el) { revealObs.observe(el); });
-}
-
-/* ── STAT NUMBER POP ─────────────────────────────── */
-var statObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.stat-num').forEach(function(el, i) {
-        setTimeout(function() { el.classList.add('popped'); }, i * 120);
-      });
-      statObs.unobserve(e.target);
+/* Fashion Retail — real Power BI embed */
+(function() {
+  if (typeof dashboards === 'undefined') return;
+  var pbUrl = 'https://app.powerbi.com/view?r=eyJrIjoiZjNiYzIwMGUtZTZkZS00OGQwLThhNTMtNDkyM2M1ZGU3YjFkIiwidCI6IjgwYTQ1ZWRjLWQ1ZWUtNDZlMC05ZDc1LTM3YzQ3YmU5YjdjYyIsImMiOjEwfQ%3D%3D';
+  dashboards['fashion-retail'] = {
+    title: 'Fashion Retail Sales Monthly Analysis',
+    subtitle: 'Personal Project · Excel + Power BI',
+    render: function() {
+      return '<div style="width:100%;height:100%;min-height:520px">' +
+        '<iframe' +
+        ' title="Retail sales dashboard"' +
+        ' src="' + pbUrl + '"' +
+        ' frameborder="0"' +
+        ' allowFullScreen="true"' +
+        ' style="width:100%;height:100%;min-height:520px;border:none;border-radius:8px">' +
+        '</iframe>' +
+        '</div>';
     }
-  });
-}, { threshold: 0.5 });
-var statsBanner = document.querySelector('.stats-banner');
-if (statsBanner) statObs.observe(statsBanner);
-
-/* ── SKILL BAR GLOW after fill ───────────────────── */
-var barObs2 = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      setTimeout(function() {
-        e.target.querySelectorAll('.bar-fill').forEach(function(b) {
-          b.style.width = b.getAttribute('data-w') + '%';
-          setTimeout(function() { b.classList.add('filled'); }, 1400);
-        });
-      }, 200);
-      barObs2.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.skill-card').forEach(function(c) { barObs2.observe(c); });
-
-/* ── 3D TILT on project + exp cards ──────────────── */
-function addTilt(selector) {
-  document.querySelectorAll(selector).forEach(function(card) {
-    card.classList.add('tilt-card');
-    card.addEventListener('mousemove', function(e) {
-      var rect = card.getBoundingClientRect();
-      var x = (e.clientX - rect.left) / rect.width  - 0.5;
-      var y = (e.clientY - rect.top)  / rect.height - 0.5;
-      card.style.transform = 'perspective(600px) rotateY(' + (x * 6) + 'deg) rotateX(' + (-y * 6) + 'deg) translateZ(6px)';
-    });
-    card.addEventListener('mouseleave', function() {
-      card.style.transform = '';
-    });
-  });
-}
-addTilt('.project');
-addTilt('.exp-card');
-addTilt('.skill-card');
-addTilt('.cert-card');
-
-/* ── MAGNETIC BUTTONS ────────────────────────────── */
-document.querySelectorAll('.btn').forEach(function(btn) {
-  btn.addEventListener('mousemove', function(e) {
-    var rect = btn.getBoundingClientRect();
-    var x = (e.clientX - rect.left - rect.width  / 2) * 0.25;
-    var y = (e.clientY - rect.top  - rect.height / 2) * 0.25;
-    btn.style.transform = 'translate(' + x + 'px,' + y + 'px) translateY(-3px)';
-  });
-  btn.addEventListener('mouseleave', function() {
-    btn.style.transform = '';
-  });
-});
-
-/* ── SECTION TITLE WORD SPLIT REVEAL ─────────────── */
-document.querySelectorAll('.sec-title').forEach(function(el) {
-  var html = el.innerHTML;
-  // Only split text nodes, not span children
-  el.style.overflow = 'hidden';
-});
-
-/* ── TYPING SHIMMER on hero name ─────────────────── */
-var heroName = document.querySelector('.hero-name');
-if (heroName) {
-  heroName.style.transition = 'letter-spacing .6s ease';
-  setTimeout(function() {
-    heroName.style.letterSpacing = '-.04em';
-  }, 800);
-}
-
-/* ── SCROLL PROGRESS GLOW ────────────────────────── */
-var scrollBar = document.getElementById('scroll-bar');
-window.addEventListener('scroll', function() {
-  if (!scrollBar) return;
-  var pct = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * 100;
-  scrollBar.style.width = pct.toFixed(1) + '%';
-  scrollBar.style.opacity = pct > 2 ? '1' : '0';
-}, { passive: true });
-
-/* ── STAGGER CARDS on reveal ─────────────────────── */
-var projObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      var cards = e.target.querySelectorAll('.project, .cert-card');
-      cards.forEach(function(card, i) {
-        card.style.opacity = '0';
-        card.style.transform = 'translateY(20px)';
-        setTimeout(function() {
-          card.style.transition = 'opacity .5s ease, transform .5s cubic-bezier(.34,1.56,.64,1)';
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        }, i * 90);
-      });
-      projObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1 });
-document.querySelectorAll('.proj-track, [class*="cert"]').forEach(function(el) {
-  projObs.observe(el);
-});
-
-/* ── CURSOR GLOW THEME-AWARE ─────────────────────── */
-var cg = document.getElementById('cursor-glow');
-if (cg && window.matchMedia('(min-width:769px)').matches) {
-  var cgX = 0, cgY = 0, rafId;
-  document.addEventListener('mousemove', function(e) {
-    cgX = e.clientX; cgY = e.clientY;
-    if (!rafId) {
-      rafId = requestAnimationFrame(function() {
-        cg.style.left = cgX + 'px';
-        cg.style.top  = cgY + 'px';
-        rafId = null;
-      });
-    }
-  }, { passive: true });
-}
-
-/* ── NAVBAR SHRINK on scroll ─────────────────────── */
-var navbar = document.getElementById('navbar');
-window.addEventListener('scroll', function() {
-  if (!navbar) return;
-  if (window.scrollY > 80) {
-    navbar.style.height = '56px';
-    navbar.style.borderBottomWidth = '1px';
-  } else {
-    navbar.style.height = '';
-    navbar.style.borderBottomWidth = '';
-  }
-}, { passive: true });
-
-/* ── TIMELINE ITEMS stagger in ───────────────────── */
-var tlObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      var items = e.target.querySelectorAll('.tl-item');
-      items.forEach(function(item, i) {
-        item.style.opacity = '0';
-        item.style.transform = 'translateX(-20px)';
-        setTimeout(function() {
-          item.style.transition = 'opacity .5s ease, transform .5s ease';
-          item.style.opacity = '1';
-          item.style.transform = 'translateX(0)';
-        }, i * 150);
-      });
-      tlObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.15 });
-var timeline = document.querySelector('.timeline');
-if (timeline) tlObs.observe(timeline);
-
-/* ── SECTION BACKGROUND TINT on active ──────────── */
-var sections = document.querySelectorAll('section[id]');
-var secObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      document.querySelectorAll('.nav-links a').forEach(function(a) {
-        a.classList.remove('active');
-        if (a.getAttribute('href') === '#' + e.target.id) {
-          a.classList.add('active');
-        }
-      });
-    }
-  });
-}, { threshold: 0.35 });
-sections.forEach(function(s) { secObs.observe(s); });
-
-
-/* ── Contact bring-list stagger ────── */
-var bringObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      e.target.querySelectorAll('.contact-bring-item').forEach(function(item, i) {
-        setTimeout(function() { item.classList.add('visible'); }, i * 100);
-      });
-      bringObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.4 });
-var bringCard = document.querySelector('.contact-bring-card');
-if (bringCard) bringObs.observe(bringCard);
-
-/* ── Contact items slide in on scroll ── */
-var contactObs = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      /* re-trigger animation by toggling class */
-      e.target.style.animationPlayState = 'running';
-      contactObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.3 });
-document.querySelectorAll('.contact-item').forEach(function(el) {
-  el.style.animationPlayState = 'paused';
-  contactObs.observe(el);
-});
+  };
+})();
 
 </script>
 </body>
